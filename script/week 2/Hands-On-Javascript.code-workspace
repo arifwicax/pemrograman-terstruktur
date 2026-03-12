@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "../../../../Github/Hands-On-Javascript"
+		},
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../tanamin-frontend-tsx"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "pemrograman terstruktur"
+	}
+}
