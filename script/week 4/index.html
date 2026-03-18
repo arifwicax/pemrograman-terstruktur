@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 4 - Types, Values, dan Variables</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        .script-list {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .script-item {
+            margin: 5px 0;
+            padding: 5px;
+        }
+        .active {
+            background-color: #e8f5e8;
+            border-left: 4px solid #27ae60;
+            padding-left: 10px;
+        }
+        .inactive {
+            background-color: #fdf2e9;
+            border-left: 4px solid #e67e22;
+            padding-left: 10px;
+            opacity: 0.7;
+        }
+        .instructions {
+            background: #e8f4fd;
+            padding: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+        }
+        code {
+            background: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+        .warning {
+            background: #ffeaa7;
+            padding: 10px;
+            border-radius: 5px;
+            border-left: 4px solid #fdcb6e;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Week 4 - Types, Values, dan Variables pada Javascript</h1>
+        
+        <div class="instructions">
+            <h3>📚 Cara Menggunakan:</h3>
+            <ol>
+                <li>Buka <strong>Developer Tools</strong> (F12 atau Ctrl+Shift+I)</li>
+                <li>Pilih tab <strong>Console</strong></li>
+                <li>Uncomment salah satu baris <code>&lt;script&gt;</code> di bawah</li>
+                <li>Refresh halaman (F5) untuk menjalankan script</li>
+                <li>Lihat output di Console</li>
+            </ol>
+        </div>
+
+        <div class="warning">
+            <strong>⚠️ Penting:</strong> Hanya aktifkan satu script dalam satu waktu untuk menghindari konflik output di console.
+        </div>
+
+        <h2>📋 Daftar Script:</h2>
+        
+        <div class="script-list">
+            <div class="script-item active">
+                <strong>1. Primitive Types</strong> - Menjelaskan tipe data dasar: Number, String, Boolean, null, undefined
+            </div>
+            
+            <div class="script-item inactive">
+                <strong>2. Number Operations</strong> - Operasi matematika, Math object, increment/decrement
+            </div>
+            
+            <div class="script-item inactive">
+                <strong>3. String Manipulation</strong> - Methods string, template literals, manipulasi teks
+            </div>
+            
+            <div class="script-item inactive">
+                <strong>4. Variables & Constants</strong> - let vs const, scope, hoisting, naming conventions
+            </div>
+            
+            <div class="script-item inactive">
+                <strong>5. Type Conversion</strong> - Konversi tipe data implisit dan eksplisit
+            </div>
+            
+            <div class="script-item inactive">
+                <strong>6. Objects</strong> - Object literals, methods, nested objects, destructuring
+            </div>
+            
+            <div class="script-item inactive">
+                <strong>7. Comprehensive Example</strong> - Program lengkap sistem akademik yang menggabungkan semua konsep
+            </div>
+        </div>
+
+        <h2>🔧 Script Files:</h2>
+        <p>Uncomment salah satu baris script di bawah ini untuk menjalankan:</p>
+        
+        <div style="background: #2c3e50; color: #ecf0f1; padding: 15px; border-radius: 5px; font-family: monospace;">
+            &lt;!-- Pilih salah satu script untuk dijalankan --&gt;<br>
+            <span style="color: #27ae60;">&lt;script src="1.primitive_types.js"&gt;&lt;/script&gt;</span><br>
+            <span style="color: #95a5a6;">&lt;!-- &lt;script src="2.number_operations.js"&gt;&lt;/script&gt; --&gt;</span><br>
+            <span style="color: #95a5a6;">&lt;!-- &lt;script src="3.string_manipulation.js"&gt;&lt;/script&gt; --&gt;</span><br>
+            <span style="color: #95a5a6;">&lt;!-- &lt;script src="4.variables_constants.js"&gt;&lt;/script&gt; --&gt;</span><br>
+            <span style="color: #95a5a6;">&lt;!-- &lt;script src="5.type_conversion.js"&gt;&lt;/script&gt; --&gt;</span><br>
+            <span style="color: #95a5a6;">&lt;!-- &lt;script src="6.objects.js"&gt;&lt;/script&gt; --&gt;</span><br>
+            <span style="color: #95a5a6;">&lt;!-- &lt;script src="7.comprehensive_example.js"&gt;&lt;/script&gt; --&gt;</span>
+        </div>
+
+        <h2>📖 Materi yang Dipelajari:</h2>
+        <ul>
+            <li><strong>Primitive Types:</strong> Number, String, Boolean, null, undefined</li>
+            <li><strong>Variables:</strong> Deklarasi dengan let dan const</li>
+            <li><strong>Type Conversion:</strong> Konversi otomatis dan manual</li>
+            <li><strong>Objects:</strong> Object literals, properties, methods</li>
+            <li><strong>Scope:</strong> Global, function, dan block scope</li>
+            <li><strong>Best Practices:</strong> Naming conventions, code organization</li>
+        </ul>
+
+        <div class="instructions">
+            <h3>💡 Tips Belajar:</h3>
+            <ul>
+                <li>Jalankan script satu per satu sesuai urutan</li>
+                <li>Baca komentar di dalam kode untuk pemahaman lebih detail</li>
+                <li>Coba modifikasi nilai-nilai untuk eksperimen</li>
+                <li>Gunakan <code>console.log()</code> untuk debugging</li>
+                <li>Script comprehensive example menggabungkan semua konsep</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Pilih salah satu script untuk dijalankan -->
+    <script src="1.primitive_types.js"></script>
+    <!-- <script src="2.number_operations.js"></script> -->
+    <!-- <script src="3.string_manipulation.js"></script> -->
+    <!-- <script src="4.variables_constants.js"></script> -->
+    <!-- <script src="5.type_conversion.js"></script> -->
+    <!-- <script src="6.objects.js"></script> -->
+    <!-- <script src="7.comprehensive_example.js"></script> -->
+
+</body>
+</html>

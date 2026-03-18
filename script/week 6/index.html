@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6 - Statements (Pernyataan) dalam JavaScript</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 4px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 35px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-left: 5px solid #3498db;
+            border-radius: 5px;
+        }
+        .description {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid #17a2b8;
+        }
+        .script-list {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        .script-item {
+            margin: 12px 0;
+            padding: 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .script-item:hover {
+            transform: translateX(10px);
+            border-color: #3498db;
+        }
+        .active {
+            background: linear-gradient(135deg, #e8f5e8, #d4f1d4);
+            border-left: 5px solid #27ae60;
+            padding-left: 15px;
+        }
+        .inactive {
+            background: linear-gradient(135deg, #fdf2e9, #f8e6d3);
+            border-left: 5px solid #e67e22;
+            padding-left: 15px;
+            opacity: 0.8;
+        }
+        button {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #2980b9, #1f5582);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+        }
+        .run-all {
+            background: linear-gradient(135deg, #e74c3c, #c0392b) !important;
+        }
+        .run-all:hover {
+            background: linear-gradient(135deg, #c0392b, #922b21) !important;
+        }
+        .clear-btn {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d) !important;
+        }
+        .clear-btn:hover {
+            background: linear-gradient(135deg, #7f8c8d, #566162) !important;
+        }
+        #output {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            max-height: 500px;
+            overflow-y: auto;
+            margin-top: 20px;
+            border: 2px solid #34495e;
+        }
+        .controls {
+            text-align: center;
+            margin: 25px 0;
+            padding: 20px;
+            background: #f1f2f6;
+            border-radius: 10px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 15px;
+            background: #34495e;
+            color: white;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+        .learning-objectives {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .learning-objectives h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .learning-objectives ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .learning-objectives li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Week 6 - Statements dalam JavaScript</h1>
+        
+        <div class="description">
+            <strong>Deskripsi Materi:</strong><br>
+            Pada week ini kita mempelajari <strong>Statements (Pernyataan)</strong> dalam JavaScript. 
+            Statement adalah perintah dalam program yang dijalankan oleh JavaScript. Program JavaScript 
+            pada dasarnya adalah sekumpulan statement yang dijalankan secara berurutan.
+        </div>
+
+        <div class="learning-objectives">
+            <h3>🎯 Tujuan Pembelajaran</h3>
+            <ul>
+                <li>Memahami pengertian dan jenis-jenis statements dalam JavaScript</li>
+                <li>Menggunakan conditional statements (if, switch) untuk pengambilan keputusan</li>
+                <li>Menerapkan loop statements (while, for, for-of, for-in) untuk perulangan</li>
+                <li>Menggunakan jump statements (break, continue, return) untuk kontrol alur</li>
+                <li>Menerapkan error handling (try-catch-finally) untuk menangani kesalahan</li>
+                <li>Membangun aplikasi sederhana yang mengkombinasikan semua jenis statements</li>
+            </ul>
+        </div>
+        
+        <h2>📚 Daftar Script Pembelajaran</h2>
+        
+        <div class="script-list">
+            <div class="script-item active">
+                <strong>1. Expression Statements</strong><br>
+                <small>Mempelajari expression sebagai statement, compound statements, dan empty statements</small><br>
+                <button onclick="runScript('1.expression_statements.js')">▶️ Jalankan Script 1</button>
+            </div>
+            
+            <div class="script-item active">
+                <strong>2. Conditional Statements</strong><br>
+                <small>Mempelajari if, if-else, else-if, switch, dan ternary operator untuk pengambilan keputusan</small><br>
+                <button onclick="runScript('2.conditional_statements.js')">▶️ Jalankan Script 2</button>
+            </div>
+            
+            <div class="script-item active">
+                <strong>3. Loop Statements</strong><br>
+                <small>Mempelajari while, do-while, dan for loop untuk perulangan dengan berbagai variasi</small><br>
+                <button onclick="runScript('3.loop_statements.js')">▶️ Jalankan Script 3</button>
+            </div>
+            
+            <div class="script-item active">
+                <strong>4. Advanced Loops</strong><br>
+                <small>Mempelajari for-of, for-in, array methods, dan teknik iterasi lanjutan</small><br>
+                <button onclick="runScript('4.advanced_loops.js')">▶️ Jalankan Script 4</button>
+            </div>
+            
+            <div class="script-item active">
+                <strong>5. Jump Statements</strong><br>
+                <small>Mempelajari break, continue, return, dan labeled statements untuk kontrol alur program</small><br>
+                <button onclick="runScript('5.jump_statements.js')">▶️ Jalankan Script 5</button>
+            </div>
+            
+            <div class="script-item active">
+                <strong>6. Error Handling</strong><br>
+                <small>Mempelajari try-catch-finally, throw, custom errors, dan best practices error handling</small><br>
+                <button onclick="runScript('6.error_handling.js')">▶️ Jalankan Script 6</button>
+            </div>
+            
+            <div class="script-item active">
+                <strong>7. Comprehensive Example</strong><br>
+                <small>Aplikasi lengkap sistem manajemen mahasiswa yang menggunakan semua jenis statements</small><br>
+                <button onclick="runScript('7.comprehensive_example.js')">▶️ Jalankan Script 7</button>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button class="run-all" onclick="runAllScripts()">🚀 Jalankan Semua Script</button>
+            <button class="clear-btn" onclick="clearOutput()">🧹 Bersihkan Output</button>
+        </div>
+        
+        <h2>📋 Output Console</h2>
+        <div id="output">Pilih script di atas untuk melihat hasilnya...
+
+💡 Tips:
+• Jalankan script secara berurutan untuk pemahaman yang lebih baik
+• Perhatikan bagaimana setiap statement bekerja dan berinteraksi
+• Script 7 (Comprehensive Example) menggabungkan semua konsep yang dipelajari
+• Gunakan browser Developer Tools (F12) untuk debugging lebih detail</div>
+        
+        <div class="footer">
+            <strong>Week 6 - Statements dalam JavaScript</strong><br>
+            Mata Kuliah: Pemrograman Terstruktur | Sistem Informasi<br>
+            <small>💻 Jalankan di browser modern untuk hasil terbaik</small>
+        </div>
+    </div>
+
+    <script>
+        // Console output capture
+        const originalConsoleLog = console.log;
+        let outputElement = document.getElementById('output');
+        
+        // Override console.log to capture output
+        console.log = function(...args) {
+            originalConsoleLog.apply(console, args);
+            
+            // Format output for display
+            let message = args.map(arg => {
+                if (typeof arg === 'object') {
+                    return JSON.stringify(arg, null, 2);
+                }
+                return String(arg);
+            }).join(' ');
+            
+            outputElement.textContent += message + '\n';
+            outputElement.scrollTop = outputElement.scrollHeight;
+        };
+        
+        // Function to run individual script
+        async function runScript(filename) {
+            console.log(`\n🔄 Loading ${filename}...\n`);
+            console.log('=' .repeat(60));
+            
+            try {
+                // Dynamic import of the script
+                const module = await import('./' + filename);
+                console.log(`\n✅ ${filename} executed successfully!`);
+            } catch (error) {
+                console.log(`\n❌ Error loading ${filename}:`);
+                console.log(error.message);
+                
+                // Fallback: try to load as script tag
+                try {
+                    await loadScriptTag(filename);
+                } catch (fallbackError) {
+                    console.log(`\n❌ Fallback also failed: ${fallbackError.message}`);
+                }
+            }
+            
+            console.log('=' .repeat(60));
+            console.log(`\n`);
+        }
+        
+        // Fallback function to load script as script tag
+        function loadScriptTag(filename) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = filename;
+                script.onload = () => {
+                    console.log(`✅ ${filename} loaded via script tag`);
+                    resolve();
+                };
+                script.onerror = () => {
+                    reject(new Error(`Failed to load ${filename} via script tag`));
+                };
+                
+                // Remove any existing script with same src
+                const existing = document.querySelector(`script[src="${filename}"]`);
+                if (existing) {
+                    existing.remove();
+                }
+                
+                document.head.appendChild(script);
+                
+                // Remove script after loading to prevent conflicts
+                setTimeout(() => {
+                    if (script.parentNode) {
+                        script.parentNode.removeChild(script);
+                    }
+                }, 1000);
+            });
+        }
+        
+        // Function to run all scripts sequentially
+        async function runAllScripts() {
+            const scripts = [
+                '1.expression_statements.js',
+                '2.conditional_statements.js', 
+                '3.loop_statements.js',
+                '4.advanced_loops.js',
+                '5.jump_statements.js',
+                '6.error_handling.js',
+                '7.comprehensive_example.js'
+            ];
+            
+            console.log('🚀 STARTING ALL SCRIPTS EXECUTION');
+            console.log('=' .repeat(70));
+            console.log(`Total scripts to run: ${scripts.length}\n`);
+            
+            for (let i = 0; i < scripts.length; i++) {
+                console.log(`\n📂 [${i + 1}/${scripts.length}] EXECUTING: ${scripts[i]}`);
+                await runScript(scripts[i]);
+                
+                // Add delay between scripts for better readability
+                if (i < scripts.length - 1) {
+                    console.log('⏳ Preparing next script...\n');
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+            }
+            
+            console.log('\n✅ ALL SCRIPTS COMPLETED!');
+            console.log('🎉 Week 6 Statements pembelajaran selesai!');
+            console.log('=' .repeat(70));
+        }
+        
+        // Function to clear output
+        function clearOutput() {
+            outputElement.textContent = 'Output console dibersihkan. Pilih script untuk melihat hasilnya...\n\n💡 Tips:\n• Jalankan script secara berurutan untuk pemahaman yang lebih baik\n• Perhatikan bagaimana setiap statement bekerja dan berinteraksi\n• Script 7 (Comprehensive Example) menggabungkan semua konsep yang dipelajari\n• Gunakan browser Developer Tools (F12) untuk debugging lebih detail';
+        }
+        
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            // Ctrl/Cmd + Enter to run all scripts
+            if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') {
+                event.preventDefault();
+                runAllScripts();
+            }
+            
+            // Ctrl/Cmd + Backspace to clear output
+            if ((event.ctrlKey || event.metaKey) && event.key === 'Backspace') {
+                event.preventDefault();
+                clearOutput();
+            }
+            
+            // Numbers 1-7 to run individual scripts
+            if (event.key >= '1' && event.key <= '7' && !event.ctrlKey && !event.metaKey) {
+                event.preventDefault();
+                const scriptNumber = parseInt(event.key);
+                const scripts = [
+                    '1.expression_statements.js',
+                    '2.conditional_statements.js',
+                    '3.loop_statements.js', 
+                    '4.advanced_loops.js',
+                    '5.jump_statements.js',
+                    '6.error_handling.js',
+                    '7.comprehensive_example.js'
+                ];
+                
+                if (scripts[scriptNumber - 1]) {
+                    runScript(scripts[scriptNumber - 1]);
+                }
+            }
+        });
+        
+        // Welcome message
+        console.log('🎓 Welcome to Week 6 - Statements dalam JavaScript!');
+        console.log('📖 Materi: Expression, Conditional, Loop, Jump Statements & Error Handling');
+        console.log('\n⌨️ Keyboard Shortcuts:');
+        console.log('• Press 1-7: Run individual scripts');
+        console.log('• Ctrl/Cmd + Enter: Run all scripts');
+        console.log('• Ctrl/Cmd + Backspace: Clear output');
+        console.log('\n▶️ Pilih script di atas untuk memulai pembelajaran!\n');
+    </script>
+</body>
+</html>
