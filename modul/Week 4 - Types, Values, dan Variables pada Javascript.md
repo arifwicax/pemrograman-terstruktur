@@ -29,6 +29,19 @@ Penjelasan:
 
 ---
 
+# Capaian Pembelajaran
+
+Setelah mengikuti pertemuan ini, mahasiswa diharapkan mampu:
+
+1. Menjelaskan perbedaan antara **type, value, dan variable** dalam JavaScript.
+2. Mengidentifikasi dan menggunakan tipe data dasar JavaScript: **number, string, boolean, null, undefined**.
+3. Menggunakan variabel dengan benar menggunakan **let** dan **const**.
+4. Melakukan operasi dasar pada data number dan string.
+5. Menjelaskan konsep **konversi tipe data** (otomatis dan eksplisit) pada JavaScript.
+6. Membedakan karakteristik **primitive type** dan **object type**.
+
+---
+
 # B. Jenis Tipe Data di JavaScript
 
 Secara umum tipe data JavaScript dibagi menjadi dua kategori:
