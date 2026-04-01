@@ -1,14 +1,10 @@
-// ==========================================
 // NUMBER DAN OPERASI MATEMATIKA
-// ==========================================
 
-console.log("=== NUMBER DAN OPERASI MATEMATIKA ===\n");
+console.log("NUMBER DAN OPERASI MATEMATIKA");
 
-// ==========================================
 // BASIC MATHEMATICAL OPERATIONS
-// ==========================================
 
-console.log("=== OPERASI MATEMATIKA DASAR ===");
+console.log("OPERASI MATEMATIKA DASAR");
 let a = 10;
 let b = 3;
 
@@ -24,11 +20,9 @@ console.log("Sisa bagi (a % b):", a % b);         // 1
 console.log("Pangkat (a ** b):", a ** b);         // 1000
 console.log("");
 
-// ==========================================
 // OPERATOR ASSIGNMENT
-// ==========================================
 
-console.log("=== OPERATOR ASSIGNMENT ===");
+console.log("OPERATOR ASSIGNMENT");
 let x = 10;
 console.log("Nilai awal x:", x);
 
@@ -48,11 +42,9 @@ x %= 4;  // x = x % 4
 console.log("x %= 4:", x);  // 2
 console.log("");
 
-// ==========================================
 // INCREMENT DAN DECREMENT
-// ==========================================
 
-console.log("=== INCREMENT DAN DECREMENT ===");
+console.log("INCREMENT DAN DECREMENT");
 let counter = 5;
 console.log("Nilai awal counter:", counter);
 
@@ -69,11 +61,9 @@ console.log("--counter:", --counter);  // 5 (pre-decrement)
 console.log("Nilai counter setelah --counter:", counter);  // 5
 console.log("");
 
-// ==========================================
 // MATH OBJECT
-// ==========================================
 
-console.log("=== MATH OBJECT ===");
+console.log("MATH OBJECT");
 console.log("Math.PI:", Math.PI);                    // 3.141592653589793
 console.log("Math.E:", Math.E);                      // 2.718281828459045
 
@@ -97,11 +87,9 @@ let randomNum = Math.floor(Math.random() * 10) + 1;   // 1-10 random
 console.log("Random 1-10:", randomNum);
 console.log("");
 
-// ==========================================
 // SPECIAL NUMBERS
-// ==========================================
 
-console.log("=== SPECIAL NUMBERS ===");
+console.log("SPECIAL NUMBERS");
 console.log("Infinity:", Infinity);
 console.log("1 / 0:", 1 / 0);                       // Infinity
 console.log("-1 / 0:", -1 / 0);                     // -Infinity
@@ -115,11 +103,9 @@ console.log("isFinite(Infinity):", isFinite(Infinity)); // false
 console.log("isFinite(100):", isFinite(100));       // true
 console.log("");
 
-// ==========================================
 // PARSING NUMBERS
-// ==========================================
 
-console.log("=== PARSING NUMBERS ===");
+console.log("PARSING NUMBERS");
 console.log("parseInt('10'):", parseInt('10'));         // 10
 console.log("parseInt('10.5'):", parseInt('10.5'));     // 10
 console.log("parseInt('10abc'):", parseInt('10abc'));   // 10
@@ -133,11 +119,9 @@ console.log("Number('10.5'):", Number('10.5'));         // 10.5
 console.log("Number('10abc'):", Number('10abc'));       // NaN
 console.log("");
 
-// ==========================================
 // CONTOH PROGRAM: KALKULATOR SEDERHANA
-// ==========================================
 
-console.log("=== CONTOH PROGRAM: KALKULATOR SEDERHANA ===");
+console.log("CONTOH PROGRAM: KALKULATOR SEDERHANA");
 function kalkulator(angka1, operator, angka2) {
     let hasil;
     

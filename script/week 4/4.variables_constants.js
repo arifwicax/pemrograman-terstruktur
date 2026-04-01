@@ -1,14 +1,10 @@
-// ==========================================
 // VARIABLES DAN CONSTANTS
-// ==========================================
 
-console.log("=== VARIABLES DAN CONSTANTS DALAM JAVASCRIPT ===\n");
+console.log("VARIABLES DAN CONSTANTS DALAM JAVASCRIPT");
 
-// ==========================================
 // PERBEDAAN LET DAN CONST
-// ==========================================
 
-console.log("=== PERBEDAAN LET DAN CONST ===");
+console.log("PERBEDAAN LET DAN CONST");
 
 // LET - variabel yang bisa diubah
 let nama = "Andi";
@@ -34,7 +30,7 @@ console.log("");
 // DEKLARASI VARIABEL
 // ==========================================
 
-console.log("=== CARA DEKLARASI VARIABEL ===");
+console.log("CARA DEKLARASI VARIABEL");
 
 // Deklarasi dengan let
 let umur;                    // Deklarasi tanpa inisialisasi
@@ -52,11 +48,9 @@ let x = 10, y = 20, z = 30;
 console.log("x:", x, "y:", y, "z:", z);
 console.log("");
 
-// ==========================================
 // CONST HARUS DIINISIALISASI
-// ==========================================
 
-console.log("=== CONST HARUS DIINISIALISASI ===");
+console.log("CONST HARUS DIINISIALISASI");
 
 // Const harus langsung diberi nilai
 const NAMA_APLIKASI = "Sistem Informasi";
@@ -70,11 +64,9 @@ console.log("MAX_USER:", MAX_USER);
 console.log("Const harus langsung diberi nilai saat deklarasi");
 console.log("");
 
-// ==========================================
 // SCOPE VARIABEL
-// ==========================================
 
-console.log("=== SCOPE VARIABEL ===");
+console.log("SCOPE VARIABEL");
 
 // Global scope
 let globalVar = "Variabel Global";
@@ -99,11 +91,9 @@ console.log("Luar function - globalVar:", globalVar);
 // console.log("Luar function - localVar:", localVar);  // Error: localVar tidak bisa diakses
 console.log("");
 
-// ==========================================
 // HOISTING
-// ==========================================
 
-console.log("=== HOISTING ===");
+console.log("HOISTING");
 console.log("Hoisting adalah perilaku JavaScript yang 'mengangkat' deklarasi ke atas");
 
 // Contoh hoisting dengan var (tidak disarankan)
@@ -121,11 +111,9 @@ try {
 }
 console.log("");
 
-// ==========================================
 // NAMING CONVENTIONS
-// ==========================================
 
-console.log("=== NAMING CONVENTIONS ===");
+console.log("NAMING CONVENTIONS");
 
 // camelCase (umum untuk variabel dan function)
 let namaLengkap = "John Doe";
@@ -146,11 +134,9 @@ console.log("API_URL (UPPER_CASE):", API_URL);
 console.log("user_id (snake_case):", user_id);
 console.log("");
 
-// ==========================================
 // BEST PRACTICES
-// ==========================================
 
-console.log("=== BEST PRACTICES ===");
+console.log("BEST PRACTICES");
 
 // 1. Gunakan const untuk nilai yang tidak berubah
 const TAX_RATE = 0.1;
@@ -175,11 +161,9 @@ console.log("- Beri nama yang deskriptif");
 console.log("- Hindari singkatan yang ambigu");
 console.log("");
 
-// ==========================================
 // OBJECT DAN ARRAY DENGAN CONST
-// ==========================================
 
-console.log("=== OBJECT DAN ARRAY DENGAN CONST ===");
+console.log("OBJECT DAN ARRAY DENGAN CONST");
 
 // Const object - object tidak bisa diganti, tapi isinya bisa
 const user = {
@@ -210,11 +194,9 @@ console.log("numbers setelah diubah:", numbers);
 // numbers = [];  // Error jika uncomment
 console.log("");
 
-// ==========================================
 // CONTOH PROGRAM: KONFIGURASI APLIKASI
-// ==========================================
 
-console.log("=== CONTOH PROGRAM: KONFIGURASI APLIKASI ===");
+console.log("CONTOH PROGRAM: KONFIGURASI APLIKASI");
 
 // Konstanta konfigurasi
 const CONFIG = {

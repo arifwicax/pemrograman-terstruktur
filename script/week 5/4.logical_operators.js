@@ -1,16 +1,12 @@
-// ==========================================
 // LOGICAL OPERATORS DALAM JAVASCRIPT
-// ==========================================
 
-console.log("=== LOGICAL OPERATORS DALAM JAVASCRIPT ===\n");
+console.log("LOGICAL OPERATORS DALAM JAVASCRIPT");
 console.log("Logical operators digunakan untuk menggabungkan atau memanipulasi nilai boolean");
 console.log("Operator logika: && (AND), || (OR), ! (NOT)\n");
 
-// ==========================================
 // BASIC LOGICAL OPERATORS
-// ==========================================
 
-console.log("=== BASIC LOGICAL OPERATORS ===");
+console.log("BASIC LOGICAL OPERATORS");
 
 let benar = true;
 let salah = false;
@@ -58,11 +54,9 @@ console.log("!!'hello' =", !!'hello');              // true
 console.log("!!'' =", !!'');                        // false
 console.log("");
 
-// ==========================================
 // PRACTICAL BOOLEAN LOGIC
-// ==========================================
 
-console.log("=== PRACTICAL BOOLEAN LOGIC ===");
+console.log("PRACTICAL BOOLEAN LOGIC");
 
 let umur = 25;
 let punyaSIM = true;
@@ -88,11 +82,9 @@ let dewasa = umur >= 18 && umur < 60;
 console.log("Dewasa (18-59 tahun):", dewasa);
 console.log("");
 
-// ==========================================
 // TRUTHY DAN FALSY VALUES
-// ==========================================
 
-console.log("=== TRUTHY DAN FALSY VALUES ===");
+console.log("TRUTHY DAN FALSY VALUES");
 
 // Falsy values
 let falsyValues = [false, 0, -0, 0n, '', null, undefined, NaN];
@@ -112,11 +104,9 @@ truthyValues.forEach(value => {
 });
 console.log("");
 
-// ==========================================
 // SHORT-CIRCUIT EVALUATION
-// ==========================================
 
-console.log("=== SHORT-CIRCUIT EVALUATION ===");
+console.log("SHORT-CIRCUIT EVALUATION");
 
 console.log("AND (&&) short-circuit:");
 console.log("false && console.log('This won't execute') ->", false && console.log('This won\'t execute'));
@@ -153,11 +143,9 @@ errorMessage = "Something went wrong";
 errorMessage && console.log("Error:", errorMessage);
 console.log("");
 
-// ==========================================
 // LOGICAL OPERATORS WITH NON-BOOLEANS
-// ==========================================
 
-console.log("=== LOGICAL OPERATORS WITH NON-BOOLEANS ===");
+console.log("LOGICAL OPERATORS WITH NON-BOOLEANS");
 
 console.log("AND (&&) returns first falsy or last truthy:");
 console.log("'hello' && 'world' ->", 'hello' && 'world');           // 'world'
@@ -182,11 +170,9 @@ let result3 = '' && 'not reached' || 'default';
 console.log("'' && 'not reached' || 'default' ->", result3);        // 'default'
 console.log("");
 
-// ==========================================
 // OPERATOR PRECEDENCE
-// ==========================================
 
-console.log("=== OPERATOR PRECEDENCE ===");
+console.log("OPERATOR PRECEDENCE");
 
 console.log("Precedence: ! > && > ||");
 console.log("!false && true || false =", !false && true || false);   // true
@@ -201,11 +187,9 @@ console.log("!true || false && true =", !true || false && true);     // false
 console.log("!(true || false) && true =", !(true || false) && true); // false
 console.log("");
 
-// ==========================================
 // PRACTICAL APPLICATIONS
-// ==========================================
 
-console.log("=== PRACTICAL APPLICATIONS ===");
+console.log("PRACTICAL APPLICATIONS");
 
 // 1. Form validation
 function validateForm(name, email, age) {
@@ -329,7 +313,7 @@ console.log("\nTemperature categorization:");
     console.log(`${temp}°C: ${categorizeTemperature(temp)}`);
 });
 
-console.log("\n=== BEST PRACTICES ===");
+console.log("\nBEST PRACTICES");
 console.log("1. Gunakan && untuk conditional execution");
 console.log("2. Gunakan || untuk default values");
 console.log("3. Gunakan !! untuk explicit boolean conversion");

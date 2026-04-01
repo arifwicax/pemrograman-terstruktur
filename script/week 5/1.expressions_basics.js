@@ -1,17 +1,9 @@
-// ==========================================
 // EXPRESSIONS BASICS DALAM JAVASCRIPT
-// ==========================================
 
-console.log("=== EXPRESSIONS BASICS DALAM JAVASCRIPT ===\n");
 console.log("Expression adalah bagian kode program yang dapat menghasilkan suatu nilai");
-console.log("Expression terdiri dari literals, variables, dan operators\n");
+console.log("Expression terdiri dari literals, variables, dan operators");
 
-// ==========================================
 // APA ITU EXPRESSION
-// ==========================================
-
-console.log("=== APA ITU EXPRESSION ===");
-
 // Expression sederhana - literal
 console.log("Expression literal:");
 console.log("5 ->", 5);                    // Expression menghasilkan nilai 5
@@ -34,11 +26,9 @@ console.log("x + y ->", x + y);           // Expression menghasilkan nilai 15
 console.log("x * y ->", x * y);           // Expression menghasilkan nilai 50
 console.log("");
 
-// ==========================================
 // PRIMARY EXPRESSIONS
-// ==========================================
 
-console.log("=== PRIMARY EXPRESSIONS ===");
+console.log("PRIMARY EXPRESSIONS");
 console.log("Primary expressions adalah expression paling sederhana");
 
 // 1. Literals
@@ -77,11 +67,9 @@ console.log("umur ->", umur);
 console.log("aktif ->", aktif);
 console.log("");
 
-// ==========================================
 // ARRAY DAN OBJECT INITIALIZER
-// ==========================================
 
-console.log("=== ARRAY DAN OBJECT INITIALIZER ===");
+console.log("ARRAY DAN OBJECT INITIALIZER");
 
 // Array initializer
 console.log("Array Initializer:");

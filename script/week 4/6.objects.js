@@ -1,14 +1,10 @@
-// ==========================================
 // OBJECT TYPE DAN OBJECT LITERALS
-// ==========================================
 
-console.log("=== OBJECT TYPE DAN OBJECT LITERALS ===\n");
+console.log("OBJECT TYPE DAN OBJECT LITERALS");
 
-// ==========================================
 // MEMBUAT OBJECT
-// ==========================================
 
-console.log("=== CARA MEMBUAT OBJECT ===");
+console.log("CARA MEMBUAT OBJECT");
 
 // Object literal (cara paling umum)
 let mahasiswa = {
@@ -32,11 +28,9 @@ user.email = "budi@email.com";
 console.log("user:", user);
 console.log("");
 
-// ==========================================
 // MENGAKSES PROPERTY OBJECT
-// ==========================================
 
-console.log("=== MENGAKSES PROPERTY OBJECT ===");
+console.log("MENGAKSES PROPERTY OBJECT");
 
 let mobil = {
     merk: "Toyota",
@@ -65,11 +59,9 @@ console.log("mobil[properti]:", mobil[properti]);
 console.log("mobil.mesin:", mobil.mesin);  // undefined
 console.log("");
 
-// ==========================================
 // MENAMBAH DAN MENGUBAH PROPERTY
-// ==========================================
 
-console.log("=== MENAMBAH DAN MENGUBAH PROPERTY ===");
+console.log("MENAMBAH DAN MENGUBAH PROPERTY");
 
 let laptop = {
     brand: "Asus",
@@ -92,11 +84,9 @@ laptop["ram"] = "16GB";
 console.log("laptop setelah ubah property:", laptop);
 console.log("");
 
-// ==========================================
 // MENGHAPUS PROPERTY
-// ==========================================
 
-console.log("=== MENGHAPUS PROPERTY ===");
+console.log("MENGHAPUS PROPERTY");
 
 let produk = {
     id: 1,
@@ -116,11 +106,9 @@ console.log("produk setelah delete:", produk);
 console.log("produk.stok (setelah delete):", produk.stok);  // undefined
 console.log("");
 
-// ==========================================
 // NESTED OBJECT
-// ==========================================
 
-console.log("=== NESTED OBJECT ===");
+console.log("NESTED OBJECT");
 
 let perusahaan = {
     nama: "PT. ABC",

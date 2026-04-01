@@ -2,7 +2,7 @@
 // TYPE CONVERSION (KONVERSI TIPE DATA)
 // ==========================================
 
-console.log("=== TYPE CONVERSION DALAM JAVASCRIPT ===\n");
+console.log("TYPE CONVERSION DALAM JAVASCRIPT");
 
 // ==========================================
 // IMPLICIT TYPE CONVERSION (OTOMATIS)

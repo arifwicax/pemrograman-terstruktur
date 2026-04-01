@@ -1,69 +1,59 @@
 // Walaupun terlihat mirip, JavaScript menganggap:
 // data ≠ Data
 
-// ========================================
-// CONTOH CASE SENSITIVITY DALAM JAVASCRIPT
-// ========================================
-
 // Contoh 1 - Variabel dengan Case Berbeda
-console.log("=== Contoh 1: Variabel dengan Case Berbeda ===");
 let data = 10;
 let Data = 20;
 
-console.log("data:", data);  // Output: 10
-console.log("Data:", Data);  // Output: 20
-console.log("Kedua variabel berbeda karena JavaScript case sensitive\n");
+console.log("data:", data);
+console.log("Data:", Data);
+console.log("Kedua variabel berbeda karena JavaScript case sensitive");
 
 // Contoh 2 - Error karena Perbedaan Huruf
-console.log("=== Contoh 2: Error karena Perbedaan Huruf ===");
 let umur = 20;
-console.log("umur:", umur);  // Output: 20
+console.log("umur:", umur);
 
 try {
-    console.log(Umur);  // Error: ReferenceError
+    console.log(Umur);
 } catch (error) {
     console.log("Error:", error.message);
-    console.log("Variabel 'umur' ≠ 'Umur'\n");
+    console.log("Variabel 'umur' ≠ 'Umur'");
 }
 
 // Contoh 3 - Case Sensitivity pada Function
-console.log("=== Contoh 3: Case Sensitivity pada Function ===");
 function halo() {
     console.log("Halo Dunia");
 }
 
-halo();  // Output: Halo Dunia
+halo();
 
 try {
-    Halo();  // Error: ReferenceError
+    Halo();
 } catch (error) {
     console.log("Error:", error.message);
-    console.log("Function 'halo()' ≠ 'Halo()'\n");
+    console.log("Function 'halo()' ≠ 'Halo()'");
 }
 
 // Contoh 4 - Keyword JavaScript Case Sensitive
-console.log("=== Contoh 4: Keyword JavaScript ===");
-let angka = 10;  // Benar: menggunakan 'let'
+let angka = 10;
 console.log("angka:", angka);
 
 // Contoh salah (akan menyebabkan SyntaxError):
-// Let angka2 = 20;  // Salah: 'Let' bukan 'let'
-// LET angka3 = 30;  // Salah: 'LET' bukan 'let'
-console.log("Keyword 'let' harus ditulis dengan huruf kecil\n");
+// Let angka2 = 20;
+// LET angka3 = 30;
+console.log("Keyword 'let' harus ditulis dengan huruf kecil");
 
 // Contoh 5 - Object dan Property Case Sensitive
-console.log("=== Contoh 5: Object dan Property ===");
 let mahasiswa = {
     nama: "Andi",
     umur: 21
 };
 
-console.log("mahasiswa.nama:", mahasiswa.nama);  // Output: Andi
-console.log("mahasiswa.Nama:", mahasiswa.Nama);  // Output: undefined
-console.log("Property 'nama' ≠ 'Nama'\n");
+console.log("mahasiswa.nama:", mahasiswa.nama);
+console.log("mahasiswa.Nama:", mahasiswa.Nama);
+console.log("Property 'nama' ≠ 'Nama'");
 
 // Contoh 6 - Praktik yang Disarankan (camelCase)
-console.log("=== Contoh 6: Praktik Penamaan yang Disarankan ===");
 let namaLengkap = "Andi Saputra";
 let jumlahMahasiswa = 30;
 let nilaiRataRata = 85.5;
@@ -71,12 +61,9 @@ let nilaiRataRata = 85.5;
 console.log("namaLengkap:", namaLengkap);
 console.log("jumlahMahasiswa:", jumlahMahasiswa);
 console.log("nilaiRataRata:", nilaiRataRata);
-console.log("\nCamelCase adalah standar penamaan yang disarankan dalam JavaScript");
+console.log("CamelCase adalah standar penamaan yang disarankan dalam JavaScript");
 
-// ========================================
-// KESIMPULAN
-// ========================================
-console.log("\n=== KESIMPULAN ===");
+// Kesimpulan
 console.log("1. JavaScript adalah bahasa yang case sensitive");
 console.log("2. 'data' dan 'Data' adalah variabel yang berbeda");
 console.log("3. Keyword harus ditulis dengan case yang tepat");

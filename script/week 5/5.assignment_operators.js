@@ -1,8 +1,6 @@
-// ==========================================
 // ASSIGNMENT OPERATORS DALAM JAVASCRIPT
-// ==========================================
 
-console.log("=== ASSIGNMENT OPERATORS DALAM JAVASCRIPT ===\n");
+console.log("ASSIGNMENT OPERATORS DALAM JAVASCRIPT");
 console.log("Assignment operators digunakan untuk memberikan nilai ke variabel");
 console.log("Terdapat basic assignment (=) dan compound assignment (+=, -=, dll)\n");
 

@@ -1,16 +1,12 @@
-// ==========================================
 // LOOP STATEMENTS DALAM JAVASCRIPT
-// ==========================================
 
-console.log("=== LOOP STATEMENTS DALAM JAVASCRIPT ===\n");
+console.log("LOOP STATEMENTS DALAM JAVASCRIPT");
 console.log("Loop (perulangan) digunakan untuk menjalankan kode secara berulang.");
 console.log("Jenis loop: while, do-while, for\n");
 
-// ==========================================
 // 1. WHILE LOOP
-// ==========================================
 
-console.log("=== 1. WHILE LOOP ===");
+console.log("1. WHILE LOOP");
 console.log("While loop: perulangan selama kondisi bernilai true\n");
 
 // Contoh dasar while loop
@@ -59,11 +55,9 @@ if (password !== correctPassword) {
     console.log("Akun terkunci setelah", maxAttempts, "percobaan");
 }
 
-// ==========================================
 // 2. DO-WHILE LOOP
-// ==========================================
 
-console.log("\n=== 2. DO-WHILE LOOP ===");
+console.log("\n2. DO-WHILE LOOP");
 console.log("Do-while loop: minimal dijalankan satu kali\n");
 
 // Contoh dasar do-while
@@ -119,11 +113,9 @@ do {
     iterasi++;
 } while (pilihan !== 0 && iterasi < menuChoices.length);
 
-// ==========================================
 // 3. FOR LOOP
-// ==========================================
 
-console.log("\n=== 3. FOR LOOP ===");
+console.log("\n3. FOR LOOP");
 console.log("For loop: loop yang paling sering digunakan\n");
 
 // Contoh dasar for loop
@@ -162,11 +154,9 @@ for (let baris = 1; baris <= 3; baris++) {
     console.log(`Baris ${baris}: ${hasil_baris}`);
 }
 
-// ==========================================
 // 4. FOR LOOP VARIATIONS
-// ==========================================
 
-console.log("\n=== 4. FOR LOOP VARIATIONS ===");
+console.log("\n4. FOR LOOP VARIATIONS");
 
 // For loop dengan multiple variables
 console.log("For loop dengan multiple variables:");
@@ -182,11 +172,9 @@ for (let num = 1; num <= 20 && num % 7 !== 0; num++) {
     }
 }
 
-// ==========================================
 // 5. PRAKTIK LOOP DENGAN KASUS NYATA
-// ==========================================
 
-console.log("\n=== 5. PRAKTIK LOOP DENGAN KASUS NYATA ===");
+console.log("\n5. PRAKTIK LOOP DENGAN KASUS NYATA");
 
 // Menghitung faktorial dengan while
 let faktorial_num = 5;
@@ -239,11 +227,9 @@ do {
 
 console.log("✅ Loading complete!");
 
-// ==========================================
 // 6. LOOP PERFORMANCE DAN BEST PRACTICES
-// ==========================================
 
-console.log("\n=== 6. LOOP PERFORMANCE DAN BEST PRACTICES ===");
+console.log("\n6. LOOP PERFORMANCE DAN BEST PRACTICES");
 
 // Mengukur performa loop
 let start = performance.now();
@@ -267,7 +253,7 @@ for (let q = 0, len = bigArray.length; q < len; q++) {
 end = performance.now();
 console.log(`For loop dengan cached length: ${(end - start).toFixed(2)} ms`);
 
-console.log("\n=== TIPS LOOP STATEMENTS ===");
+console.log("\nTIPS LOOP STATEMENTS");
 console.log("1. Gunakan for loop untuk iterasi dengan counter yang jelas");
 console.log("2. Gunakan while loop untuk kondisi yang tidak pasti kapan berakhir");
 console.log("3. Gunakan do-while untuk yang minimal dijalankan sekali");
@@ -275,4 +261,4 @@ console.log("4. Hati-hati dengan infinite loop");
 console.log("5. Cache array length untuk performa yang lebih baik");
 console.log("6. Gunakan break dan continue untuk kontrol flow yang lebih baik");
 
-console.log("\n=== SELESAI - LOOP STATEMENTS ===");
+console.log("\nSELESAI - LOOP STATEMENTS");

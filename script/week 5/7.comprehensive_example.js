@@ -1,14 +1,10 @@
-// ==========================================
 // COMPREHENSIVE EXAMPLE: SISTEM EVALUASI KARYAWAN
 // Menggabungkan semua konsep Expressions dan Operators Week 5
-// ==========================================
 
-console.log("=== SISTEM EVALUASI KARYAWAN KOMPREHENSIF ===");
-console.log("Program ini menggabungkan semua konsep expressions dan operators\n");
+console.log("SISTEM EVALUASI KARYAWAN KOMPREHENSIF");
+console.log("Program ini menggabungkan semua konsep expressions dan operators");
 
-// ==========================================
 // KONSTANTA SISTEM
-// ==========================================
 
 const SISTEM_CONFIG = {
     NAMA_PERUSAHAAN: "PT. Teknologi Maju",
@@ -24,15 +20,13 @@ const SISTEM_CONFIG = {
     }
 };
 
-console.log("=== KONFIGURASI SISTEM ===");
+console.log("KONFIGURASI SISTEM");
 console.log(`Perusahaan: ${SISTEM_CONFIG.NAMA_PERUSAHAAN}`);
 console.log(`Tahun Evaluasi: ${SISTEM_CONFIG.TAHUN_EVALUASI}`);
 console.log(`Nilai Minimum: ${SISTEM_CONFIG.NILAI_MINIMUM}`);
 console.log("");
 
-// ==========================================
 // DATABASE KARYAWAN
-// ==========================================
 
 let dataKaryawan = [
     {
@@ -113,15 +107,13 @@ let dataKaryawan = [
     }
 ];
 
-console.log("=== DATA KARYAWAN TERDAFTAR ===");
+console.log("DATA KARYAWAN TERDAFTAR");
 dataKaryawan.forEach(karyawan => {
     console.log(`ID: ${karyawan.id} - ${karyawan.nama} (${karyawan.posisi})`);
 });
 console.log("");
 
-// ==========================================
 // SISTEM EVALUASI KARYAWAN
-// ==========================================
 
 let sistemEvaluasi = {
     
@@ -343,7 +335,7 @@ console.log("=== MENJALANKAN EVALUASI KOMPREHENSIF ===");
 // Evaluasi semua karyawan
 let hasilEvaluasi = sistemEvaluasi.evaluasiSemuaKaryawan();
 
-console.log("=== HASIL EVALUASI INDIVIDUAL ===");
+console.log("HASIL EVALUASI INDIVIDUAL");
 hasilEvaluasi.forEach(hasil => {
     console.log(`\n--- ${hasil.nama} ---`);
     console.log(`Posisi: ${hasil.posisi} (${hasil.department})`);
@@ -363,7 +355,7 @@ hasilEvaluasi.forEach(hasil => {
 // ANALISIS BERDASARKAN KRITERIA
 // ==========================================
 
-console.log("\n=== ANALISIS BERDASARKAN KRITERIA ===");
+console.log("\nANALISIS BERDASARKAN KRITERIA");
 
 // Karyawan dengan performa excellent
 let excellentPerformers = sistemEvaluasi.filterKaryawan(hasilEvaluasi, 'excellent');
@@ -393,11 +385,9 @@ highPerformers.forEach(k => {
     console.log(`- ${k.nama} (Eval: ${k.rataRataEvaluasi}, Target: ${k.persentaseTarget}%)`);
 });
 
-// ==========================================
 // STATISTIK DEPARTMENT
-// ==========================================
 
-console.log("\n=== STATISTIK PER DEPARTMENT ===");
+console.log("\nSTATISTIK PER DEPARTMENT");
 let deptStats = sistemEvaluasi.getStatistikDepartment(hasilEvaluasi);
 
 Object.entries(deptStats).forEach(([dept, stats]) => {
@@ -417,7 +407,7 @@ Object.entries(deptStats).forEach(([dept, stats]) => {
 // SUMMARY STATISTIK KESELURUHAN
 // ==========================================
 
-console.log("\n=== SUMMARY STATISTIK KESELURUHAN ===");
+console.log("\nSUMMARY STATISTIK KESELURUHAN");
 
 // Menggunakan array methods dengan operators
 let totalKaryawan = hasilEvaluasi.length;
@@ -446,7 +436,7 @@ Object.entries(gradeDistribution).forEach(([grade, count]) => {
 // REKOMENDASI SISTEM
 // ==========================================
 
-console.log("\n=== REKOMENDASI SISTEM ===");
+console.log("\nREKOMENDASI SISTEM");
 
 // Menggunakan berbagai operators untuk generate insights
 let lowPerformers = hasilEvaluasi.filter(k => k.kategori === 'POOR').length;
@@ -464,7 +454,7 @@ console.log("1. " + (avgPerforma >= 80 ? "Pertahankan standar tinggi" : "Impleme
 console.log("2. " + (promotionRate >= 25 ? "Sistem promosi berjalan baik" : "Review jalur karir karyawan")); 
 console.log("3. " + (totalBonusPaid > 50000000 ? "Monitor budget bonus" : "Tingkatkan insentif performa"));
 
-console.log("\n=== EVALUASI SISTEM SELESAI ===");
+console.log("\nEVALUASI SISTEM SELESAI");
 console.log("Program ini mendemonstrasikan:");
 console.log("✓ Arithmetic operators (+, -, *, /, %, **)");
 console.log("✓ Comparison operators (==, ===, !=, !==, >, <, >=, <=)");

@@ -1,16 +1,12 @@
-// ==========================================
 // ERROR HANDLING DALAM JAVASCRIPT
-// ==========================================
 
-console.log("=== ERROR HANDLING DALAM JAVASCRIPT ===\n");
+console.log("ERROR HANDLING DALAM JAVASCRIPT");
 console.log("Error handling digunakan untuk menangani kesalahan dalam program.");
 console.log("Menggunakan: try, catch, finally, dan throw\n");
 
-// ==========================================
 // 1. TRY-CATCH BASIC
-// ==========================================
 
-console.log("=== 1. TRY-CATCH BASIC ===");
+console.log("1. TRY-CATCH BASIC");
 console.log("Try-catch mencegah program crash saat terjadi error\n");
 
 // Contoh basic try-catch
@@ -48,11 +44,9 @@ try {
     console.log("Type error:", error.name);
 }
 
-// ==========================================
 // 2. FINALLY BLOCK
-// ==========================================
 
-console.log("\n=== 2. FINALLY BLOCK ===");
+console.log("\n2. FINALLY BLOCK");
 console.log("Finally selalu dijalankan, baik ada error atau tidak\n");
 
 // Finally dengan error
@@ -85,7 +79,7 @@ try {
 // 3. THROW STATEMENT
 // ==========================================
 
-console.log("=== 3. THROW STATEMENT ===");
+console.log("3. THROW STATEMENT");
 console.log("Throw digunakan untuk membuat custom error\n");
 
 // Function dengan custom error
@@ -151,7 +145,7 @@ for (let age of ageTests) {
 // 4. MULTIPLE CATCH (Error Types)
 // ==========================================
 
-console.log("\n=== 4. HANDLING DIFFERENT ERROR TYPES ===");
+console.log("\n4. HANDLING DIFFERENT ERROR TYPES");
 
 function processUserData(userData) {
     try {
@@ -229,7 +223,7 @@ testCases.forEach((testCase, index) => {
 // 5. ASYNC ERROR HANDLING 
 // ==========================================
 
-console.log("\n=== 5. ASYNC ERROR HANDLING ===");
+console.log("\n5. ASYNC ERROR HANDLING");
 
 // Simulasi async function
 function simulateAsyncOperation(shouldFail = false) {
@@ -272,7 +266,7 @@ handleAsyncOperation();
 // 6. BEST PRACTICES
 // ==========================================
 
-console.log("\n=== 6. BEST PRACTICES ===");
+console.log("\n6. BEST PRACTICES");
 
 // Logging errors with context
 function safeExecute(operation, context = "") {
@@ -323,7 +317,7 @@ console.log("Language:", getConfigValue('language', 'en'));
 // 7. PRACTICAL EXAMPLES
 // ==========================================
 
-console.log("\n=== 7. PRACTICAL EXAMPLES ===");
+console.log("\n7. PRACTICAL EXAMPLES");
 
 // File processing simulation
 function processFile(filename, content) {
@@ -376,7 +370,7 @@ files.forEach(file => {
     console.log("Result:", result);
 });
 
-console.log("\n=== TIPS ERROR HANDLING ===");
+console.log("\nTIPS ERROR HANDLING");
 console.log("1. Selalu gunakan try-catch untuk operasi yang berisiko error");
 console.log("2. Gunakan finally untuk cleanup code");
 console.log("3. Buat custom error class untuk error types yang spesifik");
@@ -385,4 +379,4 @@ console.log("5. Berikan fallback/default value untuk graceful degradation");
 console.log("6. Jangan biarkan error tidak tertangani");
 console.log("7. Gunakan async/await dengan try-catch untuk async operations");
 
-console.log("\n=== SELESAI - ERROR HANDLING ===");
+console.log("\nSELESAI - ERROR HANDLING");

@@ -1,16 +1,12 @@
-// ==========================================
 // PROGRAM COMPREHENSIVE: SISTEM PERPUSTAKAAN
 // Menggabungkan semua konsep Object Week 7
-// ==========================================
 
-console.log("=== SISTEM PERPUSTAKAAN DIGITAL ===");
-console.log("Program ini menggabungkan semua konsep Object dalam JavaScript\n");
+console.log("SISTEM PERPUSTAKAAN DIGITAL");
+console.log("Program ini menggabungkan semua konsep Object dalam JavaScript");
 
-// ==========================================
 // 1. OBJECT BASICS - Konfigurasi Sistem
-// ==========================================
 
-console.log("=== 1. OBJECT BASICS: KONFIGURASI SISTEM ===");
+console.log("1. OBJECT BASICS: KONFIGURASI SISTEM");
 
 // Object literal untuk konfigurasi (key-value pairs)
 const CONFIG = {

@@ -1,8 +1,6 @@
-// ==========================================
 // COMPREHENSIVE EXAMPLE - SISTEM MANAJEMEN MAHASISWA
-// ==========================================
 
-console.log("=== COMPREHENSIVE EXAMPLE - SISTEM MANAJEMEN MAHASISWA ===\n");
+console.log("COMPREHENSIVE EXAMPLE - SISTEM MANAJEMEN MAHASISWA");
 console.log("Contoh aplikasi yang menggunakan semua jenis statements:");
 console.log("- Expression statements & compound statements");
 console.log("- Conditional statements (if, switch)");
@@ -10,9 +8,7 @@ console.log("- Loop statements (for, while, for-of, for-in)");
 console.log("- Jump statements (break, continue, return)");
 console.log("- Error handling (try-catch-finally)\n");
 
-// ==========================================
 // DATA STRUCTURE & CLASSES
-// ==========================================
 
 // Custom error classes for better error handling
 class ValidationError extends Error {
@@ -45,7 +41,7 @@ class StudentManagementSystem {
     
     // Load sample data - uses expression statements
     loadSampleData() {
-        console.log("\n=== Loading Sample Data ===");
+        console.log("\nLoading Sample Data");
         
         // Compound statement block
         {
@@ -280,7 +276,7 @@ class StudentManagementSystem {
     
     // Generate report - uses nested loops and comprehensive logic
     generateReport() {
-        console.log("\n=== STUDENT REPORT GENERATION ===");
+        console.log("\nSTUDENT REPORT GENERATION");
         
         try {
             if (this.students.length === 0) {
@@ -336,7 +332,7 @@ class StudentManagementSystem {
             report.averageScore = totalScoreCount > 0 ? totalScoreSum / totalScoreCount : 0;
             
             // Display report using nested loops and conditionals
-            console.log("\n📊 === COMPREHENSIVE REPORT === 📊");
+            console.log("\n📊 COMPREHENSIVE REPORT 📊");
             
             console.log(`\n👥 Total Students: ${report.totalStudents}`);
             console.log(`📈 Overall Average: ${report.averageScore.toFixed(2)}`);
@@ -388,7 +384,7 @@ class StudentManagementSystem {
     
     // Batch operations - uses while loop and error recovery
     processBatchOperations(operations) {
-        console.log("\n=== BATCH OPERATIONS PROCESSING ===");
+        console.log("\nBATCH OPERATIONS PROCESSING");
         
         let successCount = 0;
         let errorCount = 0;
@@ -462,18 +458,16 @@ class StudentManagementSystem {
     }
 }
 
-// ==========================================
 // MAIN PROGRAM EXECUTION
-// ==========================================
 
-console.log("\n🚀 === STARTING COMPREHENSIVE DEMO === 🚀");
+console.log("\n🚀 STARTING COMPREHENSIVE DEMO 🚀");
 
 try {
     // Initialize system - expression statement
     let sms = new StudentManagementSystem();
     
     // Demonstrate individual operations
-    console.log("\n\n=== INDIVIDUAL OPERATIONS DEMO ===");
+    console.log("\n\nINDIVIDUAL OPERATIONS DEMO");
     
     // Add new student
     sms.addStudent("Frank Miller", "12345683", "Computer Science", [88, 92, 85, 90]);
@@ -494,7 +488,7 @@ try {
     let report = sms.generateReport();
     
     // Demonstrate batch operations
-    console.log("\n\n=== BATCH OPERATIONS DEMO ===");
+    console.log("\n\nBATCH OPERATIONS DEMO");
     
     let batchOperations = [
         {
@@ -541,20 +535,20 @@ try {
     let batchResult = sms.processBatchOperations(batchOperations);
     
     // Final report after batch operations
-    console.log("\n\n=== FINAL SYSTEM STATE ===");
+    console.log("\n\nFINAL SYSTEM STATE");
     sms.generateReport();
     
-    console.log("\n✅ === COMPREHENSIVE DEMO COMPLETED SUCCESSFULLY === ✅");
+    console.log("\n✅ COMPREHENSIVE DEMO COMPLETED SUCCESSFULLY ✅");
     
 } catch (error) {
-    console.log("\n❌ === CRITICAL ERROR IN MAIN PROGRAM ===");
+    console.log("\n❌ CRITICAL ERROR IN MAIN PROGRAM");
     console.log("Error:", error.message);
     console.log("Stack:", error.stack);
 } finally {
-    console.log("\n🔚 === PROGRAM EXECUTION FINISHED ===");
+    console.log("\n🔚 PROGRAM EXECUTION FINISHED");
     console.log("Cleanup completed.");
     
-    console.log("\n\n📚 === STATEMENTS DEMONSTRATED ===");
+    console.log("\n\n📚 STATEMENTS DEMONSTRATED");
     console.log("✅ Expression statements: variable assignments, function calls");
     console.log("✅ Compound statements: code blocks with {}");
     console.log("✅ Conditional statements: if-else-if, switch");
@@ -563,7 +557,7 @@ try {
     console.log("✅ Error handling: try-catch-finally, throw");
     console.log("✅ Declaration statements: let, const, class, function");
     
-    console.log("\n🎯 === PROGRAMMING CONCEPTS APPLIED ===");
+    console.log("\n🎯 PROGRAMMING CONCEPTS APPLIED");
     console.log("• Object-oriented programming with classes");
     console.log("• Error handling with custom error types");
     console.log("• Data validation and input sanitization");
@@ -573,4 +567,4 @@ try {
     console.log("• Comprehensive logging and user feedback");
 }
 
-console.log("\n=== SELESAI - COMPREHENSIVE EXAMPLE ===");
+console.log("\nSELESAI - COMPREHENSIVE EXAMPLE");

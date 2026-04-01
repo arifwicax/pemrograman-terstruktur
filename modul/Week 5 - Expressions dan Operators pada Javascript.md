@@ -8,7 +8,6 @@
 
 **Nama Mata Kuliah:** Pemrograman Terstruktur
 **Program Studi:** Sistem Informasi / Informatika
-**Semester:** 1
 **Pertemuan:** Minggu ke-5
 
 ---

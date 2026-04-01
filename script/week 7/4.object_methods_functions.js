@@ -1,8 +1,6 @@
-// ==========================================
 // OBJECT METHODS & FUNCTIONS DALAM JAVASCRIPT
-// ==========================================
 
-console.log("=== OBJECT METHODS & FUNCTIONS DALAM JAVASCRIPT ===\n");
+console.log("OBJECT METHODS & FUNCTIONS DALAM JAVASCRIPT");
 console.log("Object methods adalah function yang menjadi property dari object.");
 console.log("Topik yang akan dibahas:");
 console.log("1. Membuat dan menggunakan methods");
@@ -11,11 +9,9 @@ console.log("3. Getter dan Setter");
 console.log("4. Function sebagai property");
 console.log("5. Arrow functions dalam object\n");
 
-// ==========================================
 // 1. BASIC OBJECT METHODS
-// ==========================================
 
-console.log("=== 1. BASIC OBJECT METHODS ===");
+console.log("1. BASIC OBJECT METHODS");
 console.log("Method adalah function yang didefinisikan sebagai property object\n");
 
 // Object dengan berbagai methods
@@ -79,11 +75,9 @@ console.log("\nCalculation history:");
 console.log(calculator.getHistory());
 console.log("\nLast result:", calculator.getLastResult());
 
-// ==========================================
 // 2. KEYWORD 'THIS' DALAM METHODS
-// ==========================================
 
-console.log("\n=== 2. KEYWORD 'THIS' DALAM METHODS ===");
+console.log("\n2. KEYWORD 'THIS' DALAM METHODS");
 console.log("'this' mengacu pada object yang memiliki method tersebut\n");
 
 // Object person dengan methods yang menggunakan this
@@ -162,11 +156,9 @@ console.log("\nDemonstration of 'this' behavior:");
 console.log(objectWithArrow.regularMethod()); // Works correctly
 console.log(objectWithArrow.arrowMethod()); // 'this' is undefined or window
 
-// ==========================================
 // 3. GETTER DAN SETTER
-// ==========================================
 
-console.log("\n=== 3. GETTER DAN SETTER ===");
+console.log("\n3. GETTER DAN SETTER");
 console.log("Getter dan Setter memungkinkan kita mengakses property seperti variabel\n");
 
 // Object dengan getter dan setter
@@ -324,11 +316,9 @@ console.log(userAccount.withdraw(2000000)); // Insufficient funds
 console.log("Final balance:", userAccount.formattedBalance);
 console.log("Total transactions:", userAccount.transactionCount);
 
-// ==========================================
 // 4. FUNCTION SEBAGAI PROPERTY
-// ==========================================
 
-console.log("\n=== 4. FUNCTION SEBAGAI PROPERTY ===");
+console.log("\n4. FUNCTION SEBAGAI PROPERTY");
 
 // Function yang bisa diassign ke property
 function greetFunction(name) {
@@ -390,11 +380,9 @@ let upperCaseProcessor = name => name.toUpperCase();
 let processedNames = messenger.processNames(names, upperCaseProcessor);
 console.log("Processed names:", processedNames);
 
-// ==========================================
 // 5. METHOD CHAINING
-// ==========================================
 
-console.log("\n=== 5. METHOD CHAINING ===");
+console.log("\n5. METHOD CHAINING");
 
 // Object yang mendukung method chaining
 let stringBuilder = {
@@ -470,11 +458,9 @@ let result2 = stringBuilder
 console.log("\nSecond chained result:");
 console.log(result2);
 
-// ==========================================
 // 6. PRACTICAL EXAMPLES
-// ==========================================
 
-console.log("\n=== 6. PRACTICAL EXAMPLES ===");
+console.log("\n6. PRACTICAL EXAMPLES");
 
 // Shopping Cart dengan methods
 let shoppingCart = {
@@ -533,7 +519,7 @@ let shoppingCart = {
     },
     
     displayCart() {
-        console.log("\n=== SHOPPING CART ===");
+        console.log("\nSHOPPING CART");
         if (this.items.length === 0) {
             console.log("Cart is empty");
             return this;
@@ -570,7 +556,7 @@ shoppingCart
     .addItem("Monitor", 1, 2500000)
     .displayCart();
 
-console.log("\n=== TIPS OBJECT METHODS ===");
+console.log("\nTIPS OBJECT METHODS");
 console.log("💡 Gunakan shorthand method syntax (ES6) untuk cleaner code");
 console.log("💡 Selalu gunakan 'this' untuk mengakses property object lain");
 console.log("💡 Hindari arrow functions jika perlu akses 'this' context");
@@ -578,4 +564,4 @@ console.log("💡 Gunakan getter/setter untuk computed properties dan validation
 console.log("💡 Return 'this' dari methods untuk enable method chaining");
 console.log("💡 Gunakan underscore prefix untuk private-like properties");
 
-console.log("\n=== SELESAI - OBJECT METHODS & FUNCTIONS ===");
+console.log("\nSELESAI - OBJECT METHODS & FUNCTIONS");

@@ -1,17 +1,7 @@
-// ==========================================
-// SPASI DAN BARIS BARU DALAM JAVASCRIPT
-// (WHITESPACE & LINE BREAKS)
-// ==========================================
+// JavaScript biasanya mengabaikan spasi dan baris baru
+// Program tetap berjalan walaupun format tidak rapi
 
-console.log("=== SPASI DAN BARIS BARU DALAM JAVASCRIPT ===\n");
-console.log("JavaScript biasanya mengabaikan spasi dan baris baru");
-console.log("Program tetap berjalan walaupun format tidak rapi\n");
-
-// ==========================================
-// 1. CONTOH PENULISAN KODE YANG RAPI
-// ==========================================
-
-console.log("=== 1. Contoh Penulisan Kode yang Rapi ===");
+// 1. Contoh Penulisan Kode yang Rapi
 let a = 10;
 let b = 5;
 let c = a + b;
@@ -19,36 +9,23 @@ let c = a + b;
 console.log("a =", a);
 console.log("b =", b);
 console.log("c = a + b =", c);
-console.log("Kode ini mudah dibaca dan dipahami\n");
+console.log("Kode ini mudah dibaca dan dipahami");
 
-// ==========================================
-// 2. CONTOH TANPA SPASI YANG RAPI
-// ==========================================
-
-console.log("=== 2. Contoh Tanpa Spasi yang Tidak Rapi ===");
+// 2. Contoh Tanpa Spasi yang Tidak Rapi
 // Kode berikut tetap benar secara sintaks walaupun tidak rapi
 let x=10; let y=5; let z=x+y; console.log("Hasil x+y =", z);
-console.log("Kode di atas sulit dibaca tapi tetap berjalan\n");
+console.log("Kode di atas sulit dibaca tapi tetap berjalan");
 
-// ==========================================
-// 3. SPASI BERLEBIHAN TIDAK BERPENGARUH
-// ==========================================
-
-console.log("=== 3. Spasi Berlebihan Tidak Berpengaruh ===");
+// 3. Spasi Berlebihan Tidak Berpengaruh
 let      angka1      =      10;
 let angka2       =5;
 
 console.log("angka1 =", angka1);
 console.log("angka2 =", angka2);
 console.log(   "Hasil angka1 + angka2 =", angka1 + angka2   );
-console.log("Spasi berlebihan diabaikan oleh JavaScript\n");
+console.log("Spasi berlebihan diabaikan oleh JavaScript");
 
-// ==========================================
-// 4. BARIS BARU JUGA TIDAK SELALU PENTING
-// ==========================================
-
-console.log("=== 4. Baris Baru Tidak Selalu Penting ===");
-
+// 4. Baris Baru Tidak Selalu Penting
 // Cara penulisan normal (rapi)
 let harga1 = 1000;
 let qty1 = 3;
@@ -56,14 +33,9 @@ console.log("Total cara normal:", harga1 * qty1);
 
 // Cara penulisan dalam satu baris (tetap benar)
 let harga2 = 2000; let qty2 = 2; console.log("Total satu baris:", harga2 * qty2);
-console.log("Kedua cara penulisan menghasilkan output yang sama\n");
+console.log("Kedua cara penulisan menghasilkan output yang sama");
 
-// ==========================================
-// 5. KAPAN BARIS BARU BISA MENYEBABKAN MASALAH
-// ==========================================
-
-console.log("=== 5. Kapan Baris Baru Bisa Menyebabkan Masalah ===");
-
+// 5. Kapan Baris Baru Bisa Menyebabkan Masalah
 // Contoh SALAH - return statement terpisah
 function cekSalah(){
     return

@@ -1,16 +1,12 @@
-// ==========================================
 // ADVANCED LOOPS DALAM JAVASCRIPT
-// ==========================================
 
-console.log("=== ADVANCED LOOPS DALAM JAVASCRIPT ===\n");
+console.log("ADVANCED LOOPS DALAM JAVASCRIPT");
 console.log("Advanced loops: for-of, for-in, dan variasi loop lainnya");
 console.log("Digunakan untuk iterasi array, object, dan iterable lainnya\n");
 
-// ==========================================
 // 1. FOR-OF LOOP
-// ==========================================
 
-console.log("=== 1. FOR-OF LOOP ===");
+console.log("1. FOR-OF LOOP");
 console.log("For-of digunakan untuk membaca isi array dan iterable\n");
 
 // For-of dengan array
@@ -62,11 +58,9 @@ for (let [key, value] of userRoles) {
     console.log(`Role: ${key} -> ${value}`);
 }
 
-// ==========================================
 // 2. FOR-IN LOOP
-// ==========================================
 
-console.log("\n=== 2. FOR-IN LOOP ===");
+console.log("\n2. FOR-IN LOOP");
 console.log("For-in digunakan untuk membaca property object\n");
 
 // For-in dengan object
@@ -114,11 +108,9 @@ for (let prop in calculator) {
     }
 }
 
-// ==========================================
 // 3. PERBEDAAN FOR-OF VS FOR-IN
-// ==========================================
 
-console.log("\n=== 3. PERBEDAAN FOR-OF VS FOR-IN ===");
+console.log("\n3. PERBEDAAN FOR-OF VS FOR-IN");
 
 let testArray = ["a", "b", "c"];
 testArray.customProperty = "custom";
@@ -136,11 +128,9 @@ for (let key in testArray) {
     console.log(`Key: ${key}, Value: ${testArray[key]}`);
 }
 
-// ==========================================
 // 4. ITERASI DENGAN ARRAY METHODS
-// ==========================================
 
-console.log("\n=== 4. ITERASI DENGAN ARRAY METHODS ===");
+console.log("\n4. ITERASI DENGAN ARRAY METHODS");
 
 // forEach method
 let scores = [85, 92, 78, 96, 88];
@@ -178,11 +168,9 @@ console.log("\ndengan reduce (rata-rata):");
 let average = scores.reduce((sum, score) => sum + score, 0) / scores.length;
 console.log("Rata-rata:", average.toFixed(2));
 
-// ==========================================
 // 5. NESTED LOOPS DENGAN ARRAYS
-// ==========================================
 
-console.log("\n=== 5. NESTED LOOPS DENGAN ARRAYS ===");
+console.log("\n5. NESTED LOOPS DENGAN ARRAYS");
 
 // Matrix dengan nested for-of
 let matrix = [
@@ -215,11 +203,9 @@ for (let student of students) {
     }
 }
 
-// ==========================================
 // 6. PERFORMANCE COMPARISON
-// ==========================================
 
-console.log("\n=== 6. PERFORMANCE COMPARISON ===");
+console.log("\n6. PERFORMANCE COMPARISON");
 
 let largeArray = new Array(10000).fill(0).map((_, i) => i);
 let sum = 0;
@@ -254,11 +240,9 @@ sum = largeArray.reduce((acc, num) => acc + num, 0);
 end = performance.now();
 console.log(`reduce: ${(end - start).toFixed(2)} ms`);
 
-// ==========================================
 // 7. PRACTICAL EXAMPLES
-// ==========================================
 
-console.log("\n=== 7. PRACTICAL EXAMPLES ===");
+console.log("\n7. PRACTICAL EXAMPLES");
 
 // Mencari dalam object array
 let products = [
@@ -303,7 +287,7 @@ for (let product of productsUSD) {
     console.log(`${product.name}: $${product.priceUSD}`);
 }
 
-console.log("\n=== TIPS ADVANCED LOOPS ===");
+console.log("\nTIPS ADVANCED LOOPS");
 console.log("1. Gunakan for-of untuk iterasi values (array, string, Set, Map)");
 console.log("2. Gunakan for-in untuk iterasi keys/properties (object)");
 console.log("3. forEach untuk functional programming style");
@@ -312,4 +296,4 @@ console.log("5. filter untuk seleksi data");
 console.log("6. reduce untuk aggregasi data");
 console.log("7. For loop tradisional masih tercepat untuk operasi sederhana");
 
-console.log("\n=== SELESAI - ADVANCED LOOPS ===");
+console.log("\nSELESAI - ADVANCED LOOPS");

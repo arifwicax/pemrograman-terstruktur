@@ -1,16 +1,11 @@
-// ==========================================
 // CONDITIONAL STATEMENTS DALAM JAVASCRIPT
-// ==========================================
 
-console.log("=== CONDITIONAL STATEMENTS DALAM JAVASCRIPT ===\n");
+console.log("CONDITIONAL STATEMENTS DALAM JAVASCRIPT");
 console.log("Conditional statements digunakan untuk pengambilan keputusan dalam program.");
-console.log("Jenis conditional: if, if-else, else-if, switch\n");
+console.log("Jenis conditional: if, if-else, else-if, switch");
 
-// ==========================================
 // 1. IF STATEMENT
-// ==========================================
-
-console.log("=== 1. IF STATEMENT ===");
+console.log("1. IF STATEMENT");
 
 // Contoh sederhana if
 let nilai = 80;
@@ -22,7 +17,7 @@ if (nilai >= 75) {
 
 // If dengan kondisi berbeda
 let cuaca = "hujan";
-console.log("\nCuaca hari ini:", cuaca);
+console.log("Cuaca hari ini:", cuaca);
 
 if (cuaca === "hujan") {
     console.log("Bawa payung!");
@@ -32,17 +27,14 @@ if (cuaca === "hujan") {
 let umur = 20;
 let punyaSIM = true;
 
-console.log("\nUmur:", umur, "- Punya SIM:", punyaSIM);
+console.log("Umur:", umur, "- Punya SIM:", punyaSIM);
 
 if (umur >= 17 && punyaSIM) {
     console.log("Boleh mengemudi");
 }
 
-// ==========================================
 // 2. IF-ELSE STATEMENT
-// ==========================================
-
-console.log("\n=== 2. IF-ELSE STATEMENT ===");
+console.log("2. IF-ELSE STATEMENT");
 
 // Contoh if-else
 let nilaiUjian = 60;
@@ -78,7 +70,7 @@ if (jenisKelamin === "laki-laki") {
 // 3. ELSE-IF STATEMENT
 // ==========================================
 
-console.log("\n=== 3. ELSE-IF STATEMENT ===");
+console.log("3. ELSE-IF STATEMENT");
 
 // Grading system
 let nilaiMahasiswa = 85;
@@ -112,7 +104,7 @@ if (umurPengguna < 13) {
 
 // Penentuan musim berdasarkan bulan
 let bulan = 7;
-console.log("\nBulan ke:", bulan);
+console.log("Bulan ke:", bulan);
 
 if (bulan >= 12 || bulan <= 2) {
     console.log("Musim: Hujan");
@@ -124,11 +116,8 @@ if (bulan >= 12 || bulan <= 2) {
     console.log("Musim: Pancaroba");
 }
 
-// ==========================================
 // 4. SWITCH STATEMENT
-// ==========================================
-
-console.log("\n=== 4. SWITCH STATEMENT ===");
+console.log("4. SWITCH STATEMENT");
 
 // Switch untuk hari dalam minggu
 let hari = 3;
@@ -162,7 +151,7 @@ switch (hari) {
 
 // Switch untuk grade
 let grade = 'B';
-console.log("\nGrade:", grade);
+console.log("Grade:", grade);
 
 switch (grade) {
     case 'A':
@@ -186,7 +175,7 @@ switch (grade) {
 
 // Switch tanpa break (fall-through)
 let musim = "hujan";
-console.log("\nMusim:", musim);
+console.log("Musim:", musim);
 
 switch (musim) {
     case "hujan":
@@ -201,11 +190,8 @@ switch (musim) {
         console.log("Siapkan perlengkapan standar");
 }
 
-// ==========================================
 // 5. NESTED CONDITIONALS
-// ==========================================
-
-console.log("\n=== 5. NESTED CONDITIONALS ===");
+console.log("5. NESTED CONDITIONALS");
 
 // If bersarang
 let skorTugas = 85;

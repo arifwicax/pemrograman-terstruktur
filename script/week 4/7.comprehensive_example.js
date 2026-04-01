@@ -1,14 +1,10 @@
-// ==========================================
 // PROGRAM COMPREHENSIVE: SISTEM AKADEMIK
 // Menggabungkan semua konsep Week 4
-// ==========================================
 
-console.log("=== SISTEM AKADEMIK SEDERHANA ===");
-console.log("Program ini menggabungkan semua konsep Types, Values, dan Variables\n");
+console.log("SISTEM AKADEMIK SEDERHANA");
+console.log("Program ini menggabungkan semua konsep Types, Values, dan Variables");
 
-// ==========================================
 // KONSTANTA SISTEM
-// ==========================================
 
 const SISTEM_CONFIG = {
     NAMA_APLIKASI: "Sistem Akademik",
@@ -18,22 +14,18 @@ const SISTEM_CONFIG = {
     SEMESTER_AKTIF: "2024/1"
 };
 
-console.log("=== KONFIGURASI SISTEM ===");
+console.log("KONFIGURASI SISTEM");
 console.log(`Aplikasi: ${SISTEM_CONFIG.NAMA_APLIKASI} v${SISTEM_CONFIG.VERSI}`);
 console.log(`Semester: ${SISTEM_CONFIG.SEMESTER_AKTIF}`);
 console.log(`Batas Lulus: ${SISTEM_CONFIG.NILAI_LULUS}`);
 console.log("");
 
-// ==========================================
 // DATABASE MAHASISWA (ARRAY OF OBJECTS)
-// ==========================================
 
 let dataMahasiswa = [];
 let nextId = 1;
 
-// ==========================================
 // OBJECT UNTUK SISTEM AKADEMIK
-// ==========================================
 
 let sistemAkademik = {
     // Properties
@@ -152,7 +144,7 @@ let sistemAkademik = {
             return;
         }
         
-        console.log("\n=== DAFTAR MAHASISWA ===");
+        console.log("\nDAFTAR MAHASISWA");
         console.log("ID | Nama | Umur | Jurusan | IPK | Status");
         console.log("-".repeat(50));
         
@@ -193,11 +185,9 @@ let sistemAkademik = {
     }
 };
 
-// ==========================================
 // TESTING PROGRAM
-// ==========================================
 
-console.log("=== TESTING REGISTRASI MAHASISWA ===");
+console.log("TESTING REGISTRASI MAHASISWA");
 
 // Test registrasi valid
 console.log(sistemAkademik.registrasiMahasiswa("Andi Setiawan", "20", "Teknik Informatika", "andi@email.com"));
@@ -206,13 +196,13 @@ console.log(sistemAkademik.registrasiMahasiswa("Citra Dewi", "19", "Teknik Infor
 console.log(sistemAkademik.registrasiMahasiswa("Dina Sari", "22", "Manajemen", "dina@email.com"));
 
 // Test registrasi invalid (Type validation)
-console.log("\n=== TEST VALIDASI INPUT ===");
+console.log("\nTEST VALIDASI INPUT");
 console.log(sistemAkademik.registrasiMahasiswa("", "20", "IT", "test@email.com"));  // Nama kosong
 console.log(sistemAkademik.registrasiMahasiswa("John", "abc", "IT", "test@email.com"));  // Umur bukan angka
 console.log(sistemAkademik.registrasiMahasiswa("John", "20", "IT", "invalid-email"));  // Email invalid
 
 // Test input nilai (Number conversion)
-console.log("\n=== TEST INPUT NILAI ===");
+console.log("\nTEST INPUT NILAI");
 console.log(sistemAkademik.inputNilai(1, "Pemrograman Web", "85"));      // String number
 console.log(sistemAkademik.inputNilai(1, "Database", 78));                // Number
 console.log(sistemAkademik.inputNilai(1, "Algoritma", "90"));            // String number
@@ -232,7 +222,7 @@ console.log(sistemAkademik.inputNilai(999, "Matematika", "80"));         // ID t
 sistemAkademik.tampilkanMahasiswa();
 
 // Test pencarian (String manipulation)
-console.log("=== TEST PENCARIAN ===");
+console.log("TEST PENCARIAN");
 console.log("Cari berdasarkan nama 'Andi':");
 sistemAkademik.tampilkanMahasiswa(sistemAkademik.cariMahasiswa('nama', 'Andi'));
 
@@ -243,7 +233,7 @@ console.log("Cari berdasarkan status 'Lulus':");
 sistemAkademik.tampilkanMahasiswa(sistemAkademik.cariMahasiswa('status', 'Lulus'));
 
 // Statistik (Object methods dan calculation)
-console.log("=== STATISTIK SISTEM ===");
+console.log("STATISTIK SISTEM");
 let stats = sistemAkademik.getStatistik();
 console.log("Total Mahasiswa:", stats.totalMahasiswa);
 console.log("Mahasiswa Aktif:", stats.mahasiswaAktif);
@@ -251,11 +241,9 @@ console.log("Lulusan:", stats.lulusan);
 console.log("Rata-rata IPK:", stats.rataIPK);
 console.log("Jurusan Terpopuler:", stats.jurusanTerpopuler);
 
-// ==========================================
 // DEMONSTRASI TYPE CONVERSION
-// ==========================================
 
-console.log("\n=== DEMONSTRASI TYPE CONVERSION ===");
+console.log("\nDEMONSTRASI TYPE CONVERSION");
 
 // Simulasi input dari form (semua input adalah string)
 let inputData = {
@@ -284,11 +272,9 @@ console.log("typeof umur (after):", typeof processedData.umur);
 console.log("typeof nilai1 (after):", typeof processedData.nilai1);
 console.log("typeof aktif (after):", typeof processedData.aktif);
 
-// ==========================================
 // DEMONSTRASI PRIMITIVE VS OBJECT
-// ==========================================
 
-console.log("\n=== DEMONSTRASI PRIMITIVE VS OBJECT ===");
+console.log("\nDEMONSTRASI PRIMITIVE VS OBJECT");
 
 // Primitive (passed by value)
 let score1 = 85;
@@ -313,7 +299,7 @@ student3.nilai = 95;
 console.log("Copy object - student1.nilai:", student1.nilai);  // 90 (tidak berubah)
 console.log("Copy object - student3.nilai:", student3.nilai);  // 95
 
-console.log("\n=== PROGRAM SELESAI ===");
+console.log("\nPROGRAM SELESAI");
 console.log("Program ini mendemonstrasikan:");
 console.log("✓ Primitive types (string, number, boolean)");
 console.log("✓ Variables (let, const)");

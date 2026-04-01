@@ -1,16 +1,12 @@
-// ==========================================
 // JUMP STATEMENTS DALAM JAVASCRIPT
-// ==========================================
 
-console.log("=== JUMP STATEMENTS DALAM JAVASCRIPT ===\n");
+console.log("JUMP STATEMENTS DALAM JAVASCRIPT");
 console.log("Jump statements digunakan untuk mengubah alur program.");
 console.log("Jenis: break, continue, return, dan label\n");
 
-// ==========================================
 // 1. BREAK STATEMENT
-// ==========================================
 
-console.log("=== 1. BREAK STATEMENT ===");
+console.log("1. BREAK STATEMENT");
 console.log("Break digunakan untuk menghentikan loop atau switch\n");
 
 // Break dalam for loop
@@ -63,11 +59,9 @@ switch (day) {
         console.log("Hari tidak dikenal");
 }
 
-// ==========================================
 // 2. CONTINUE STATEMENT
-// ==========================================
 
-console.log("\n=== 2. CONTINUE STATEMENT ===");
+console.log("\n2. CONTINUE STATEMENT");
 console.log("Continue digunakan untuk melewati satu iterasi\n");
 
 // Continue dalam for loop
@@ -104,11 +98,9 @@ for (let i = 0; i < text.length; i++) {
     console.log(`Konsonan: ${char}`);
 }
 
-// ==========================================
 // 3. RETURN STATEMENT
-// ==========================================
 
-console.log("\n=== 3. RETURN STATEMENT ===");
+console.log("\n3. RETURN STATEMENT");
 console.log("Return digunakan untuk mengembalikan nilai dari fungsi\n");
 
 // Function dengan return sederhana
@@ -195,11 +187,9 @@ console.log("\nFunction createProduct:");
 let product = createProduct("Laptop", 15000000, "Electronics");
 console.log("Product created:", product);
 
-// ==========================================
 // 4. LABELED STATEMENTS
-// ==========================================
 
-console.log("\n=== 4. LABELED STATEMENTS ===");
+console.log("\n4. LABELED STATEMENTS");
 console.log("Label digunakan dengan break/continue untuk nested loops\n");
 
 // Label dengan nested loop
@@ -251,11 +241,9 @@ outerLoop2: for (let i = 0; i < matrix2.length; i++) {
     console.log(`Baris ${i}:`, matrix2[i]);
 }
 
-// ==========================================
 // 5. PRACTICAL EXAMPLES
-// ==========================================
 
-console.log("\n=== 5. PRACTICAL EXAMPLES ===");
+console.log("\n5. PRACTICAL EXAMPLES");
 
 // Example 1: Search dengan break
 function findUser(users, targetId) {
@@ -353,7 +341,7 @@ for (let choice of menuChoices) {
     }
 }
 
-console.log("\n=== TIPS JUMP STATEMENTS ===");
+console.log("\nTIPS JUMP STATEMENTS");
 console.log("1. Gunakan break untuk menghentikan loop saat kondisi terpenuhi");
 console.log("2. Gunakan continue untuk melewati iterasi yang tidak diinginkan");
 console.log("3. Gunakan return untuk early exit dari function");
@@ -361,4 +349,4 @@ console.log("4. Label berguna untuk nested loop yang kompleks");
 console.log("5. Hati-hati dengan overuse - bisa membuat kode sulit dibaca");
 console.log("6. Return null/undefined untuk menandakan error atau data tidak ditemukan");
 
-console.log("\n=== SELESAI - JUMP STATEMENTS ===");
+console.log("\nSELESAI - JUMP STATEMENTS");

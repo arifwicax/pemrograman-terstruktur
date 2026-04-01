@@ -1,8 +1,6 @@
-// ==========================================
 // OBJECT ITERATION DALAM JAVASCRIPT
-// ==========================================
 
-console.log("=== OBJECT ITERATION DALAM JAVASCRIPT ===\n");
+console.log("OBJECT ITERATION DALAM JAVASCRIPT");
 console.log("Berbagai cara untuk melakukan iterasi (perulangan) pada object:");
 console.log("1. for...in loop");
 console.log("2. Object.keys()");
@@ -64,11 +62,9 @@ console.log("Student:", student);
 console.log("Company:", company);
 console.log("Product:", product);
 
-// ==========================================
 // 1. FOR...IN LOOP
-// ==========================================
 
-console.log("\n=== 1. FOR...IN LOOP ===");
+console.log("\n1. FOR...IN LOOP");
 console.log("Iterasi melalui semua enumerable properties\n");
 
 // Basic for...in dengan student object
@@ -109,11 +105,9 @@ for (let key in company) {
     }
 }
 
-// ==========================================
 // 2. OBJECT.KEYS()
-// ==========================================
 
-console.log("\n=== 2. OBJECT.KEYS() ===");
+console.log("\n2. OBJECT.KEYS()");
 console.log("Mendapatkan array dari semua property names\n");
 
 // Basic Object.keys()
@@ -148,11 +142,9 @@ Object.keys(student)
         console.log(`${key}: ${student[key]}`);
     });
 
-// ==========================================
 // 3. OBJECT.VALUES()
-// ==========================================
 
-console.log("\n=== 3. OBJECT.VALUES() ===");
+console.log("\n3. OBJECT.VALUES()");
 console.log("Mendapatkan array dari semua property values\n");
 
 // Basic Object.values()
@@ -184,11 +176,9 @@ console.log(`Contains 'Computer Science': ${Object.values(student).includes('Com
 console.log(`Contains 3.85: ${Object.values(student).includes(3.85)}`);
 console.log(`Contains 'Physics': ${Object.values(student).includes('Physics')}`);
 
-// ==========================================
 // 4. OBJECT.ENTRIES()
-// ==========================================
 
-console.log("\n=== 4. OBJECT.ENTRIES() ===");
+console.log("\n4. OBJECT.ENTRIES()");
 console.log("Mendapatkan array dari [key, value] pairs\n");
 
 // Basic Object.entries()
@@ -224,11 +214,9 @@ let companyNumbers2 = Object.fromEntries(
 );
 console.log("Company numeric properties:", companyNumbers2);
 
-// ==========================================
 // 5. OBJECT.GETOWNPROPERTYNAMES()
-// ==========================================
 
-console.log("\n=== 5. OBJECT.GETOWNPROPERTYNAMES() ===");
+console.log("\n5. OBJECT.GETOWNPROPERTYNAMES()");
 console.log("Mendapatkan semua properties termasuk non-enumerable\n");
 
 // Comparison between Object.keys() and Object.getOwnPropertyNames()
@@ -248,11 +236,9 @@ console.log("Object.keys():", Object.keys(specialObject));
 console.log("Object.getOwnPropertyNames():", Object.getOwnPropertyNames(specialObject));
 console.log("Hidden property value:", specialObject.hidden);
 
-// ==========================================
 // 6. ADVANCED ITERATION TECHNIQUES
-// ==========================================
 
-console.log("\n=== 6. ADVANCED ITERATION TECHNIQUES ===");
+console.log("\n6. ADVANCED ITERATION TECHNIQUES");
 
 // Creating object from arrays
 let names = ['John', 'Jane', 'Bob', 'Alice'];
@@ -295,11 +281,9 @@ Object.entries(companyWithPrefix)
     .filter(([key, value]) => typeof value === 'string' && value.includes('units'))
     .forEach(([key, value]) => console.log(`${key}: ${value}`));
 
-// ==========================================
 // 7. PRAKTIK DENGAN REAL-WORLD EXAMPLES
-// ==========================================
 
-console.log("\n=== 7. PRAKTIK DENGAN REAL-WORLD EXAMPLES ===");
+console.log("\n7. PRAKTIK DENGAN REAL-WORLD EXAMPLES");
 
 // Inventory management system
 let inventory = {
