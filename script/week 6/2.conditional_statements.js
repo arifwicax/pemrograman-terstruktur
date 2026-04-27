@@ -120,13 +120,13 @@ if (bulan >= 12 || bulan <= 2) {
 console.log("4. SWITCH STATEMENT");
 
 // Switch untuk hari dalam minggu
-let hari = 3;
+let hari = 9;
 console.log("Hari ke:", hari);
 
 switch (hari) {
     case 1:
         console.log("Hari: Senin");
-        break;
+        break
     case 2:
         console.log("Hari: Selasa");
         break;
@@ -135,10 +135,10 @@ switch (hari) {
         break;
     case 4:
         console.log("Hari: Kamis");
-        break;
+        break
     case 5:
         console.log("Hari: Jumat");
-        break;
+        break
     case 6:
         console.log("Hari: Sabtu");
         break;

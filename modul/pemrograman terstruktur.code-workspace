@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../blog-tanamin"
+		},
+		{
+			"path": "../../tanamin-frontend-tsx"
+		}
+	],
+	"settings": {}
+}

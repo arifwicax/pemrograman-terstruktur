@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 9 - Array dalam Javascript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .script-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #007bff;
+        }
+        
+        .script-section h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+        
+        .script-section p {
+            margin: 0 0 10px 0;
+            color: #666;
+        }
+        
+        .run-button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .run-button:hover {
+            background: #0056b3;
+        }
+        
+        .disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+        }
+        
+        .instructions {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #b3d9ff;
+        }
+        
+        .note {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 1px solid #ffeaa7;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Week 9 - Array dalam JavaScript</h1>
+        <p>Belajar konsep array, method-method array, dan implementasi praktis</p>
+    </div>
+
+    <div class="instructions">
+        <h3>📋 Petunjuk Penggunaan:</h3>
+        <ol>
+            <li><strong>Buka Developer Console</strong> (F12 atau Ctrl+Shift+I)</li>
+            <li><strong>Klik tombol "Jalankan"</strong> untuk menjalankan setiap script</li>
+            <li><strong>Lihat output</strong> di console untuk memahami setiap konsep</li>
+            <li><strong>Uncomment script</strong> di bawah untuk menjalankan otomatis</li>
+        </ol>
+        <p><em>💡 Tip: Jalankan script satu per satu untuk pemahaman yang lebih baik!</em></p>
+    </div>
+
+    <div class="script-section">
+        <h3>1️⃣ Array Basics</h3>
+        <p>Mempelajari konsep dasar array, index, property length, dan karakteristik array JavaScript</p>
+        <button class="run-button" onclick="loadScript('1.array_basics.js')">Jalankan Script</button>
+    </div>
+
+    <div class="script-section">
+        <h3>2️⃣ Array Creation Methods</h3>
+        <p>Berbagai cara membuat array: literal, constructor, Array.of(), Array.from(), dan spread operator</p>
+        <button class="run-button" onclick="loadScript('2.array_creation_methods.js')">Jalankan Script</button>
+    </div>
+
+    <div class="script-section">
+        <h3>3️⃣ Array Access & Manipulation</h3>
+        <p>Mengakses, mengubah, menambah, dan menghapus elemen array dengan berbagai method</p>
+        <button class="run-button" onclick="loadScript('3.array_access_manipulation.js')">Jalankan Script</button>
+    </div>
+
+    <div class="script-section">
+        <h3>4️⃣ Array Methods Dasar</h3>
+        <p>Method-method dasar: push, pop, shift, unshift, indexOf, includes, join, concat, slice</p>
+        <button class="run-button" onclick="loadScript('4.array_methods.js')">Jalankan Script</button>
+    </div>
+
+    <div class="script-section">
+        <h3>5️⃣ Array Iteration</h3>
+        <p>Berbagai cara melakukan perulangan: for, for...of, forEach, map, filter, reduce</p>
+        <button class="run-button" onclick="loadScript('5.array_iteration.js')">Jalankan Script</button>
+    </div>
+
+    <div class="script-section">
+        <h3>6️⃣ Array Methods Advanced</h3>
+        <p>Method advanced: sort, flat, flatMap, splice, fill, copyWithin, chaining methods</p>
+        <button class="run-button" onclick="loadScript('6.array_advanced_methods.js')">Jalankan Script</button>
+    </div>
+
+    <div class="script-section">
+        <h3>7️⃣ Multidimensional Arrays</h3>
+        <p>Array 2D, 3D, dan aplikasi praktis seperti matrix, game board, dan tabel data</p>
+        <button class="run-button" onclick="loadScript('7.multidimensional_arrays.js')">Jalankan Script</button>
+    </div>
+
+    <div class="script-section">
+        <h3>8️⃣ Comprehensive Examples</h3>
+        <p>Implementasi nyata: sistem mahasiswa, inventory toko, game battleship, dan algoritma</p>
+        <button class="run-button" onclick="loadScript('8.comprehensive_example.js')">Jalankan Script</button>
+    </div>
+
+    <div class="note">
+        <h3>📝 Catatan Penting:</h3>
+        <ul>
+            <li><strong>Array dimulai dari index 0</strong>, bukan 1</li>
+            <li><strong>Array di JavaScript dynamic</strong> - ukuran bisa berubah</li>
+            <li><strong>Array bisa menyimpan berbagai tipe data</strong></li>
+            <li><strong>Method array</strong> ada yang mengubah array asli dan ada yang return array baru</li>
+            <li><strong>Gunakan method yang tepat</strong> untuk setiap kebutuhan</li>
+        </ul>
+        
+        <h4>🔄 Method yang Mengubah Array Asli:</h4>
+        <p><code>push, pop, shift, unshift, splice, sort, reverse, fill</code></p>
+        
+        <h4>✨ Method yang Return Array Baru:</h4>
+        <p><code>map, filter, slice, concat, flat, flatMap</code></p>
+    </div>
+
+    <script>
+        function loadScript(filename) {
+            // Remove existing script if any
+            const existingScript = document.querySelector('script[data-dynamic]');
+            if (existingScript) {
+                existingScript.remove();
+            }
+
+            // Clear console
+            console.clear();
+            
+            // Add loading message
+            console.log(`%c🚀 Loading ${filename}...`, 'color: #007bff; font-size: 16px; font-weight: bold;');
+            
+            // Create and load new script
+            const script = document.createElement('script');
+            script.src = filename;
+            script.setAttribute('data-dynamic', 'true');
+            
+            script.onload = function() {
+                console.log(`%c✅ ${filename} loaded successfully!`, 'color: #28a745; font-weight: bold;');
+            };
+            
+            script.onerror = function() {
+                console.error(`%c❌ Error loading ${filename}`, 'color: #dc3545; font-weight: bold;');
+            };
+            
+            document.head.appendChild(script);
+        }
+
+        // Display welcome message
+        console.log(`%c
+        ╔════════════════════════════════════════╗
+        ║           WEEK 9 - ARRAYS             ║
+        ║        JavaScript Fundamentals        ║
+        ╚════════════════════════════════════════╝
+        
+        🎯 Apa yang akan dipelajari:
+        • Konsep dasar array dan penggunaannya
+        • Berbagai cara membuat dan memanipulasi array  
+        • Method-method array yang powerful
+        • Array multidimensi dan implementasinya
+        • Contoh aplikasi nyata menggunakan array
+        
+        📖 Petunjuk:
+        1. Klik tombol "Jalankan Script" untuk setiap section
+        2. Perhatikan output di console ini
+        3. Coba modifikasi kode untuk eksperimen
+        
+        Selamat belajar! 🚀
+        `, 'color: #6c63ff; font-size: 14px;');
+
+        // Uncomment the lines below to auto-run scripts in sequence
+        // Note: This will run all scripts automatically when page loads
+        
+        /*
+        // Auto-run all scripts (uncomment to enable)
+        setTimeout(() => loadScript('1.array_basics.js'), 1000);
+        setTimeout(() => loadScript('2.array_creation_methods.js'), 3000);
+        setTimeout(() => loadScript('3.array_access_manipulation.js'), 5000);
+        setTimeout(() => loadScript('4.array_methods.js'), 7000);
+        setTimeout(() => loadScript('5.array_iteration.js'), 9000);
+        setTimeout(() => loadScript('6.array_advanced_methods.js'), 11000);
+        setTimeout(() => loadScript('7.multidimensional_arrays.js'), 13000);
+        setTimeout(() => loadScript('8.comprehensive_example.js'), 15000);
+        */
+    </script>
+</body>
+</html>
