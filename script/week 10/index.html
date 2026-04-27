@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 10 - Function dalam JavaScript</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        .info-box {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .script-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #3498db;
+        }
+
+        .script-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .script-card h3 {
+            color: #2c3e50;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .script-card .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        .script-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .script-card .topics {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .script-card .topics h4 {
+            color: #34495e;
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .script-card .topics ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .script-card .topics li {
+            color: #7f8c8d;
+            padding: 3px 0;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .script-card .topics li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .run-button {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .run-button:hover {
+            background: linear-gradient(45deg, #2980b9, #27ae60);
+            transform: translateY(-2px);
+        }
+
+        .console-output {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .console-header {
+            background: #34495e;
+            color: #ecf0f1;
+            padding: 15px 20px;
+            border-radius: 10px 10px 0 0;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 0;
+        }
+
+        .clear-button {
+            background: #e74c3c;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .clear-button:hover {
+            background: #c0392b;
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .info-section p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .scripts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Week 10 - Function dalam JavaScript</h1>
+            <p>Mempelajari konsep fundamental Function dalam JavaScript</p>
+            <div class="info-box">
+                <strong>Materi:</strong> Function Declaration, Expression, Arrow Function, Parameters, Scope, Closures, Higher-Order Functions, dan aplikasi praktis dalam project nyata.
+            </div>
+        </div>
+
+        <div class="scripts-grid">
+            <div class="script-card">
+                <h3><span class="icon">📚</span>Dasar-dasar Function</h3>
+                <p>Memahami konsep fundamental function, cara mendefinisikan, memanggil, dan keuntungan menggunakan function.</p>
+                <div class="topics">
+                    <h4>Topik yang dibahas:</h4>
+                    <ul>
+                        <li>Konsep dasar function</li>
+                        <li>Membuat dan memanggil function</li>
+                        <li>Function dengan parameter</li>
+                        <li>Function dengan kondisi dan loop</li>
+                        <li>Perbandingan dengan/tanpa function</li>
+                    </ul>
+                </div>
+                <button class="run-button" onclick="runScript('1.function_basics.js')">
+                    Jalankan Script
+                </button>
+            </div>
+
+            <div class="script-card">
+                <h3><span class="icon">⚡</span>Declaration & Expression</h3>
+                <p>Mempelajari berbagai cara mendefinisikan function: declaration, expression, arrow function, dan constructor.</p>
+                <div class="topics">
+                    <h4>Topik yang dibahas:</h4>
+                    <ul>
+                        <li>Function Declaration</li>
+                        <li>Function Expression</li>
+                        <li>Arrow Function (ES6)</li>
+                        <li>Function Constructor</li>
+                        <li>Hoisting dan perbedaannya</li>
+                    </ul>
+                </div>
+                <button class="run-button" onclick="runScript('2.function_declaration_expression.js')">
+                    Jalankan Script
+                </button>
+            </div>
+
+            <div class="script-card">
+                <h3><span class="icon">🔧</span>Parameters & Arguments</h3>
+                <p>Mendalami parameter dan argument, default parameter, rest parameter, spread operator, dan destructuring.</p>
+                <div class="topics">
+                    <h4>Topik yang dibahas:</h4>
+                    <ul>
+                        <li>Parameter vs Argument</li>
+                        <li>Default Parameters</li>
+                        <li>Rest Parameters</li>
+                        <li>Spread Operator</li>
+                        <li>Destructuring Parameters</li>
+                        <li>Argument Validation</li>
+                    </ul>
+                </div>
+                <button class="run-button" onclick="runScript('3.function_parameters_arguments.js')">
+                    Jalankan Script
+                </button>
+            </div>
+
+            <div class="script-card">
+                <h3><span class="icon">🔄</span>Return & Scope</h3>
+                <p>Memahami return statement, berbagai jenis scope, dan variable scoping rules dalam JavaScript.</p>
+                <div class="topics">
+                    <h4>Topik yang dibahas:</h4>
+                    <ul>
+                        <li>Return Statement</li>
+                        <li>Multiple Returns</li>
+                        <li>Global, Function, Block Scope</li>
+                        <li>Scope Chain</li>
+                        <li>Variable Shadowing</li>
+                        <li>Best Practices</li>
+                    </ul>
+                </div>
+                <button class="run-button" onclick="runScript('4.function_return_scope.js')">
+                    Jalankan Script
+                </button>
+            </div>
+
+            <div class="script-card">
+                <h3><span class="icon">➡️</span>Arrow Functions</h3>
+                <p>Mempelajari arrow function secara mendalam, sintaks, this binding, dan kapan menggunakannya.</p>
+                <div class="topics">
+                    <h4>Topik yang dibahas:</h4>
+                    <ul>
+                        <li>Sintaks Arrow Function</li>
+                        <li>Perbedaan dengan Regular Function</li>
+                        <li>This Binding</li>
+                        <li>Async Operations</li>
+                        <li>Limitations dan Best Practices</li>
+                    </ul>
+                </div>
+                <button class="run-button" onclick="runScript('5.function_arrow_functions.js')">
+                    Jalankan Script
+                </button>
+            </div>
+
+            <div class="script-card">
+                <h3><span class="icon">🔒</span>Closures</h3>
+                <p>Konsep advanced closures, lexical scoping, private variables, dan pattern-pattern penting dalam JavaScript.</p>
+                <div class="topics">
+                    <h4>Topik yang dibahas:</h4>
+                    <ul>
+                        <li>Konsep Closure</li>
+                        <li>Lexical Scoping</li>
+                        <li>Private Variables</li>
+                        <li>Function Factory</li>
+                        <li>Module Pattern</li>
+                        <li>Memory Management</li>
+                    </ul>
+                </div>
+                <button class="run-button" onclick="runScript('6.function_closures.js')">
+                    Jalankan Script
+                </button>
+            </div>
+
+            <div class="script-card">
+                <h3><span class="icon">🔗</span>Higher-Order Functions</h3>
+                <p>Function yang menerima atau mengembalikan function lain, functional programming, dan array methods.</p>
+                <div class="topics">
+                    <h4>Topik yang dibahas:</h4>
+                    <ul>
+                        <li>Higher-Order Function Concept</li>
+                        <li>Array Methods (map, filter, reduce)</li>
+                        <li>Function Composition</li>
+                        <li>Currying dan Partial Application</li>
+                        <li>Functional Programming Patterns</li>
+                    </ul>
+                </div>
+                <button class="run-button" onclick="runScript('7.function_higher_order.js')">
+                    Jalankan Script
+                </button>
+            </div>
+
+            <div class="script-card">
+                <h3><span class="icon">🏗️</span>Comprehensive Example</h3>
+                <p>Project lengkap Sistem Manajemen Perpustakaan yang menggabungkan semua konsep function yang telah dipelajari.</p>
+                <div class="topics">
+                    <h4>Fitur yang diimplementasi:</h4>
+                    <ul>
+                        <li>Book & Member Management</li>
+                        <li>Borrowing & Return System</li>
+                        <li>Search & Filter Functions</li>
+                        <li>Report Generation</li>
+                        <li>Backup & Restore</li>
+                        <li>Performance Monitoring</li>
+                    </ul>
+                </div>
+                <button class="run-button" onclick="runScript('8.comprehensive_example.js')">
+                    Jalankan Script
+                </button>
+            </div>
+        </div>
+
+        <div class="console-header">
+            Console Output
+            <button class="clear-button" onclick="clearConsole()">Clear</button>
+        </div>
+        <div class="console-output" id="consoleOutput">
+            Klik salah satu tombol "Jalankan Script" untuk melihat output...
+        </div>
+
+        <div class="info-section">
+            <h3>Tentang Function dalam JavaScript</h3>
+            <p>
+                <span class="highlight">Function</span> adalah salah satu konsep paling fundamental dalam JavaScript. 
+                Function memungkinkan kita untuk menulis kode yang <strong>modular</strong>, <strong>reusable</strong>, 
+                dan <strong>maintainable</strong>.
+            </p>
+            <p>
+                Dalam modul ini, Anda akan mempelajari semua aspek function mulai dari dasar hingga konsep advanced 
+                seperti <span class="highlight">closures</span> dan <span class="highlight">higher-order functions</span>. 
+                Setiap script mendemonstrasikan konsep dengan contoh praktis dan real-world applications.
+            </p>
+            <p>
+                <strong>Tips:</strong> Jalankan script secara berurutan untuk memahami progres pembelajaran yang optimal. 
+                Perhatikan output di console dan eksperimen dengan memodifikasi kode untuk pemahaman yang lebih mendalam.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Override console.log untuk menampilkan di halaman
+        const originalConsoleLog = console.log;
+        const consoleOutput = document.getElementById('consoleOutput');
+        
+        console.log = function(...args) {
+            // Panggil console.log asli
+            originalConsoleLog.apply(console, args);
+            
+            // Tampilkan di halaman
+            const message = args.map(arg => {
+                if (typeof arg === 'object') {
+                    try {
+                        return JSON.stringify(arg, null, 2);
+                    } catch (e) {
+                        return String(arg);
+                    }
+                }
+                return String(arg);
+            }).join(' ');
+            
+            consoleOutput.textContent += message + '\n';
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        };
+
+        // Override console.time dan console.timeEnd
+        console.time = function(label) {
+            console.log(`⏰ Timer started: ${label}`);
+            originalConsoleLog(`Timer started: ${label}`);
+        };
+
+        console.timeEnd = function(label) {
+            console.log(`⏰ Timer ended: ${label}`);
+            originalConsoleLog(`Timer ended: ${label}`);
+        };
+
+        function clearConsole() {
+            consoleOutput.textContent = 'Console cleared...\n';
+        }
+
+        function runScript(scriptName) {
+            // Clear console
+            clearConsole();
+            
+            // Show loading message
+            console.log(`🚀 Menjalankan ${scriptName}...\n`);
+            
+            // Create script element
+            const script = document.createElement('script');
+            script.src = scriptName;
+            
+            script.onload = function() {
+                console.log(`\n✅ ${scriptName} selesai dijalankan`);
+                console.log('='.repeat(50));
+            };
+            
+            script.onerror = function() {
+                console.log(`❌ Error loading ${scriptName}`);
+            };
+            
+            // Remove previous script if exists
+            const existingScript = document.querySelector(`script[src="${scriptName}"]`);
+            if (existingScript) {
+                existingScript.remove();
+            }
+            
+            // Add new script
+            document.head.appendChild(script);
+        }
+
+        // Welcome message
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                console.log('🎉 Selamat datang di Week 10 - Function dalam JavaScript!');
+                console.log('📚 Pilih salah satu script untuk mulai belajar.');
+                console.log('💡 Tip: Mulai dari "Dasar-dasar Function" untuk pembelajaran optimal.');
+                console.log('='.repeat(50));
+            }, 500);
+        });
+    </script>
+</body>
+</html>
