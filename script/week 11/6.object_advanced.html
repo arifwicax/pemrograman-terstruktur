@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - Object Advanced Methods</title>
+    <style>
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 5px 5px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .nav-footer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-footer a:hover {
+            background: #764ba2;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .level {
+            background: #ffc107;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="5.string_number_methods.html">← Previous</a>
+        <a href="index.html">🏠 Home</a>
+        <span>6 / 12</span>
+        <a href="7.map_set.html">Next</a>
+    </div>
+    
+    <h1>Object Advanced Methods</h1>
+    <span class="level">📚 LEVEL 2 - MENENGAH (Penting)</span>
+    
+    <div class="warning">
+        <strong>KESALAHAN UMUM:</strong>
+        <h3>Object.freeze() dan Object.assign() adalah SHALLOW!</h3>
+        <ul>
+            <li><code>Object.freeze()</code> hanya freeze level pertama, nested object masih bisa diubah</li>
+            <li><code>Object.assign()</code> hanya copy shallow, nested object masih reference yang sama</li>
+            <li>Untuk deep freeze/copy, perlu custom function atau library</li>
+        </ul>
+    </div>
+    
+    <div class="tip">
+        <strong>Tips:</strong>
+        <ul>
+            <li>Gunakan <code>Object.keys()</code> untuk iterasi property object</li>
+            <li><code>Object.assign({}, obj)</code> untuk shallow copy</li>
+            <li>Spread operator <code>{...obj}</code> lebih modern dan readable</li>
+            <li><code>Object.freeze()</code> bagus untuk konstanta configuration</li>
+        </ul>
+    </div>
+    
+    <script>
+        console.log("=== 1. Object.keys() ===");
+        const mahasiswa = {
+            nama: "Andi",
+            umur: 20,
+            jurusan: "Informatika",
+            aktif: true
+        };
+        
+        console.log("Object:", mahasiswa);
+        const keys = Object.keys(mahasiswa);
+        console.log("Object.keys():", keys);
+        
+        console.log("\nIterasi dengan keys:");
+        keys.forEach(key => {
+            console.log(`  ${key}: ${mahasiswa[key]}`);
+        });
+        
+        
+        console.log("\n=== 2. Object.values() ===");
+        const values = Object.values(mahasiswa);
+        console.log("Object.values():", values);
+        
+        const nilai = {mtk: 85, fisika: 90, kimia: 88, biologi: 92};
+        console.log("\nNilai:", nilai);
+        const total = Object.values(nilai).reduce((sum, n) => sum + n, 0);
+        const rataRata = total / Object.values(nilai).length;
+        console.log("Total:", total);
+        console.log("Rata-rata:", rataRata);
+        
+        
+        console.log("\n=== 3. Object.entries() ===");
+        const entries = Object.entries(mahasiswa);
+        console.log("Object.entries():", entries);
+        
+        console.log("\nIterasi dengan destructuring:");
+        for (const [key, value] of entries) {
+            console.log(`  ${key}: ${value}`);
+        });
+        
+        console.log("\nKonversi ke Map:");
+        const map = new Map(entries);
+        console.log("Map:", map);
+        
+        
+        console.log("\n=== 4. Object.assign() - Merge Objects ===");
+        const target = {a: 1, b: 2};
+        const source1 = {b: 3, c: 4};
+        const source2 = {c: 5, d: 6};
+        
+        console.log("Target:", target);
+        console.log("Source1:", source1);
+        console.log("Source2:", source2);
+        
+        Object.assign(target, source1, source2);
+        console.log("Setelah assign:", target);
+        
+        
+        console.log("\n=== 5. Object.assign() - Shallow Copy ===");
+        const original = {
+            nama: "Andi",
+            umur: 20,
+            alamat: {
+                kota: "Jakarta",
+                provinsi: "DKI"
+            }
+        };
+        
+        const copy = Object.assign({}, original);
+        console.log("Original:", original);
+        console.log("Copy:", copy);
+        
+        copy.nama = "Budi";
+        copy.alamat.kota = "Bandung";
+        
+        console.log("\nSetelah ubah copy:");
+        console.log("Original.nama:", original.nama); // Tidak berubah
+        console.log("Original.alamat.kota:", original.alamat.kota); // BERUBAH (shallow copy)
+        
+        
+        console.log("\n=== 6. Object.assign() - Default Values ===");
+        const defaults = {
+            host: "localhost",
+            port: 3000,
+            protocol: "http"
+        };
+        
+        const config = {
+            port: 8080,
+            database: "mydb"
+        };
+        
+        const finalConfig = Object.assign({}, defaults, config);
+        console.log("Defaults:", defaults);
+        console.log("Config:", config);
+        console.log("Final Config:", finalConfig);
+        
+        
+        console.log("\n=== 7. Object.freeze() - Immutable ===");
+        const person = {
+            firstName: "Eko",
+            lastName: "Khannedy",
+            age: 25
+        };
+        
+        console.log("Sebelum freeze:", person);
+        Object.freeze(person);
+        
+        person.firstName = "Budi";
+        person.middleName = "Kurniawan";
+        delete person.lastName;
+        
+        console.log("Setelah coba ubah:", person); // Tidak berubah
+        console.log("Object.isFrozen():", Object.isFrozen(person));
+        
+        
+        console.log("\n=== 8. Object.freeze() - Nested Objects ===");
+        const company = {
+            name: "PT ABC",
+            address: {
+                city: "Jakarta",
+                country: "Indonesia"
+            }
+        };
+        
+        Object.freeze(company);
+        
+        company.name = "PT XYZ";
+        company.address.city = "Bandung";
+        
+        console.log("Company name:", company.name); // Tidak berubah
+        console.log("Company city:", company.address.city); // BERUBAH (nested tidak frozen)
+        
+        
+        console.log("\n=== 9. Object.seal() ===");
+        const obj = {
+            nama: "Andi",
+            umur: 20
+        };
+        
+        console.log("Sebelum seal:", obj);
+        Object.seal(obj);
+        
+        obj.nama = "Budi";
+        obj.umur = 25;
+        obj.jurusan = "Informatika";
+        delete obj.umur;
+        
+        console.log("Setelah seal:", obj);
+        console.log("Object.isSealed():", Object.isSealed(obj));
+        
+        
+        console.log("\n=== 10. Perbedaan freeze vs seal ===");
+        const objFreeze = {a: 1, b: 2};
+        const objSeal = {a: 1, b: 2};
+        
+        Object.freeze(objFreeze);
+        Object.seal(objSeal);
+        
+        objFreeze.a = 10;
+        objSeal.a = 10;
+        
+        console.log("Frozen (ubah nilai):", objFreeze); // Tidak berubah
+        console.log("Sealed (ubah nilai):", objSeal); // Berubah
+        
+        
+        console.log("\n=== 11. Object.create() ===");
+        const personPrototype = {
+            sapa: function() {
+                return `Halo, nama saya ${this.nama}`;
+            },
+            umur: function() {
+                return `Umur saya ${this.age} tahun`;
+            }
+        };
+        
+        const andi = Object.create(personPrototype);
+        andi.nama = "Andi";
+        andi.age = 20;
+        
+        console.log("andi:", andi);
+        console.log("andi.sapa():", andi.sapa());
+        console.log("andi.umur():", andi.umur());
+        
+        
+        console.log("\n=== 12. Object.create(null) ===");
+        const pureObject = Object.create(null);
+        pureObject.nama = "Test";
+        
+        console.log("Pure object:", pureObject);
+        console.log("Punya toString?:", pureObject.toString); // undefined
+        
+        
+        console.log("\n=== 13. Object.hasOwnProperty() ===");
+        const testObj = {nama: "Andi", umur: 20};
+        
+        console.log("hasOwnProperty('nama'):", testObj.hasOwnProperty("nama"));
+        console.log("hasOwnProperty('toString'):", testObj.hasOwnProperty("toString"));
+        
+        console.log("\nCara modern - Object.hasOwn():");
+        console.log("Object.hasOwn(testObj, 'nama'):", Object.hasOwn(testObj, "nama"));
+        console.log("Object.hasOwn(testObj, 'toString'):", Object.hasOwn(testObj, "toString"));
+        
+        
+        console.log("\n=== 14. Object.getOwnPropertyNames() ===");
+        const person2 = {
+            firstName: "Eko",
+            lastName: "Khannedy"
+        };
+        
+        console.log("Object:", person2);
+        console.log("Property names:", Object.getOwnPropertyNames(person2));
+        
+        
+        console.log("\n=== 15. Object.defineProperty() ===");
+        const product = {};
+        
+        Object.defineProperty(product, "name", {
+            value: "Laptop",
+            writable: false,
+            enumerable: true,
+            configurable: false
+        });
+        
+        Object.defineProperty(product, "price", {
+            value: 5000000,
+            writable: true,
+            enumerable: true,
+            configurable: true
+        });
+        
+        console.log("Product:", product);
+        
+        product.name = "Computer";
+        product.price = 6000000;
+        
+        console.log("Setelah ubah:");
+        console.log("name:", product.name); // Tidak berubah (writable: false)
+        console.log("price:", product.price); // Berubah (writable: true)
+        
+        
+        console.log("\n=== 16. Object.getOwnPropertyDescriptor() ===");
+        const descriptor = Object.getOwnPropertyDescriptor(product, "name");
+        console.log("Descriptor 'name':", descriptor);
+        
+        
+        console.log("\n=== 17. Object.fromEntries() ===");
+        const entriesArray = [
+            ["nama", "Andi"],
+            ["umur", 20],
+            ["kota", "Jakarta"]
+        ];
+        
+        console.log("Array entries:", entriesArray);
+        const objFromEntries = Object.fromEntries(entriesArray);
+        console.log("Object.fromEntries():", objFromEntries);
+        
+        // Konversi Map ke Object
+        const map2 = new Map([["a", 1], ["b", 2]]);
+        const objFromMap = Object.fromEntries(map2);
+        console.log("\nDari Map:", map2);
+        console.log("Ke Object:", objFromMap);
+        
+        
+        console.log("\n=== 18. Praktik: Deep Clone ===");
+        function deepClone(obj) {
+            return JSON.parse(JSON.stringify(obj));
+        }
+        
+        const original2 = {
+            nama: "Andi",
+            alamat: {
+                kota: "Jakarta",
+                negara: "Indonesia"
+            }
+        };
+        
+        const cloned = deepClone(original2);
+        cloned.alamat.kota = "Bandung";
+        
+        console.log("Original kota:", original2.alamat.kota); // Tidak berubah
+        console.log("Cloned kota:", cloned.alamat.kota); // Berubah
+        
+        
+        console.log("\n=== 19. Praktik: Filter Object Properties ===");
+        function filterObject(obj, callback) {
+            return Object.fromEntries(
+                Object.entries(obj).filter(([key, value]) => callback(key, value))
+            );
+        }
+        
+        const data = {
+            nama: "Andi",
+            umur: 20,
+            kota: "Jakarta",
+            negara: "Indonesia",
+            aktif: true
+        };
+        
+        const filtered = filterObject(data, (key, value) => typeof value === "string");
+        console.log("Original:", data);
+        console.log("Filtered (string only):", filtered);
+        
+        
+        console.log("\n=== 20. Praktik: Merge Deep ===");
+        function mergeDeep(target, source) {
+            const output = Object.assign({}, target);
+            
+            if (isObject(target) && isObject(source)) {
+                Object.keys(source).forEach(key => {
+                    if (isObject(source[key])) {
+                        if (!(key in target)) {
+                            Object.assign(output, {[key]: source[key]});
+                        } else {
+                            output[key] = mergeDeep(target[key], source[key]);
+                        }
+                    } else {
+                        Object.assign(output, {[key]: source[key]});
+                    }
+                });
+            }
+            
+            return output;
+        }
+        
+        function isObject(item) {
+            return item && typeof item === 'object' && !Array.isArray(item);
+        }
+        
+        const obj1 = {
+            a: 1,
+            b: {
+                c: 2,
+                d: 3
+            }
+        };
+        
+        const obj2 = {
+            b: {
+                d: 4,
+                e: 5
+            },
+            f: 6
+        };
+        
+        console.log("Object 1:", obj1);
+        console.log("Object 2:", obj2);
+        console.log("Merged:", mergeDeep(obj1, obj2));
+    </script>
+</body>
+</html>

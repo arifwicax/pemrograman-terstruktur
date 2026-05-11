@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - Regular Expression (RegExp)</title>
+    <style>
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 5px 5px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .nav-footer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-footer a:hover {
+            background: #764ba2;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .level {
+            background: #ffc107;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="3.date_object.html">← Previous</a>
+        <a href="index.html">🏠 Home</a>
+        <span>4 / 12</span>
+        <a href="5.string_number_methods.html">Next</a>
+    </div>
+    
+    <h1>Regular Expression (RegExp)</h1>
+    <span class="level">📚 LEVEL 2 - MENENGAH (Penting)</span>
+    
+    <div class="warning">
+        <strong>KESALAHAN UMUM RegExp:</strong>
+        <ul>
+            <li><strong>Lupa escape</strong> karakter khusus: <code>.</code> <code>*</code> <code>+</code> <code>?</code> <code>^</code> <code>$</code> <code>{</code> <code>}</code> <code>[</code> <code>]</code> <code>\</code> <code>|</code> <code>(</code> <code>)</code></li>
+            <li>Contoh: <code>/gmail.com/</code> match "gmail_com" juga! Harus: <code>/gmail\.com/</code></li>
+            <li><strong>Lupa flag 'g'</strong> untuk replace all: <code>replace(/hello/g, 'hi')</code></li>
+            <li>Flag 'i' untuk case-insensitive: <code>/hello/i</code> match "Hello", "HELLO"</li>
+        </ul>
+    </div>
+    
+    <div class="tip">
+        <strong>Tips Belajar RegExp:</strong>
+        <ul>
+            <li>Gunakan <a href="https://regex101.com" target="_blank">regex101.com</a> untuk test pattern</li>
+            <li>Mulai dari pattern sederhana, kompleksitas bertahap</li>
+            <li>Untuk email, gunakan library validasi (regex email sempurna sangat kompleks!)</li>
+            <li>Pattern umum: <code>\d</code> (digit), <code>\w</code> (word), <code>\s</code> (space)</li>
+        </ul>
+    </div>
+    
+    <script>
+        console.log("=== 1. Membuat RegExp - Literal vs Constructor ===");
+        const regex1 = /eko/;
+        const regex2 = new RegExp("eko");
+        const regex3 = new RegExp(/eko/);
+        
+        console.log("Literal /eko/:", regex1);
+        console.log("Constructor new RegExp('eko'):", regex2);
+        console.log("Constructor new RegExp(/eko/):", regex3);
+        
+        
+        console.log("\n=== 2. Method test() - Cek Pattern ===");
+        const name = "eko kurniawan eko khannedy";
+        const regex = /eko/;
+        
+        console.log("String:", name);
+        console.log("Pattern:", regex);
+        console.log("regex.test(name):", regex.test(name)); // true
+        console.log("regex.test('tidak ada'):", regex.test("tidak ada")); // false
+        
+        
+        console.log("\n=== 3. Method exec() - Detail Match ===");
+        const result = regex.exec(name);
+        console.log("regex.exec(name):", result);
+        console.log("Match:", result[0]);
+        console.log("Index:", result.index);
+        console.log("Input:", result.input);
+        
+        console.log("\nregex.exec('tidak ada'):", regex.exec("tidak ada")); // null
+        
+        
+        console.log("\n=== 4. Flags (Modifiers) ===");
+        const text = "eko kurniawan\nEko khannedy\nEdo Kurniawan";
+        
+        // Case insensitive (i)
+        const regex4i = /eko/i;
+        console.log("Pattern /eko/i pada 'Eko':", regex4i.test("Eko")); // true
+        
+        // Global (g) - cari semua match
+        const regex4g = /eko/g;
+        console.log("\nPattern /eko/g, exec berulang:");
+        let match;
+        while ((match = regex4g.exec(name)) !== null) {
+            console.log(`  Found '${match[0]}' at index ${match.index}`);
+        }
+        
+        // Multiline (m)
+        const regex4m = /^e.o/igm;
+        console.log("\nPattern /^e.o/igm (multiline):");
+        let match2;
+        while ((match2 = regex4m.exec(text)) !== null) {
+            console.log(`  ${match2[0]}`);
+        }
+        
+        
+        console.log("\n=== 5. Character Class [abc] ===");
+        const regex5 = /ek[ioaeu]/ig;
+        const name5 = "eko eki eka eku eke edo eko eki";
+        
+        console.log("String:", name5);
+        console.log("Pattern /ek[ioaeu]/ig:");
+        let match5;
+        while ((match5 = regex5.exec(name5)) !== null) {
+            console.log(`  ${match5[0]}`);
+        }
+        
+        
+        console.log("\n=== 6. String Method - match() ===");
+        const text6 = "edo eko eki eka eku eke edo eko eki";
+        console.log("String:", text6);
+        console.log("match(/ek[aiueo]/ig):", text6.match(/ek[aiueo]/ig));
+        
+        
+        console.log("\n=== 7. String Method - search() ===");
+        console.log("String:", text6);
+        console.log("search(/ek[aiueo]/ig):", text6.search(/ek[aiueo]/ig));
+        console.log("search(/xyz/):", text6.search(/xyz/)); // -1
+        
+        
+        console.log("\n=== 8. String Method - replace() ===");
+        const text8 = "edo eko eki eka eku";
+        console.log("Original:", text8);
+        console.log("replace(/ek[aiueo]/i, 'kamu'):", text8.replace(/ek[aiueo]/i, "kamu"));
+        console.log("replaceAll(/ek[aiueo]/ig, 'kamu'):", text8.replaceAll(/ek[aiueo]/ig, "kamu"));
+        
+        
+        console.log("\n=== 9. String Method - split() ===");
+        const text9 = "satu,dua;tiga:empat";
+        console.log("String:", text9);
+        console.log("split(/[,:;]/):", text9.split(/[,:;]/));
+        
+        const text9b = "eko edo eki eka";
+        console.log("\nString:", text9b);
+        console.log("split(/e/ig):", text9b.split(/e/ig));
+        
+        
+        console.log("\n=== 10. Validasi Email ===");
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        const emails = [
+            "user@example.com",
+            "test.user@domain.co.id",
+            "invalid.email",
+            "no@domain",
+            "@example.com"
+        ];
+        
+        console.log("Pattern:", emailPattern);
+        emails.forEach(email => {
+            console.log(`  ${email}: ${emailPattern.test(email)}`);
+        });
+        
+        
+        console.log("\n=== 11. Validasi Nomor Telepon Indonesia ===");
+        const phonePattern = /^(\+62|62|0)[0-9]{9,12}$/;
+        
+        const phones = [
+            "081234567890",
+            "08123456789",
+            "628123456789",
+            "+628123456789",
+            "021-1234567",
+            "12345"
+        ];
+        
+        console.log("Pattern:", phonePattern);
+        phones.forEach(phone => {
+            console.log(`  ${phone}: ${phonePattern.test(phone)}`);
+        });
+        
+        
+        console.log("\n=== 12. Pattern Digit \\d ===");
+        const textDigit = "Harga: Rp 100.000 dan Rp 50.000";
+        console.log("String:", textDigit);
+        console.log("match(/\\d+/g):", textDigit.match(/\d+/g));
+        
+        
+        console.log("\n=== 13. Pattern Word \\w ===");
+        const textWord = "hello_world 123 test-case";
+        console.log("String:", textWord);
+        console.log("match(/\\w+/g):", textWord.match(/\w+/g));
+        
+        
+        console.log("\n=== 14. Capturing Groups ===");
+        const datePattern = /(\d{4})-(\d{2})-(\d{2})/;
+        const dateText = "Tanggal: 2024-01-15";
+        const dateResult = datePattern.exec(dateText);
+        
+        console.log("String:", dateText);
+        console.log("Pattern:", datePattern);
+        console.log("Full match:", dateResult[0]);
+        console.log("Year (group 1):", dateResult[1]);
+        console.log("Month (group 2):", dateResult[2]);
+        console.log("Day (group 3):", dateResult[3]);
+        
+        
+        console.log("\n=== 15. Quantifiers ===");
+        console.log("a* (0 atau lebih):", "aaa".match(/a*/)); // ["aaa"]
+        console.log("a+ (1 atau lebih):", "aaa".match(/a+/)); // ["aaa"]
+        console.log("a? (0 atau 1):", "a".match(/a?/)); // ["a"]
+        console.log("a{3} (tepat 3):", "aaa".match(/a{3}/)); // ["aaa"]
+        console.log("a{2,4} (2-4):", "aaaa".match(/a{2,4}/)); // ["aaaa"]
+        
+        
+        console.log("\n=== 16. Validasi Password ===");
+        // Minimal 8 karakter, harus ada huruf dan angka
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        
+        const passwords = [
+            "password123",
+            "Pass123",
+            "12345678",
+            "abcdefgh",
+            "Secure1",
+            "MyP@ss123"
+        ];
+        
+        console.log("Pattern: min 8 char, ada huruf & angka");
+        passwords.forEach(pwd => {
+            console.log(`  ${pwd}: ${passwordPattern.test(pwd)}`);
+        });
+        
+        
+        console.log("\n=== 17. Praktik: Extract Domain dari Email ===");
+        function extractDomain(email) {
+            const pattern = /@([^\s@]+)/;
+            const match = pattern.exec(email);
+            return match ? match[1] : null;
+        }
+        
+        const testEmails = [
+            "user@example.com",
+            "test@domain.co.id",
+            "admin@company.org"
+        ];
+        
+        testEmails.forEach(email => {
+            console.log(`${email} -> ${extractDomain(email)}`);
+        });
+        
+        
+        console.log("\n=== 18. Praktik: Format Nomor Telepon ===");
+        function formatPhone(phone) {
+            // Hilangkan semua karakter non-digit
+            const cleaned = phone.replace(/\D/g, '');
+            
+            // Format: 0812-3456-7890
+            if (cleaned.length === 12 && cleaned.startsWith('0')) {
+                return cleaned.replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3');
+            }
+            return phone;
+        }
+        
+        const rawPhones = [
+            "081234567890",
+            "0812 3456 7890",
+            "(0812) 345-67890"
+        ];
+        
+        rawPhones.forEach(phone => {
+            console.log(`${phone} -> ${formatPhone(phone)}`);
+        });
+        
+        
+        console.log("\n=== 19. Praktik: Capitalize First Letter ===");
+        const sentence = "halo dunia dari javascript";
+        const capitalized = sentence.replace(/\b\w/g, (match) => match.toUpperCase());
+        console.log("Original:", sentence);
+        console.log("Capitalized:", capitalized);
+        
+        
+        console.log("\n=== 20. Praktik: Remove HTML Tags ===");
+        const html = "<p>Hello <strong>World</strong>!</p>";
+        const plainText = html.replace(/<[^>]*>/g, '');
+        console.log("HTML:", html);
+        console.log("Plain text:", plainText);
+    </script>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - Comprehensive Example</title>
+    <style>
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 5px 5px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .nav-footer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-footer a:hover {
+            background: #764ba2;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .result {
+            background: #f9f9f9;
+            padding: 10px;
+            border-left: 3px solid #4CAF50;
+            margin: 10px 0;
+        }
+        .error {
+            background: #ffe6e6;
+            border-left: 3px solid #f44336;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        input, select {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="10.encoding.html">← Previous</a>
+        <a href="index.html">🏠 Home</a>
+        <span>11 / 12</span>
+        <a href="12.common_mistakes.html">Next</a>
+    </div>
+    
+    <h1>Aplikasi Manajemen Data Mahasiswa</h1>
+    <p>Comprehensive example menggunakan JavaScript Standard Library</p>
+    
+    <div class="section">
+        <h2>Features yang Digunakan:</h2>
+        <ul>
+            <li>JSON - Serialisasi & deserialisasi data</li>
+            <li>Math - Perhitungan statistik nilai</li>
+            <li>Date - Manajemen tanggal lahir & umur</li>
+            <li>RegExp - Validasi email dan format data</li>
+            <li>Object methods - Manipulasi data</li>
+            <li>Map & Set - Struktur data advanced</li>
+            <li>Proxy - Observasi perubahan data</li>
+            <li>Encoding - Format data untuk URL</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2>Output:</h2>
+        <div id="output"></div>
+    </div>
+    
+    <script>
+        const output = document.getElementById('output');
+        
+        function log(message, type = 'result') {
+            const div = document.createElement('div');
+            div.className = type;
+            div.textContent = message;
+            output.appendChild(div);
+        }
+        
+        function logHeader(header) {
+            const h3 = document.createElement('h3');
+            h3.textContent = header;
+            h3.style.color = '#2196F3';
+            output.appendChild(h3);
+        }
+        
+        
+        // ==================================================
+        // APLIKASI MANAJEMEN MAHASISWA
+        // ==================================================
+        
+        logHeader("1. Setup Data dengan Proxy (Observable)");
+        
+        // Membuat observable data dengan Proxy
+        function createObservable(data, onChange) {
+            return new Proxy(data, {
+                set(target, property, value) {
+                    const oldValue = target[property];
+                    target[property] = value;
+                    onChange(property, oldValue, value);
+                    return true;
+                }
+            });
+        }
+        
+        const mahasiswaData = createObservable(
+            {
+                students: new Map(),
+                courses: new Set(['Matematika', 'Fisika', 'Kimia', 'Biologi'])
+            },
+            (prop, oldVal, newVal) => {
+                log(`Data changed: ${prop} updated`);
+            }
+        );
+        
+        log("Observable data created with Proxy");
+        log(`Courses: ${[...mahasiswaData.courses].join(', ')}`);
+        
+        
+        logHeader("2. Validasi Data dengan RegExp");
+        
+        const validators = {
+            email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            nim: /^[0-9]{10}$/,
+            phone: /^(\+62|62|0)[0-9]{9,12}$/
+        };
+        
+        function validateStudent(student) {
+            const errors = [];
+            
+            if (!validators.email.test(student.email)) {
+                errors.push("Email tidak valid");
+            }
+            
+            if (!validators.nim.test(student.nim)) {
+                errors.push("NIM harus 10 digit");
+            }
+            
+            if (!validators.phone.test(student.phone)) {
+                errors.push("Nomor telepon tidak valid");
+            }
+            
+            return errors;
+        }
+        
+        log("Validator rules created");
+        log(`- Email pattern: ${validators.email}`);
+        log(`- NIM pattern: ${validators.nim}`);
+        log(`- Phone pattern: ${validators.phone}`);
+        
+        
+        logHeader("3. Class Student dengan Date & Math");
+        
+        class Student {
+            constructor(data) {
+                this.nim = data.nim;
+                this.nama = data.nama;
+                this.email = data.email;
+                this.phone = data.phone;
+                this.tanggalLahir = new Date(data.tanggalLahir);
+                this.nilai = data.nilai || new Map();
+                this.createdAt = new Date();
+            }
+            
+            hitungUmur() {
+                const today = new Date();
+                let umur = today.getFullYear() - this.tanggalLahir.getFullYear();
+                const bulan = today.getMonth() - this.tanggalLahir.getMonth();
+                
+                if (bulan < 0 || (bulan === 0 && today.getDate() < this.tanggalLahir.getDate())) {
+                    umur--;
+                }
+                
+                return umur;
+            }
+            
+            tambahNilai(matakuliah, nilai) {
+                this.nilai.set(matakuliah, nilai);
+            }
+            
+            hitungIPK() {
+                if (this.nilai.size === 0) return 0;
+                
+                const total = [...this.nilai.values()].reduce((sum, n) => sum + n, 0);
+                return Math.round((total / this.nilai.size) * 100) / 100;
+            }
+            
+            getNilaiTertinggi() {
+                if (this.nilai.size === 0) return null;
+                return Math.max(...this.nilai.values());
+            }
+            
+            getNilaiTerendah() {
+                if (this.nilai.size === 0) return null;
+                return Math.min(...this.nilai.values());
+            }
+            
+            toJSON() {
+                return {
+                    nim: this.nim,
+                    nama: this.nama,
+                    email: this.email,
+                    phone: this.phone,
+                    tanggalLahir: this.tanggalLahir.toISOString(),
+                    umur: this.hitungUmur(),
+                    nilai: Object.fromEntries(this.nilai),
+                    ipk: this.hitungIPK(),
+                    createdAt: this.createdAt.toISOString()
+                };
+            }
+        }
+        
+        log("Student class created with methods:");
+        log("- hitungUmur() using Date");
+        log("- hitungIPK() using Math");
+        log("- toJSON() for serialization");
+        
+        
+        logHeader("4. Menambah Data Mahasiswa");
+        
+        const studentsData = [
+            {
+                nim: "1234567890",
+                nama: "Andi Pratama",
+                email: "andi@example.com",
+                phone: "081234567890",
+                tanggalLahir: "2000-05-15",
+                nilai: new Map([
+                    ['Matematika', 85],
+                    ['Fisika', 90],
+                    ['Kimia', 88],
+                    ['Biologi', 92]
+                ])
+            },
+            {
+                nim: "1234567891",
+                nama: "Budi Santoso",
+                email: "budi@example.com",
+                phone: "081234567891",
+                tanggalLahir: "2001-08-20",
+                nilai: new Map([
+                    ['Matematika', 78],
+                    ['Fisika', 85],
+                    ['Kimia', 80],
+                    ['Biologi', 88]
+                ])
+            },
+            {
+                nim: "1234567892",
+                nama: "Cici Lestari",
+                email: "cici@example.com",
+                phone: "081234567892",
+                tanggalLahir: "2000-12-10",
+                nilai: new Map([
+                    ['Matematika', 95],
+                    ['Fisika', 92],
+                    ['Kimia', 94],
+                    ['Biologi', 90]
+                ])
+            }
+        ];
+        
+        // Validasi dan tambahkan mahasiswa
+        studentsData.forEach(data => {
+            const errors = validateStudent(data);
+            
+            if (errors.length > 0) {
+                log(`Error adding ${data.nama}: ${errors.join(', ')}`, 'error');
+                return;
+            }
+            
+            const student = new Student(data);
+            mahasiswaData.students.set(student.nim, student);
+            log(`[Added] ${student.nama} (NIM: ${student.nim})`);
+        });
+        
+        
+        logHeader("5. Statistik Mahasiswa");
+        
+        log(`Total mahasiswa: ${mahasiswaData.students.size}`);
+        
+        mahasiswaData.students.forEach(student => {
+            log(`\n${student.nama}:`);
+            log(`  NIM: ${student.nim}`);
+            log(`  Email: ${student.email}`);
+            log(`  Umur: ${student.hitungUmur()} tahun`);
+            log(`  IPK: ${student.hitungIPK()}`);
+            log(`  Nilai tertinggi: ${student.getNilaiTertinggi()}`);
+            log(`  Nilai terendah: ${student.getNilaiTerendah()}`);
+        });
+        
+        
+        logHeader("6. Analisis dengan Object Methods & Math");
+        
+        // Hitung statistik keseluruhan
+        const allScores = [];
+        mahasiswaData.students.forEach(student => {
+            allScores.push(...student.nilai.values());
+        });
+        
+        const stats = {
+            total: allScores.length,
+            sum: allScores.reduce((a, b) => a + b, 0),
+            average: Math.round((allScores.reduce((a, b) => a + b, 0) / allScores.length) * 100) / 100,
+            max: Math.max(...allScores),
+            min: Math.min(...allScores),
+            median: (() => {
+                const sorted = [...allScores].sort((a, b) => a - b);
+                const mid = Math.floor(sorted.length / 2);
+                return sorted.length % 2 !== 0 
+                    ? sorted[mid] 
+                    : (sorted[mid - 1] + sorted[mid]) / 2;
+            })()
+        };
+        
+        log("Statistik semua nilai:");
+        Object.entries(stats).forEach(([key, value]) => {
+            log(`  ${key}: ${value}`);
+        });
+        
+        
+        logHeader("7. Filter & Sort dengan Object.values()");
+        
+        // Mahasiswa dengan IPK > 85
+        const topStudents = [...mahasiswaData.students.values()]
+            .filter(s => s.hitungIPK() > 85)
+            .sort((a, b) => b.hitungIPK() - a.hitungIPK());
+        
+        log(`Mahasiswa dengan IPK > 85 (${topStudents.length}):`);
+        topStudents.forEach(student => {
+            log(`  ${student.nama}: ${student.hitungIPK()}`);
+        });
+        
+        
+        logHeader("8. Grouping dengan Map");
+        
+        // Group by range IPK
+        const ipkGroups = new Map([
+            ['A (90-100)', []],
+            ['B (80-89)', []],
+            ['C (70-79)', []],
+            ['D (< 70)', []]
+        ]);
+        
+        mahasiswaData.students.forEach(student => {
+            const ipk = student.hitungIPK();
+            if (ipk >= 90) ipkGroups.get('A (90-100)').push(student.nama);
+            else if (ipk >= 80) ipkGroups.get('B (80-89)').push(student.nama);
+            else if (ipk >= 70) ipkGroups.get('C (70-79)').push(student.nama);
+            else ipkGroups.get('D (< 70)').push(student.nama);
+        });
+        
+        log("Grouping berdasarkan IPK:");
+        ipkGroups.forEach((students, grade) => {
+            if (students.length > 0) {
+                log(`  ${grade}: ${students.join(', ')}`);
+            }
+        });
+        
+        
+        logHeader("9. Set Operations - Mata Kuliah");
+        
+        const andiCourses = new Set(mahasiswaData.students.get("1234567890").nilai.keys());
+        const budiCourses = new Set(mahasiswaData.students.get("1234567891").nilai.keys());
+        
+        log("Mata kuliah Andi:", [...andiCourses].join(', '));
+        log("Mata kuliah Budi:", [...budiCourses].join(', '));
+        
+        // Intersection
+        const commonCourses = new Set([...andiCourses].filter(x => budiCourses.has(x)));
+        log("Mata kuliah yang sama:", [...commonCourses].join(', '));
+        
+        
+        logHeader("10. JSON Serialization");
+        
+        const exportData = {
+            exportDate: new Date().toISOString(),
+            totalStudents: mahasiswaData.students.size,
+            students: [...mahasiswaData.students.values()].map(s => s.toJSON())
+        };
+        
+        const jsonString = JSON.stringify(exportData, null, 2);
+        log("Data exported to JSON:");
+        log(jsonString.substring(0, 200) + "...");
+        
+        // Parse kembali
+        const importedData = JSON.parse(jsonString);
+        log(`\nData imported: ${importedData.students.length} students`);
+        
+        
+        logHeader("11. URL Encoding untuk Export");
+        
+        function createExportURL(data) {
+            const params = {
+                format: 'json',
+                students: data.students.length,
+                date: data.exportDate,
+                checksum: btoa(data.exportDate)
+            };
+            
+            const queryString = Object.keys(params)
+                .map(key => `${key}=${encodeURIComponent(params[key])}`)
+                .join('&');
+            
+            return `https://example.com/export?${queryString}`;
+        }
+        
+        const exportURL = createExportURL(exportData);
+        log("Export URL:");
+        log(exportURL);
+        
+        
+        logHeader("12. Object.freeze() untuk Konstanta");
+        
+        const APP_CONFIG = Object.freeze({
+            MAX_STUDENTS: 100,
+            MIN_IPK: 0,
+            MAX_IPK: 100,
+            ALLOWED_COURSES: Object.freeze(['Matematika', 'Fisika', 'Kimia', 'Biologi'])
+        });
+        
+        log("Application config (frozen):");
+        log(JSON.stringify(APP_CONFIG, null, 2));
+        
+        
+        logHeader("13. Symbol untuk Metadata");
+        
+        const metadata = Symbol('metadata');
+        
+        mahasiswaData.students.forEach(student => {
+            student[metadata] = {
+                lastModified: new Date(),
+                modifiedBy: 'system',
+                version: 1
+            };
+        });
+        
+        const firstStudent = [...mahasiswaData.students.values()][0];
+        log("Student metadata (hidden from JSON):");
+        log(`  ${firstStudent.nama}: ${JSON.stringify(firstStudent[metadata])}`);
+        log("  (Not visible in JSON.stringify)");
+        
+        
+        logHeader("14. BigInt untuk ID Generation");
+        
+        let nextId = 1000000000000n;
+        
+        function generateUniqueId() {
+            return nextId++;
+        }
+        
+        log("Generated IDs:");
+        for (let i = 0; i < 3; i++) {
+            log(`  ${generateUniqueId()}`);
+        }
+        
+        
+        logHeader("15. Summary Report");
+        
+        log("\n=== LAPORAN AKHIR ===");
+        log(`Total Mahasiswa: ${mahasiswaData.students.size}`);
+        log(`IPK Rata-rata: ${stats.average}`);
+        log(`Nilai Tertinggi: ${stats.max}`);
+        log(`Nilai Terendah: ${stats.min}`);
+        log(`Total Mata Kuliah: ${mahasiswaData.courses.size}`);
+        log(`\nMahasiswa Terbaik:`);
+        
+        const best = topStudents[0];
+        if (best) {
+            log(`  Nama: ${best.nama}`);
+            log(`  NIM: ${best.nim}`);
+            log(`  IPK: ${best.hitungIPK()}`);
+            log(`  Umur: ${best.hitungUmur()} tahun`);
+        }
+        
+        log("\n[COMPLETED] Comprehensive example completed!");
+        log("Menggunakan: JSON, Math, Date, RegExp, Object, Map, Set, Proxy, Symbol, BigInt, Encoding");
+    </script>
+</body>
+</html>

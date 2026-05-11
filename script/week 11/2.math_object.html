@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - Math Object</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .level {
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+    <style>
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 5px 5px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .nav-footer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-footer a:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="1.json_basics.html">← Previous</a>
+        <a href="index.html">🏠 Home</a>
+        <span>2 / 12</span>
+        <a href="3.date_object.html">Next</a>
+    </div>
+    
+    <h1>Math Object</h1>
+    <span class="level">📚 LEVEL 1 - DASAR (Wajib Dipelajari)</span>
+    
+    <div class="warning">
+        <strong>KESALAHAN UMUM dengan Math.random():</strong>
+        <ul>
+            <li><code>Math.random()</code> return 0.0 - 0.999... (ada desimal!)</li>
+            <li>Untuk integer 0-9: <code>Math.floor(Math.random() * 10)</code></li>
+            <li>Untuk integer 1-6 (dadu): <code>Math.floor(Math.random() * 6) + 1</code></li>
+            <li>Rumus umum [min, max]: <code>Math.floor(Math.random() * (max - min + 1)) + min</code></li>
+        </ul>
+    </div>
+    
+    <div class="tip">
+        <strong>Tips Pembulatan:</strong>
+        <ul>
+            <li><strong>Math.round()</strong> - Pembulatan normal (0.5 ke atas)</li>
+            <li><strong>Math.ceil()</strong> - Selalu ke atas (ceiling)</li>
+            <li><strong>Math.floor()</strong> - Selalu ke bawah (floor)</li>
+            <li><strong>Math.trunc()</strong> - Buang desimal tanpa pembulatan</li>
+            <li>Untuk uang: <code>(Math.round(harga * 100) / 100).toFixed(2)</code></li>
+        </ul>
+    </div>
+    
+    <script>
+        console.log("=== 1. Math Properties (Konstanta) ===");
+        console.log("Math.PI:", Math.PI);
+        console.log("Math.E:", Math.E);
+        console.log("Math.LN2:", Math.LN2);
+        console.log("Math.LN10:", Math.LN10);
+        console.log("Math.SQRT2:", Math.SQRT2);
+        console.log("Math.SQRT1_2:", Math.SQRT1_2);
+        
+        
+        console.log("\n=== 2. Pembulatan - Math.round() ===");
+        console.log("Math.round(4.7):", Math.round(4.7));   // 5
+        console.log("Math.round(4.4):", Math.round(4.4));   // 4
+        console.log("Math.round(4.5):", Math.round(4.5));   // 5
+        console.log("Math.round(-4.5):", Math.round(-4.5)); // -4
+        console.log("Math.round(-4.6):", Math.round(-4.6)); // -5
+        
+        
+        console.log("\n=== 3. Pembulatan - Math.ceil() (ke atas) ===");
+        console.log("Math.ceil(4.1):", Math.ceil(4.1));     // 5
+        console.log("Math.ceil(4.9):", Math.ceil(4.9));     // 5
+        console.log("Math.ceil(-4.9):", Math.ceil(-4.9));   // -4
+        console.log("Math.ceil(10.3):", Math.ceil(10.3));   // 11
+        
+        
+        console.log("\n=== 4. Pembulatan - Math.floor() (ke bawah) ===");
+        console.log("Math.floor(4.9):", Math.floor(4.9));   // 4
+        console.log("Math.floor(4.1):", Math.floor(4.1));   // 4
+        console.log("Math.floor(-4.1):", Math.floor(-4.1)); // -5
+        console.log("Math.floor(10.8):", Math.floor(10.8)); // 10
+        
+        
+        console.log("\n=== 5. Math.trunc() - Buang Desimal ===");
+        console.log("Math.trunc(4.9):", Math.trunc(4.9));   // 4
+        console.log("Math.trunc(4.1):", Math.trunc(4.1));   // 4
+        console.log("Math.trunc(-4.9):", Math.trunc(-4.9)); // -4
+        console.log("Math.trunc(-4.1):", Math.trunc(-4.1)); // -4
+        
+        
+        console.log("\n=== 6. Math.min() dan Math.max() ===");
+        console.log("Math.max(10, 11, 12, 13, 8):", Math.max(10, 11, 12, 13, 8));
+        console.log("Math.min(10, 11, 12, 13, 8):", Math.min(10, 11, 12, 13, 8));
+        console.log("Math.max(-5, -10, -2):", Math.max(-5, -10, -2));
+        console.log("Math.min(-5, -10, -2):", Math.min(-5, -10, -2));
+        
+        // Dengan array menggunakan spread operator
+        const angka = [5, 10, 2, 8, 15, 3];
+        console.log("\nArray:", angka);
+        console.log("Math.max(...angka):", Math.max(...angka));
+        console.log("Math.min(...angka):", Math.min(...angka));
+        
+        
+        console.log("\n=== 7. Math.pow() - Pangkat ===");
+        console.log("Math.pow(2, 3):", Math.pow(2, 3));     // 8 (2^3)
+        console.log("Math.pow(5, 2):", Math.pow(5, 2));     // 25 (5^2)
+        console.log("Math.pow(4, 0.5):", Math.pow(4, 0.5)); // 2 (akar kuadrat)
+        console.log("Math.pow(10, 3):", Math.pow(10, 3));   // 1000
+        
+        // Alternatif dengan operator **
+        console.log("\nMenggunakan operator **:");
+        console.log("2 ** 3:", 2 ** 3);
+        console.log("5 ** 2:", 5 ** 2);
+        
+        
+        console.log("\n=== 8. Math.sqrt() - Akar Kuadrat ===");
+        console.log("Math.sqrt(9):", Math.sqrt(9));
+        console.log("Math.sqrt(16):", Math.sqrt(16));
+        console.log("Math.sqrt(25):", Math.sqrt(25));
+        console.log("Math.sqrt(2):", Math.sqrt(2));
+        console.log("Math.sqrt(-1):", Math.sqrt(-1)); // NaN
+        
+        
+        console.log("\n=== 9. Math.cbrt() - Akar Kubik ===");
+        console.log("Math.cbrt(8):", Math.cbrt(8));     // 2
+        console.log("Math.cbrt(27):", Math.cbrt(27));   // 3
+        console.log("Math.cbrt(-8):", Math.cbrt(-8));   // -2
+        console.log("Math.cbrt(64):", Math.cbrt(64));   // 4
+        
+        
+        console.log("\n=== 10. Math.abs() - Nilai Absolut ===");
+        console.log("Math.abs(-5):", Math.abs(-5));
+        console.log("Math.abs(3):", Math.abs(3));
+        console.log("Math.abs(-3.14):", Math.abs(-3.14));
+        console.log("Math.abs(0):", Math.abs(0));
+        
+        
+        console.log("\n=== 11. Math.sign() - Tanda Angka ===");
+        console.log("Math.sign(5):", Math.sign(5));     // 1
+        console.log("Math.sign(-5):", Math.sign(-5));   // -1
+        console.log("Math.sign(0):", Math.sign(0));     // 0
+        console.log("Math.sign(-0):", Math.sign(-0));   // -0
+        
+        
+        console.log("\n=== 12. Math.random() - Angka Random ===");
+        console.log("Math.random():", Math.random()); // 0 sampai 0.999...
+        console.log("Math.random():", Math.random());
+        console.log("Math.random():", Math.random());
+        
+        // Random integer dalam range
+        function randomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
+        console.log("\nRandom integer 1-6 (dadu):");
+        for (let i = 0; i < 5; i++) {
+            console.log(randomInt(1, 6));
+        }
+        
+        console.log("\nRandom integer 1-100:");
+        for (let i = 0; i < 5; i++) {
+            console.log(randomInt(1, 100));
+        }
+        
+        
+        console.log("\n=== 13. Trigonometri ===");
+        // Konversi derajat ke radian
+        function toRadian(derajat) {
+            return derajat * (Math.PI / 180);
+        }
+        
+        function toDegree(radian) {
+            return radian * (180 / Math.PI);
+        }
+        
+        console.log("Math.sin(Math.PI / 2):", Math.sin(Math.PI / 2));     // 1 (sin 90°)
+        console.log("Math.cos(0):", Math.cos(0));                         // 1 (cos 0°)
+        console.log("Math.tan(Math.PI / 4):", Math.tan(Math.PI / 4));     // 1 (tan 45°)
+        
+        console.log("\nDengan konversi derajat:");
+        console.log("sin(30°):", Math.sin(toRadian(30)).toFixed(2));
+        console.log("cos(60°):", Math.cos(toRadian(60)).toFixed(2));
+        console.log("tan(45°):", Math.tan(toRadian(45)).toFixed(2));
+        
+        
+        console.log("\n=== 14. Praktik: Menghitung Luas Lingkaran ===");
+        function luasLingkaran(jariJari) {
+            return Math.PI * Math.pow(jariJari, 2);
+        }
+        
+        console.log("Luas lingkaran r=5:", luasLingkaran(5).toFixed(2));
+        console.log("Luas lingkaran r=10:", luasLingkaran(10).toFixed(2));
+        console.log("Luas lingkaran r=7:", luasLingkaran(7).toFixed(2));
+        
+        
+        console.log("\n=== 15. Praktik: Menghitung Jarak Dua Titik ===");
+        function jarak(x1, y1, x2, y2) {
+            return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        }
+        
+        console.log("Jarak (0,0) ke (3,4):", jarak(0, 0, 3, 4));
+        console.log("Jarak (1,1) ke (4,5):", jarak(1, 1, 4, 5).toFixed(2));
+        console.log("Jarak (-2,3) ke (4,-1):", jarak(-2, 3, 4, -1).toFixed(2));
+    </script>
+</body>
+</html>

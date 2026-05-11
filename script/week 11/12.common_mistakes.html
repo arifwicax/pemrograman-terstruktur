@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - Common Mistakes & Best Practices</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #d32f2f;
+            text-align: center;
+            border-bottom: 3px solid #d32f2f;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #c62828;
+            margin-top: 30px;
+            border-left: 4px solid #d32f2f;
+            padding-left: 15px;
+        }
+        .intro {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .mistake {
+            background: #ffebee;
+            border: 2px solid #ef5350;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .correct {
+            background: #e8f5e9;
+            border: 2px solid #66bb6a;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .label-wrong {
+            background: #d32f2f;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .label-correct {
+            background: #43a047;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        pre {
+            background: #263238;
+            color: #aed581;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .tip {
+            background: #e3f2fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .tip:before {
+            content: "TIP: ";
+            font-weight: bold;
+            color: #1976d2;
+        }
+        .warning {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .warning:before {
+            content: "WARNING: ";
+            font-weight: bold;
+            color: #f57c00;
+        }
+        .debug-tips {
+            background: #f3e5f5;
+            border: 2px solid #9c27b0;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        .debug-tips h3 {
+            color: #7b1fa2;
+            margin-top: 0;
+        }
+        .debug-tips ul {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kesalahan Umum & Cara Menghindarinya</h1>
+    
+    <div class="intro">
+        <h3>Kenapa File Ini Penting?</h3>
+        <p>
+            File ini berisi kesalahan-kesalahan yang <strong>SERING BANGET</strong> dilakukan oleh mahasiswa 
+            ketika belajar JavaScript Standard Library. Membaca dan memahami file ini akan menghemat waktu 
+            debugging Anda dan membuat kode lebih berkualitas!
+        </p>
+        <p>
+            <strong>Rekomendasi:</strong> Baca file ini SEBELUM mulai coding, lalu baca lagi ketika mengalami error.
+        </p>
+    </div>
+    
+    <script>
+        console.log("=== KESALAHAN UMUM JAVASCRIPT STANDARD LIBRARY ===\n");
+        
+        // ===============================================
+        // 1. KESALAHAN DENGAN JSON
+        // ===============================================
+        console.log("=== 1. KESALAHAN DENGAN JSON ===\n");
+        
+        console.log("--- SALAH: Mencoba stringify function ---");
+        const objWithFunction = {
+            nama: "Andi",
+            sapa: function() { return "Hello"; }
+        };
+        console.log("Object dengan function:", objWithFunction);
+        console.log("JSON.stringify():", JSON.stringify(objWithFunction));
+        console.log("[SALAH] Function hilang! JSON tidak support function\n");
+        
+        console.log("--- BENAR: Hanya simpan data, bukan function ---");
+        const objDataOnly = {
+            nama: "Andi",
+            pesan: "Hello"
+        };
+        console.log("Object hanya data:", objDataOnly);
+        console.log("JSON.stringify():", JSON.stringify(objDataOnly));
+        console.log("[BENAR] Semua data tersimpan dengan baik\n");
+        
+        
+        // ===============================================
+        // 2. KESALAHAN DENGAN DATE
+        // ===============================================
+        console.log("\n=== 2. KESALAHAN DENGAN DATE ===\n");
+        
+        console.log("--- SALAH: Lupa bahwa bulan mulai dari 0 ---");
+        const salahBulan1 = new Date(2024, 1, 15);
+        console.log("new Date(2024, 1, 15):", salahBulan1.toDateString());
+        console.log("[SALAH] Ini FEBRUARI bukan Januari!\n");
+        
+        const salahBulan2 = new Date(2024, 12, 15);
+        console.log("new Date(2024, 12, 15):", salahBulan2);
+        console.log("[SALAH] Invalid Date! Bulan hanya 0-11\n");
+        
+        console.log("--- BENAR: Ingat bulan 0-11 ---");
+        const benarJanuari = new Date(2024, 0, 15);
+        console.log("new Date(2024, 0, 15) untuk Januari:", benarJanuari.toDateString());
+        console.log("[BENAR] Ini JANUARI yang benar\n");
+        
+        const benarDesember = new Date(2024, 11, 15);
+        console.log("new Date(2024, 11, 15) untuk Desember:", benarDesember.toDateString());
+        console.log("[BENAR] Ini DESEMBER yang benar\n");
+        
+        
+        // ===============================================
+        // 3. KESALAHAN DENGAN Math.random()
+        // ===============================================
+        console.log("\n=== 3. KESALAHAN DENGAN Math.random() ===\n");
+        
+        console.log("--- SALAH: Random integer tidak tepat ---");
+        console.log("Math.random() * 10:", Math.random() * 10);
+        console.log("[SALAH] Ada desimal! Bukan integer\n");
+        
+        console.log("--- BENAR: Gunakan Math.floor ---");
+        const randomInt = Math.floor(Math.random() * 10);
+        console.log("Math.floor(Math.random() * 10):", randomInt);
+        console.log("[BENAR] Integer 0-9\n");
+        
+        console.log("--- SALAH: Range tidak tepat ---");
+        console.log("Math.floor(Math.random() * 6):", Math.floor(Math.random() * 6));
+        console.log("[SALAH] Hasilnya 0-5, bukan 1-6 untuk dadu!\n");
+        
+        console.log("--- BENAR: Random 1-6 (seperti dadu) ---");
+        const dadu = Math.floor(Math.random() * 6) + 1;
+        console.log("Math.floor(Math.random() * 6) + 1:", dadu);
+        console.log("[BENAR] Hasilnya 1-6\n");
+        
+        
+        // ===============================================
+        // 4. KESALAHAN DENGAN RegExp
+        // ===============================================
+        console.log("\n=== 4. KESALAHAN DENGAN REGEXP ===\n");
+        
+        console.log("--- SALAH: Lupa escape karakter khusus ---");
+        const patternSalah = /gmail.com/;
+        console.log("Pattern: /gmail.com/");
+        console.log("Test 'gmail.com':", patternSalah.test("gmail.com"));
+        console.log("Test 'gmail_com':", patternSalah.test("gmail_com"));
+        console.log("[SALAH] '.' berarti any character, jadi gmail_com juga match!\n");
+        
+        console.log("--- BENAR: Escape titik dengan backslash ---");
+        const patternBenar = /gmail\.com/;
+        console.log("Pattern: /gmail\\.com/");
+        console.log("Test 'gmail.com':", patternBenar.test("gmail.com"));
+        console.log("Test 'gmail_com':", patternBenar.test("gmail_com"));
+        console.log("[BENAR] Hanya gmail.com yang match\n");
+        
+        console.log("--- SALAH: Lupa flag 'g' untuk replace all ---");
+        const text = "hello hello hello";
+        console.log("Text:", text);
+        console.log("replace(/hello/, 'hi'):", text.replace(/hello/, "hi"));
+        console.log("[SALAH] Hanya replace yang pertama!\n");
+        
+        console.log("--- BENAR: Gunakan flag 'g' ---");
+        console.log("replace(/hello/g, 'hi'):", text.replace(/hello/g, "hi"));
+        console.log("[BENAR] Replace semua\n");
+        
+        
+        // ===============================================
+        // 5. KESALAHAN DENGAN Object.freeze()
+        // ===============================================
+        console.log("\n=== 5. KESALAHAN DENGAN Object.freeze() ===\n");
+        
+        console.log("--- SALAH: Mengira freeze itu deep ---");
+        const objFreeze = {
+            nama: "Andi",
+            alamat: { kota: "Jakarta" }
+        };
+        Object.freeze(objFreeze);
+        
+        objFreeze.nama = "Budi"; // Tidak berubah
+        console.log("Coba ubah nama:", objFreeze.nama);
+        console.log("[BENAR] nama tidak berubah (frozen)\n");
+        
+        objFreeze.alamat.kota = "Bandung"; // BERUBAH!
+        console.log("Coba ubah alamat.kota:", objFreeze.alamat.kota);
+        console.log("[SALAH] kota BERUBAH! Nested object TIDAK frozen\n");
+        
+        console.log("--- BENAR: Buat deep freeze function ---");
+        function deepFreeze(obj) {
+            Object.freeze(obj);
+            Object.keys(obj).forEach(key => {
+                if (typeof obj[key] === 'object' && obj[key] !== null) {
+                    deepFreeze(obj[key]);
+                }
+            });
+            return obj;
+        }
+        
+        const objDeepFreeze = {
+            nama: "Cici",
+            alamat: { kota: "Jakarta" }
+        };
+        deepFreeze(objDeepFreeze);
+        
+        objDeepFreeze.alamat.kota = "Surabaya"; // Tidak berubah
+        console.log("Dengan deepFreeze, kota:", objDeepFreeze.alamat.kota);
+        console.log("[BENAR] Nested object juga frozen\n");
+        
+        
+        // ===============================================
+        // 6. KESALAHAN DENGAN Map dan Set
+        // ===============================================
+        console.log("\n=== 6. KESALAHAN DENGAN MAP DAN SET ===\n");
+        
+        console.log("--- SALAH: Gunakan .length untuk Map/Set ---");
+        const map = new Map([["a", 1], ["b", 2]]);
+        console.log("map.length:", map.length);
+        console.log("[SALAH] undefined! Map tidak punya length\n");
+        
+        console.log("--- BENAR: Gunakan .size ---");
+        console.log("map.size:", map.size);
+        console.log("[BENAR] Hasilnya 2\n");
+        
+        console.log("--- SALAH: Cek keberadaan dengan has() di Array ---");
+        const arr = [1, 2, 3];
+        console.log("Array:", arr);
+        try {
+            console.log("arr.has(2):", arr.has(2));
+        } catch (e) {
+            console.log("[SALAH] Error! Array tidak punya method has()");
+            console.log("Error:", e.message, "\n");
+        }
+        
+        console.log("--- BENAR: Gunakan includes() untuk Array ---");
+        console.log("arr.includes(2):", arr.includes(2));
+        console.log("[BENAR] Atau gunakan Set:");
+        const set = new Set(arr);
+        console.log("set.has(2):", set.has(2), "\n");
+        
+        
+        // ===============================================
+        // 7. KESALAHAN DENGAN BigInt
+        // ===============================================
+        console.log("\n=== 7. KESALAHAN DENGAN BIGINT ===\n");
+        
+        console.log("--- SALAH: Campur BigInt dengan Number ---");
+        const big = 10n;
+        const num = 5;
+        try {
+            console.log("10n + 5:", big + num);
+        } catch (e) {
+            console.log("[SALAH] Error! Tidak bisa mixing BigInt dan Number");
+            console.log("Error:", e.message, "\n");
+        }
+        
+        console.log("--- BENAR: Konversi dulu ---");
+        console.log("10n + BigInt(5):", big + BigInt(num));
+        console.log("Number(10n) + 5:", Number(big) + num);
+        console.log("[BENAR] Kedua cara benar\n");
+        
+        console.log("--- SALAH: Gunakan Math.max dengan BigInt ---");
+        try {
+            console.log("Math.max(10n, 20n):", Math.max(10n, 20n));
+        } catch (e) {
+            console.log("[SALAH] Error! Math tidak support BigInt");
+            console.log("Error:", e.message, "\n");
+        }
+        
+        console.log("--- BENAR: Gunakan operator perbandingan ---");
+        const max = 10n > 20n ? 10n : 20n;
+        console.log("10n > 20n ? 10n : 20n:", max);
+        console.log("[BENAR] Hasilnya 20n\n");
+        
+        
+        // ===============================================
+        // 8. KESALAHAN DENGAN encodeURI
+        // ===============================================
+        console.log("\n=== 8. KESALAHAN DENGAN ENCODING ===\n");
+        
+        console.log("--- SALAH: Gunakan encodeURI untuk query parameter ---");
+        const param = "hello world";
+        const urlSalah = "https://example.com?q=" + encodeURI(param);
+        console.log("URL:", urlSalah);
+        console.log("[SALAH] Spasi tidak di-encode dengan benar!\n");
+        
+        console.log("--- BENAR: Gunakan encodeURIComponent ---");
+        const urlBenar = "https://example.com?q=" + encodeURIComponent(param);
+        console.log("URL:", urlBenar);
+        console.log("[BENAR] Semua karakter special di-encode\n");
+        
+        
+        // ===============================================
+        // TIPS DEBUGGING
+        // ===============================================
+        console.log("\n=== TIPS DEBUGGING ===\n");
+        
+        console.log("1. Gunakan console.log() untuk cek tipe data:");
+        const value = "123";
+        console.log("   typeof '123':", typeof value);
+        
+        console.log("\n2. Gunakan console.table() untuk object dan array:");
+        const data = [
+            { nama: "Andi", umur: 20 },
+            { nama: "Budi", umur: 21 }
+        ];
+        console.table(data);
+        
+        console.log("\n3. Gunakan try-catch untuk operasi rawan error:");
+        console.log("   Contoh: JSON.parse(), Date parsing, dll");
+        
+        console.log("\n4. Test di browser console (F12) dulu");
+        console.log("   Sebelum masukkan ke kode, test dulu manual");
+        
+        console.log("\n5. Cek dokumentasi MDN jika ragu");
+        console.log("   MDN adalah teman terbaik programmer JS!");
+        
+        console.log("\n=== SELESAI ===");
+        console.log("Selamat belajar dan happy coding!");
+    </script>
+    
+    <div class="debug-tips">
+        <h3>Tips Debugging untuk Mahasiswa</h3>
+        <ul>
+            <li><strong>console.log(typeof value)</strong> - Cek tipe data</li>
+            <li><strong>console.table(array)</strong> - Visualisasi array/object</li>
+            <li><strong>console.dir(object)</strong> - Lihat detail object</li>
+            <li><strong>debugger;</strong> - Breakpoint di kode</li>
+            <li><strong>Browser DevTools (F12)</strong> - Console, Network, Sources tab</li>
+            <li><strong>Try-catch</strong> - Handle error dengan graceful</li>
+            <li><strong>MDN Documentation</strong> - Dokumentasi terlengkap JavaScript</li>
+            <li><strong>regex101.com</strong> - Test RegExp pattern</li>
+        </ul>
+    </div>
+    
+    <div class="warning">
+        Ingat: Membuat kesalahan adalah bagian dari belajar! Yang penting adalah belajar dari kesalahan 
+        dan tidak mengulanginya lagi. File ini adalah panduan untuk mempercepat proses belajar Anda.
+    </div>
+    
+    <div class="tip">
+        Simpan file ini sebagai referensi dan baca kembali setiap kali mengalami bug yang aneh!
+    </div>
+    
+    <div style="text-align: center; margin-top: 40px; padding: 20px; background: #e3f2fd; border-radius: 8px;">
+        <h3 style="color: #1976d2; margin-top: 0;">Checklist Sebelum Submit Tugas</h3>
+        <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox"> Sudah cek tipe data dengan typeof
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox"> Sudah handle error dengan try-catch
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox"> Bulan Date sudah benar (0-11)
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox"> RegExp pattern sudah di-test
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox"> Tidak mixing BigInt dengan Number
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox"> Gunakan .size untuk Map/Set, .length untuk Array
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox"> encodeURIComponent untuk query params
+            </label>
+            <label style="display: block; margin: 10px 0;">
+                <input type="checkbox"> Kode sudah ditest di browser console
+            </label>
+        </div>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px; color: #666;">
+        <p><strong>Week 11 - Common Mistakes & Best Practices</strong></p>
+        <p>Pemrograman Terstruktur © 2024</p>
+    </div>
+</body>
+</html>

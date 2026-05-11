@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - BigInt & Symbol</title>
+    <style>
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 5px 5px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .nav-footer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-footer a:hover {
+            background: #764ba2;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .level {
+            background: #fd7e14;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="7.map_set.html">← Previous</a>
+        <a href="index.html">🏠 Home</a>
+        <span>8 / 12</span>
+        <a href="9.proxy_reflect.html">Next</a>
+    </div>
+    
+    <h1>BigInt & Symbol</h1>
+    <span class="level">📚 LEVEL 3 - ADVANCED (Opsional)</span>
+    
+    <div class="warning">
+        <strong>🚨 KESALAHAN UMUM:</strong>
+        <h3>BigInt TIDAK BISA dicampur dengan Number!</h3>
+        <ul>
+            <li><code>10n + 5</code> akan ERROR!</li>
+            <li>Harus konversi: <code>10n + BigInt(5)</code> atau <code>Number(10n) + 5</code></li>
+            <li>Math object TIDAK support BigInt (Math.max(10n, 20n) ERROR!)</li>
+            <li>JSON.stringify() TIDAK support BigInt</li>
+        </ul>
+    </div>
+    
+    <div class="tip">
+        <strong>Kapan Pakai BigInt & Symbol?</strong>
+        <ul>
+            <li><strong>BigInt</strong>: Bilangan > Number.MAX_SAFE_INTEGER, kriptografi, ID sangat besar</li>
+            <li><strong>Symbol</strong>: Property key unik, menghindari collision, meta-programming</li>
+            <li>Kebanyakan project tidak perlu BigInt/Symbol, tapi penting untuk advance case</li>
+        </ul>
+    </div>
+    
+    <script>
+        console.log("=== BIGINT ===\n");
+        
+        console.log("=== 1. Problem dengan Number ===");
+        console.log("Number.MAX_SAFE_INTEGER:", Number.MAX_SAFE_INTEGER);
+        
+        const num = 9007199254740991;
+        console.log("\nnum:", num);
+        console.log("num + 1:", num + 1);
+        console.log("num + 2:", num + 2); // Salah!
+        console.log("num + 3:", num + 3); // Salah!
+        
+        
+        console.log("\n=== 2. Membuat BigInt ===");
+        const big1 = 12345678901234567890n;
+        console.log("Dengan suffix 'n':", big1);
+        console.log("Type:", typeof big1);
+        
+        const big2 = BigInt("12345678901234567890");
+        console.log("\nDengan BigInt():", big2);
+        
+        const big3 = BigInt(123);
+        console.log("BigInt dari number:", big3);
+        
+        
+        console.log("\n=== 3. Operasi Aritmatika BigInt ===");
+        const a = 100n;
+        const b = 50n;
+        
+        console.log("a:", a);
+        console.log("b:", b);
+        console.log("a + b:", a + b);
+        console.log("a - b:", a - b);
+        console.log("a * b:", a * b);
+        console.log("a / b:", a / b); // Pembagian integer
+        console.log("a % b:", a % b);
+        
+        const c = 10n;
+        const d = 3n;
+        console.log("\n10n / 3n:", c / d); // 3n (bukan 3.33...)
+        
+        
+        console.log("\n=== 4. Perbandingan BigInt ===");
+        console.log("10n > 5n:", 10n > 5n);
+        console.log("10n < 5n:", 10n < 5n);
+        console.log("10n === 10n:", 10n === 10n);
+        console.log("10n == 10:", 10n == 10); // Coercion
+        console.log("10n === 10:", 10n === 10); // Tipe berbeda
+        
+        
+        console.log("\n=== 5. BigInt dan Number - TIDAK BISA MIXING ===");
+        const bigInt = 10n;
+        const regularNum = 5;
+        
+        console.log("bigInt:", bigInt, typeof bigInt);
+        console.log("regularNum:", regularNum, typeof regularNum);
+        
+        // console.log(bigInt + regularNum); // ERROR!
+        
+        console.log("\nHarus konversi:");
+        console.log("bigInt + BigInt(regularNum):", bigInt + BigInt(regularNum));
+        console.log("Number(bigInt) + regularNum:", Number(bigInt) + regularNum);
+        
+        
+        console.log("\n=== 6. Praktik: Faktorial Besar ===");
+        function factorial(n) {
+            if (n === 0n || n === 1n) return 1n;
+            let result = 1n;
+            for (let i = 2n; i <= n; i++) {
+                result *= i;
+            }
+            return result;
+        }
+        
+        console.log("20! =", factorial(20n));
+        console.log("50! =", factorial(50n));
+        console.log("100! =", factorial(100n).toString().substring(0, 50) + "...");
+        
+        
+        console.log("\n=== 7. Praktik: Fibonacci Besar ===");
+        function fibonacci(n) {
+            if (n <= 1n) return n;
+            let a = 0n, b = 1n;
+            for (let i = 2n; i <= n; i++) {
+                [a, b] = [b, a + b];
+            }
+            return b;
+        }
+        
+        console.log("fibonacci(100n):", fibonacci(100n));
+        console.log("fibonacci(200n):", fibonacci(200n));
+        
+        
+        console.log("\n\n=== SYMBOL ===\n");
+        
+        console.log("=== 8. Membuat Symbol ===");
+        const sym1 = Symbol();
+        const sym2 = Symbol("deskripsi");
+        const sym3 = Symbol("deskripsi");
+        
+        console.log("sym1:", sym1);
+        console.log("sym2:", sym2);
+        console.log("sym3:", sym3);
+        console.log("typeof sym1:", typeof sym1);
+        
+        console.log("\nsym2 === sym3:", sym2 === sym3); // false (unique)
+        
+        
+        console.log("\n=== 9. Symbol sebagai Property Key ===");
+        const id = Symbol("id");
+        const user = {
+            nama: "Andi",
+            [id]: 123
+        };
+        
+        console.log("User:", user);
+        console.log("user.nama:", user.nama);
+        console.log("user[id]:", user[id]);
+        console.log("user['id']:", user["id"]); // undefined
+        
+        
+        console.log("\n=== 10. Symbol Tidak Muncul di Iterasi Biasa ===");
+        console.log("Object.keys(user):", Object.keys(user));
+        console.log("Object.values(user):", Object.values(user));
+        console.log("JSON.stringify(user):", JSON.stringify(user));
+        
+        console.log("\nTapi bisa diakses dengan:");
+        console.log("Object.getOwnPropertySymbols(user):", Object.getOwnPropertySymbols(user));
+        
+        
+        console.log("\n=== 11. Symbol.for() - Global Registry ===");
+        const sym4 = Symbol.for("user.id");
+        const sym5 = Symbol.for("user.id");
+        
+        console.log("sym4:", sym4);
+        console.log("sym5:", sym5);
+        console.log("sym4 === sym5:", sym4 === sym5); // true
+        
+        console.log("\nSymbol.keyFor(sym4):", Symbol.keyFor(sym4));
+        console.log("Symbol.keyFor(sym2):", Symbol.keyFor(sym2)); // undefined
+        
+        
+        console.log("\n=== 12. Well-known Symbols ===");
+        console.log("Symbol.iterator:", Symbol.iterator);
+        console.log("Symbol.toStringTag:", Symbol.toStringTag);
+        console.log("Symbol.hasInstance:", Symbol.hasInstance);
+        
+        
+        console.log("\n=== 13. Custom Iterator dengan Symbol.iterator ===");
+        const range = {
+            from: 1,
+            to: 5,
+            
+            [Symbol.iterator]() {
+                return {
+                    current: this.from,
+                    last: this.to,
+                    
+                    next() {
+                        if (this.current <= this.last) {
+                            return { done: false, value: this.current++ };
+                        } else {
+                            return { done: true };
+                        }
+                    }
+                };
+            }
+        };
+        
+        console.log("Iterasi range 1-5:");
+        for (const num of range) {
+            console.log(`  ${num}`);
+        }
+        
+        console.log("\nKonversi ke array:");
+        console.log([...range]);
+        
+        
+        console.log("\n=== 14. Symbol.toStringTag ===");
+        class MyClass {
+            get [Symbol.toStringTag]() {
+                return "MyClass";
+            }
+        }
+        
+        const obj = new MyClass();
+        console.log("Object.prototype.toString.call(obj):", Object.prototype.toString.call(obj));
+        
+        
+        console.log("\n=== 15. Praktik: Private Properties dengan Symbol ===");
+        const _privateField = Symbol("privateField");
+        const _privateMethod = Symbol("privateMethod");
+        
+        class SecretClass {
+            constructor(value) {
+                this.publicField = "public";
+                this[_privateField] = value;
+            }
+            
+            [_privateMethod]() {
+                return "This is private";
+            }
+            
+            getPrivate() {
+                return this[_privateField];
+            }
+            
+            callPrivateMethod() {
+                return this[_privateMethod]();
+            }
+        }
+        
+        const secret = new SecretClass("secret value");
+        console.log("publicField:", secret.publicField);
+        console.log("getPrivate():", secret.getPrivate());
+        console.log("callPrivateMethod():", secret.callPrivateMethod());
+        console.log("\nObject.keys(secret):", Object.keys(secret));
+        
+        
+        console.log("\n=== 16. Praktik: Unique Constants ===");
+        const Colors = {
+            RED: Symbol("red"),
+            GREEN: Symbol("green"),
+            BLUE: Symbol("blue")
+        };
+        
+        function processColor(color) {
+            switch(color) {
+                case Colors.RED:
+                    return "Processing red";
+                case Colors.GREEN:
+                    return "Processing green";
+                case Colors.BLUE:
+                    return "Processing blue";
+                default:
+                    return "Unknown color";
+            }
+        }
+        
+        console.log("Colors:", Colors);
+        console.log(processColor(Colors.RED));
+        console.log(processColor(Colors.GREEN));
+        
+        
+        console.log("\n=== 17. Praktik: Metadata dengan Symbol ===");
+        const metadata = Symbol("metadata");
+        
+        const product = {
+            name: "Laptop",
+            price: 5000000,
+            [metadata]: {
+                createdAt: new Date(),
+                createdBy: "admin",
+                version: 1
+            }
+        };
+        
+        console.log("Product (visible):", JSON.stringify(product));
+        console.log("Metadata (hidden):", product[metadata]);
+        
+        
+        console.log("\n=== 18. Perbandingan BigInt vs Number ===");
+        console.log("Performance test - loop 1000000x:");
+        
+        console.time("Number");
+        let sumNum = 0;
+        for (let i = 0; i < 1000000; i++) {
+            sumNum += i;
+        }
+        console.timeEnd("Number");
+        
+        console.time("BigInt");
+        let sumBig = 0n;
+        for (let i = 0n; i < 1000000n; i++) {
+            sumBig += i;
+        }
+        console.timeEnd("BigInt");
+        
+        console.log("\nNote: BigInt lebih lambat, gunakan hanya saat perlu");
+        
+        
+        console.log("\n=== 19. Convert BigInt ===");
+        const bigNumber = 12345678901234567890n;
+        console.log("BigInt:", bigNumber);
+        console.log("toString():", bigNumber.toString());
+        console.log("valueOf():", bigNumber.valueOf());
+        console.log("Number (loses precision):", Number(bigNumber));
+        
+        
+        console.log("\n=== 20. Symbol Description ===");
+        const sym = Symbol("my description");
+        console.log("Symbol:", sym);
+        console.log("description:", sym.description);
+        console.log("toString():", sym.toString());
+    </script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - String & Number Methods Review</title>
+    <style>
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 5px 5px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .nav-footer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-footer a:hover {
+            background: #764ba2;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .level {
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="4.regexp_basics.html">← Previous</a>
+        <a href="index.html">🏠 Home</a>
+        <span>5 / 12</span>
+        <a href="6.object_advanced.html">Next</a>
+    </div>
+    
+    <h1>String & Number Methods Review</h1>
+    <span class="level">📚 LEVEL 1 - DASAR (Review & Pendalaman)</span>
+    
+    <div class="tip">
+        <strong>Catatan:</strong> String dan Number methods sudah dipelajari di Week 4. 
+        File ini adalah <strong>review dan pendalaman</strong> untuk memastikan Anda menguasai method-method penting 
+        yang akan sering dipakai dalam JavaScript Standard Library.
+    </div>
+    
+    <script>
+        console.log("=== STRING METHODS ===\n");
+        
+        console.log("=== 1. String Length ===");
+        const name = "Eko Kurniawan Khannedy";
+        console.log("String:", name);
+        console.log("length:", name.length);
+        
+        
+        console.log("\n=== 2. Case Conversion ===");
+        console.log("toLowerCase():", name.toLowerCase());
+        console.log("toUpperCase():", name.toUpperCase());
+        console.log("Original tetap:", name);
+        
+        
+        console.log("\n=== 3. String Split ===");
+        console.log("split(' '):", name.split(" "));
+        console.log("split(''):", "Hello".split(""));
+        console.log("split('', 3):", "Hello".split("", 3)); // limit
+        
+        
+        console.log("\n=== 4. String Trim ===");
+        const input = "     input data     ";
+        console.log("Original: '" + input + "'");
+        console.log("trim(): '" + input.trim() + "'");
+        console.log("trimStart(): '" + input.trimStart() + "'");
+        console.log("trimEnd(): '" + input.trimEnd() + "'");
+        
+        
+        console.log("\n=== 5. String Search - indexOf() ===");
+        const text = "Hello World, Hello JavaScript";
+        console.log("String:", text);
+        console.log("indexOf('Hello'):", text.indexOf("Hello"));
+        console.log("indexOf('Hello', 5):", text.indexOf("Hello", 5));
+        console.log("indexOf('xyz'):", text.indexOf("xyz")); // -1
+        console.log("lastIndexOf('Hello'):", text.lastIndexOf("Hello"));
+        
+        
+        console.log("\n=== 6. String includes() & startsWith() & endsWith() ===");
+        console.log("includes('World'):", text.includes("World"));
+        console.log("includes('xyz'):", text.includes("xyz"));
+        console.log("startsWith('Hello'):", text.startsWith("Hello"));
+        console.log("endsWith('Script'):", text.endsWith("Script"));
+        
+        
+        console.log("\n=== 7. String slice() & substring() ===");
+        const word = "JavaScript";
+        console.log("String:", word);
+        console.log("slice(0, 4):", word.slice(0, 4));
+        console.log("slice(4):", word.slice(4));
+        console.log("slice(-6):", word.slice(-6));
+        console.log("substring(0, 4):", word.substring(0, 4));
+        
+        
+        console.log("\n=== 8. String charAt() & charCodeAt() ===");
+        console.log("charAt(0):", word.charAt(0));
+        console.log("charAt(4):", word.charAt(4));
+        console.log("charCodeAt(0):", word.charCodeAt(0)); // ASCII code
+        console.log("word[0]:", word[0]); // alternatif
+        
+        
+        console.log("\n=== 9. String repeat() & padStart() & padEnd() ===");
+        console.log("'Ha'.repeat(3):", "Ha".repeat(3));
+        console.log("'5'.padStart(3, '0'):", "5".padStart(3, '0'));
+        console.log("'5'.padEnd(3, '0'):", "5".padEnd(3, '0'));
+        console.log("'Hello'.padStart(10, '*'):", "Hello".padStart(10, '*'));
+        
+        
+        console.log("\n=== 10. String replace() & replaceAll() ===");
+        const sentence = "I love JavaScript. JavaScript is great.";
+        console.log("Original:", sentence);
+        console.log("replace('JavaScript', 'JS'):", sentence.replace("JavaScript", "JS"));
+        console.log("replaceAll('JavaScript', 'JS'):", sentence.replaceAll("JavaScript", "JS"));
+        
+        
+        console.log("\n=== 11. Template Literals ===");
+        const firstName = "Andi";
+        const age = 20;
+        const greeting = `Hello, my name is ${firstName} and I am ${age} years old.`;
+        console.log(greeting);
+        
+        const multiline = `Baris pertama
+Baris kedua
+Baris ketiga`;
+        console.log("\nMultiline:\n" + multiline);
+        
+        
+        console.log("\n=== 12. String concat() ===");
+        const str1 = "Hello";
+        const str2 = "World";
+        console.log("concat(' ', str2):", str1.concat(" ", str2));
+        console.log("Alternatif dengan +:", str1 + " " + str2);
+        
+        
+        console.log("\n\n=== NUMBER METHODS ===\n");
+        
+        console.log("=== 13. Number Constructor ===");
+        const inputNum = "12345";
+        const number = Number(inputNum);
+        console.log("String '12345':", typeof inputNum);
+        console.log("Number(inputNum):", number, typeof number);
+        console.log("Number('salah'):", Number("salah")); // NaN
+        
+        
+        console.log("\n=== 14. Number Constants ===");
+        console.log("Number.MIN_VALUE:", Number.MIN_VALUE);
+        console.log("Number.MAX_VALUE:", Number.MAX_VALUE);
+        console.log("Number.MIN_SAFE_INTEGER:", Number.MIN_SAFE_INTEGER);
+        console.log("Number.MAX_SAFE_INTEGER:", Number.MAX_SAFE_INTEGER);
+        console.log("Number.NaN:", Number.NaN);
+        console.log("Number.POSITIVE_INFINITY:", Number.POSITIVE_INFINITY);
+        console.log("Number.NEGATIVE_INFINITY:", Number.NEGATIVE_INFINITY);
+        
+        
+        console.log("\n=== 15. Number Validation ===");
+        const data = Number("eko");
+        console.log("Number('eko'):", data);
+        console.log("Number.isInteger(data):", Number.isInteger(data));
+        console.log("Number.isNaN(data):", Number.isNaN(data));
+        console.log("Number.isFinite(data):", Number.isFinite(data));
+        
+        console.log("\nNumber.isInteger(10):", Number.isInteger(10));
+        console.log("Number.isInteger(10.5):", Number.isInteger(10.5));
+        
+        
+        console.log("\n=== 16. Number.toString() ===");
+        const value = 255;
+        console.log("Decimal:", value.toString());
+        console.log("Binary:", value.toString(2));
+        console.log("Octal:", value.toString(8));
+        console.log("Hexadecimal:", value.toString(16));
+        
+        
+        console.log("\n=== 17. Number.toFixed() ===");
+        const pi = 3.14159265359;
+        console.log("Original:", pi);
+        console.log("toFixed(2):", pi.toFixed(2));
+        console.log("toFixed(4):", pi.toFixed(4));
+        console.log("toFixed(0):", pi.toFixed(0));
+        
+        
+        console.log("\n=== 18. Number.toPrecision() ===");
+        const num = 123.456;
+        console.log("Original:", num);
+        console.log("toPrecision(4):", num.toPrecision(4));
+        console.log("toPrecision(2):", num.toPrecision(2));
+        console.log("toPrecision(6):", num.toPrecision(6));
+        
+        
+        console.log("\n=== 19. Number.toExponential() ===");
+        const bigNum = 123456;
+        console.log("Original:", bigNum);
+        console.log("toExponential():", bigNum.toExponential());
+        console.log("toExponential(2):", bigNum.toExponential(2));
+        
+        
+        console.log("\n=== 20. Number.toLocaleString() ===");
+        const price = 1234567.89;
+        console.log("Original:", price);
+        console.log("toLocaleString('id-ID'):", price.toLocaleString("id-ID"));
+        console.log("toLocaleString('en-US'):", price.toLocaleString("en-US"));
+        console.log("toLocaleString('de-DE'):", price.toLocaleString("de-DE"));
+        
+        
+        console.log("\n=== 21. parseInt() & parseFloat() ===");
+        console.log("parseInt('100'):", parseInt("100"));
+        console.log("parseInt('100px'):", parseInt("100px"));
+        console.log("parseInt('100', 2):", parseInt("100", 2)); // binary
+        console.log("parseInt('FF', 16):", parseInt("FF", 16)); // hex
+        console.log("parseFloat('3.14'):", parseFloat("3.14"));
+        console.log("parseFloat('3.14abc'):", parseFloat("3.14abc"));
+        
+        
+        console.log("\n=== 22. Praktik: Format Currency ===");
+        function formatCurrency(amount) {
+            return "Rp " + amount.toLocaleString("id-ID");
+        }
+        
+        console.log("100000:", formatCurrency(100000));
+        console.log("1234567:", formatCurrency(1234567));
+        console.log("50000.50:", formatCurrency(50000.50));
+        
+        
+        console.log("\n=== 23. Praktik: Format Phone Number ===");
+        function formatPhoneNumber(phone) {
+            // Asumsikan input: "081234567890"
+            return phone.replace(/(\d{4})(\d{4})(\d{4})/, "$1-$2-$3");
+        }
+        
+        console.log("081234567890:", formatPhoneNumber("081234567890"));
+        console.log("087654321098:", formatPhoneNumber("087654321098"));
+        
+        
+        console.log("\n=== 24. Praktik: Truncate String ===");
+        function truncate(str, maxLength) {
+            if (str.length <= maxLength) return str;
+            return str.slice(0, maxLength - 3) + "...";
+        }
+        
+        const longText = "This is a very long text that needs to be truncated";
+        console.log("Original:", longText);
+        console.log("truncate(20):", truncate(longText, 20));
+        console.log("truncate(30):", truncate(longText, 30));
+        
+        
+        console.log("\n=== 25. Praktik: Slugify ===");
+        function slugify(text) {
+            return text
+                .toLowerCase()
+                .trim()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/\s+/g, '-');
+        }
+        
+        const title = "Hello World! This is JavaScript.";
+        console.log("Original:", title);
+        console.log("Slug:", slugify(title));
+    </script>
+</body>
+</html>

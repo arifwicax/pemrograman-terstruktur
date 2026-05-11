@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - Map & Set</title>
+    <style>
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 5px 5px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .nav-footer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-footer a:hover {
+            background: #764ba2;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .level {
+            background: #ffc107;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="6.object_advanced.html">← Previous</a>
+        <a href="index.html">🏠 Home</a>
+        <span>7 / 12</span>
+        <a href="8.bigint_symbol.html">Next</a>
+    </div>
+    
+    <h1>Map & Set</h1>
+    <span class="level">📚 LEVEL 2 - MENENGAH (Penting)</span>
+    
+    <div class="warning">
+        <strong>🚨 KESALAHAN UMUM:</strong>
+        <h3>Map/Set pakai .size, bukan .length!</h3>
+        <ul>
+            <li><strong>Array</strong> pakai <code>.length</code></li>
+            <li><strong>Map & Set</strong> pakai <code>.size</code></li>
+            <li><code>map.length</code> akan return <code>undefined</code>!</li>
+            <li>Set juga pakai <code>.has()</code> bukan <code>.includes()</code></li>
+        </ul>
+    </div>
+    
+    <div class="tip">
+        <strong>Kapan Pakai Map vs Object?</strong>
+        <ul>
+            <li><strong>Gunakan Map</strong> jika: key bukan string, perlu iterasi berurutan, sering add/delete</li>
+            <li><strong>Gunakan Object</strong> jika: key pasti string, perlu JSON.stringify(), struktur tetap</li>
+            <li><strong>Set</strong> sempurna untuk: unique values, membership check, remove duplicates</li>
+        </ul>
+    </div>
+    
+    <script>
+        console.log("=== MAP DATA STRUCTURE ===\n");
+        
+        console.log("=== 1. Membuat Map ===");
+        const map1 = new Map();
+        console.log("Map kosong:", map1);
+        
+        const map2 = new Map([
+            ["nama", "Andi"],
+            ["umur", 20],
+            ["aktif", true]
+        ]);
+        console.log("Map dengan data:", map2);
+        
+        
+        console.log("\n=== 2. Map.set() - Menambah/Ubah ===");
+        const map = new Map();
+        map.set("Name", "Eko Kurniawan");
+        map.set("Address", "Indonesia");
+        map.set("Age", 25);
+        
+        console.log("Map setelah set:", map);
+        
+        // Key bisa tipe apapun
+        map.set(1, "satu");
+        map.set(true, "benar");
+        map.set({}, "empty object");
+        
+        console.log("Map dengan berbagai tipe key:", map);
+        
+        
+        console.log("\n=== 3. Map.get() - Mengambil Value ===");
+        console.log("get('Name'):", map.get("Name"));
+        console.log("get('Address'):", map.get("Address"));
+        console.log("get('Hobby'):", map.get("Hobby")); // undefined
+        console.log("get(1):", map.get(1));
+        console.log("get(true):", map.get(true));
+        
+        
+        console.log("\n=== 4. Map.has() - Cek Keberadaan Key ===");
+        console.log("has('Name'):", map.has("Name"));
+        console.log("has('Hobby'):", map.has("Hobby"));
+        console.log("has(1):", map.has(1));
+        
+        
+        console.log("\n=== 5. Map.size - Ukuran ===");
+        console.log("Size:", map.size);
+        
+        
+        console.log("\n=== 6. Map.delete() - Hapus ===");
+        console.log("Sebelum delete:", map.size);
+        map.delete("Age");
+        console.log("Setelah delete 'Age':", map.size);
+        console.log("has('Age'):", map.has("Age"));
+        
+        
+        console.log("\n=== 7. Iterasi Map - forEach ===");
+        const mapData = new Map([
+            ["nama", "Andi"],
+            ["umur", 20],
+            ["kota", "Jakarta"]
+        ]);
+        
+        console.log("Iterasi dengan forEach:");
+        mapData.forEach((value, key) => {
+            console.log(`  ${key}: ${value}`);
+        });
+        
+        
+        console.log("\n=== 8. Iterasi Map - for...of ===");
+        console.log("Iterasi dengan for...of:");
+        for (const element of mapData) {
+            console.log(`  ${element[0]}: ${element[1]}`);
+        }
+        
+        console.log("\nDengan destructuring:");
+        for (const [key, value] of mapData) {
+            console.log(`  ${key}: ${value}`);
+        }
+        
+        
+        console.log("\n=== 9. Map.keys() & Map.values() ===");
+        console.log("Keys:", [...mapData.keys()]);
+        console.log("Values:", [...mapData.values()]);
+        
+        
+        console.log("\n=== 10. Map.clear() ===");
+        const tempMap = new Map([["a", 1], ["b", 2]]);
+        console.log("Sebelum clear:", tempMap.size);
+        tempMap.clear();
+        console.log("Setelah clear:", tempMap.size);
+        
+        
+        console.log("\n=== 11. Praktik: Menghitung Frekuensi Kata ===");
+        function hitungKata(teks) {
+            const map = new Map();
+            const kata = teks.toLowerCase().split(/\s+/);
+            
+            for (const k of kata) {
+                map.set(k, (map.get(k) || 0) + 1);
+            }
+            
+            return map;
+        }
+        
+        const teks = "hello world hello javascript world hello";
+        const frekuensi = hitungKata(teks);
+        console.log("Teks:", teks);
+        console.log("Frekuensi:");
+        for (const [kata, jumlah] of frekuensi) {
+            console.log(`  ${kata}: ${jumlah}`);
+        }
+        
+        
+        console.log("\n\n=== SET DATA STRUCTURE ===\n");
+        
+        console.log("=== 12. Membuat Set ===");
+        const set1 = new Set();
+        console.log("Set kosong:", set1);
+        
+        const set2 = new Set([1, 2, 3, 4, 5]);
+        console.log("Set dengan data:", set2);
+        
+        const set3 = new Set([1, 1, 2, 2, 3, 3]);
+        console.log("Set (duplikat dihilangkan):", set3);
+        
+        
+        console.log("\n=== 13. Set.add() - Menambah ===");
+        const set = new Set();
+        
+        set.add("Eko");
+        set.add("Eko");
+        set.add("Kurniawan");
+        set.add("Khannedy");
+        set.add(1);
+        set.add(2);
+        set.add(1);
+        
+        console.log("Set:", set);
+        console.log("Size:", set.size);
+        
+        
+        console.log("\n=== 14. Set.has() - Cek Keberadaan ===");
+        console.log("has('Eko'):", set.has("Eko"));
+        console.log("has('Budi'):", set.has("Budi"));
+        console.log("has(1):", set.has(1));
+        
+        
+        console.log("\n=== 15. Set.delete() - Hapus ===");
+        console.log("Sebelum delete:", set.size);
+        set.delete("Eko");
+        console.log("Setelah delete 'Eko':", set.size);
+        console.log("has('Eko'):", set.has("Eko"));
+        
+        
+        console.log("\n=== 16. Iterasi Set - forEach ===");
+        const setData = new Set([1, 2, 3, 4, 5]);
+        
+        console.log("Iterasi dengan forEach:");
+        setData.forEach(value => {
+            console.log(`  ${value}`);
+        });
+        
+        
+        console.log("\n=== 17. Iterasi Set - for...of ===");
+        console.log("Iterasi dengan for...of:");
+        for (const value of setData) {
+            console.log(`  ${value}`);
+        }
+        
+        
+        console.log("\n=== 18. Set ke Array ===");
+        const array1 = [...setData];
+        console.log("Spread operator:", array1);
+        
+        const array2 = Array.from(setData);
+        console.log("Array.from():", array2);
+        
+        
+        console.log("\n=== 19. Praktik: Remove Duplicates ===");
+        function removeDuplicates(array) {
+            return [...new Set(array)];
+        }
+        
+        const angka = [1, 2, 2, 3, 3, 3, 4, 5, 5, 1, 2];
+        console.log("Original:", angka);
+        console.log("Tanpa duplikat:", removeDuplicates(angka));
+        
+        const nama = ["Andi", "Budi", "Andi", "Cici", "Budi"];
+        console.log("\nOriginal:", nama);
+        console.log("Tanpa duplikat:", removeDuplicates(nama));
+        
+        
+        console.log("\n=== 20. Operasi Himpunan - Union ===");
+        function union(setA, setB) {
+            return new Set([...setA, ...setB]);
+        }
+        
+        const a = new Set([1, 2, 3]);
+        const b = new Set([3, 4, 5]);
+        
+        console.log("Set A:", a);
+        console.log("Set B:", b);
+        console.log("Union (A ∪ B):", union(a, b));
+        
+        
+        console.log("\n=== 21. Operasi Himpunan - Intersection ===");
+        function intersection(setA, setB) {
+            return new Set([...setA].filter(x => setB.has(x)));
+        }
+        
+        console.log("Intersection (A ∩ B):", intersection(a, b));
+        
+        
+        console.log("\n=== 22. Operasi Himpunan - Difference ===");
+        function difference(setA, setB) {
+            return new Set([...setA].filter(x => !setB.has(x)));
+        }
+        
+        console.log("Difference (A - B):", difference(a, b));
+        console.log("Difference (B - A):", difference(b, a));
+        
+        
+        console.log("\n=== 23. Operasi Himpunan - Symmetric Difference ===");
+        function symmetricDifference(setA, setB) {
+            const diff1 = difference(setA, setB);
+            const diff2 = difference(setB, setA);
+            return union(diff1, diff2);
+        }
+        
+        console.log("Symmetric Difference:", symmetricDifference(a, b));
+        
+        
+        console.log("\n=== 24. Praktik: Unique Characters ===");
+        function uniqueCharacters(str) {
+            return new Set(str.toLowerCase().replace(/\s/g, '')).size;
+        }
+        
+        const text1 = "Hello World";
+        const text2 = "JavaScript";
+        console.log(`"${text1}" unique chars:`, uniqueCharacters(text1));
+        console.log(`"${text2}" unique chars:`, uniqueCharacters(text2));
+        
+        
+        console.log("\n=== 25. Praktik: Check Subset ===");
+        function isSubset(setA, setB) {
+            for (const element of setA) {
+                if (!setB.has(element)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        const set1Test = new Set([1, 2]);
+        const set2Test = new Set([1, 2, 3, 4]);
+        const set3Test = new Set([5, 6]);
+        
+        console.log("Set 1:", set1Test);
+        console.log("Set 2:", set2Test);
+        console.log("Set 3:", set3Test);
+        console.log("Is Set1 subset of Set2?", isSubset(set1Test, set2Test));
+        console.log("Is Set3 subset of Set2?", isSubset(set3Test, set2Test));
+    </script>
+</body>
+</html>

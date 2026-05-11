@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - Date Object</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .warning {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .level {
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+    <style>
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 5px 5px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .nav-footer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-footer a:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="2.math_object.html">← Previous</a>
+        <a href="index.html">🏠 Home</a>
+        <span>3 / 12</span>
+        <a href="4.regexp_basics.html">Next</a>
+    </div>
+    
+    <h1>Date Object</h1>
+    <span class="level">📚 LEVEL 1 - DASAR (Wajib Dipelajari)</span>
+    
+    <div class="warning">
+        <strong>🚨 KESALAHAN PALING UMUM:</strong>
+        <h3>Bulan di JavaScript mulai dari 0, BUKAN 1!</h3>
+        <ul>
+            <li>Januari = 0, Februari = 1, ..., Desember = 11</li>
+            <li><code>new Date(2024, 1, 15)</code> = <strong>15 FEBRUARI</strong>, bukan 15 Januari!</li>
+            <li><code>new Date(2024, 12, 15)</code> = <strong>Invalid Date!</strong> (maksimal 11)</li>
+            <li>Ini kesalahan yang paling sering dilakukan mahasiswa!</li>
+        </ul>
+    </div>
+    
+    <div class="tip">
+        <strong>Tips:</strong>
+        <ul>
+            <li>Untuk <strong>timestamp</strong>, gunakan <code>Date.now()</code> atau <code>getTime()</code></li>
+            <li>Format tanggal pakai <code>toLocaleDateString('id-ID')</code> untuk format Indonesia</li>
+            <li>Hitung selisih hari: <code>(date2 - date1) / (1000 * 60 * 60 * 24)</code></li>
+        </ul>
+    </div>
+    
+    <script>
+        console.log("=== 1. Membuat Date Object - Sekarang ===");
+        const sekarang = new Date();
+        console.log("Date sekarang:", sekarang);
+        console.log("toString():", sekarang.toString());
+        console.log("toDateString():", sekarang.toDateString());
+        console.log("toTimeString():", sekarang.toTimeString());
+        
+        
+        console.log("\n=== 2. Membuat Date dari String ===");
+        const date1 = new Date("2024-01-15");
+        console.log("2024-01-15:", date1);
+        
+        const date2 = new Date("January 15, 2024");
+        console.log("January 15, 2024:", date2);
+        
+        const date3 = new Date("2024-01-15T10:30:00");
+        console.log("2024-01-15T10:30:00:", date3);
+        
+        
+        console.log("\n=== 3. Membuat Date dari Komponen ===");
+        // Bulan dimulai dari 0 (Januari = 0, Desember = 11)
+        const date4 = new Date(2024, 0, 15); // 15 Januari 2024
+        console.log("new Date(2024, 0, 15):", date4.toDateString());
+        
+        const date5 = new Date(2024, 0, 15, 10, 30, 45); // 15 Jan 2024, 10:30:45
+        console.log("new Date(2024, 0, 15, 10, 30, 45):", date5);
+        
+        const date6 = new Date(2024, 11, 25); // 25 Desember 2024
+        console.log("new Date(2024, 11, 25):", date6.toDateString());
+        
+        
+        console.log("\n=== 4. Membuat Date dari Timestamp ===");
+        const date7 = new Date(1000000000000); // Milliseconds since Jan 1, 1970
+        console.log("Timestamp 1000000000000:", date7);
+        
+        const date8 = new Date(1623167419514);
+        console.log("Timestamp 1623167419514:", date8);
+        
+        
+        console.log("\n=== 5. Method Get - Mendapatkan Komponen ===");
+        const tanggal = new Date("2024-01-15T10:30:45");
+        console.log("Tanggal lengkap:", tanggal);
+        console.log("getFullYear():", tanggal.getFullYear());     // 2024
+        console.log("getMonth():", tanggal.getMonth());           // 0 (Januari)
+        console.log("getDate():", tanggal.getDate());             // 15
+        console.log("getDay():", tanggal.getDay());               // Hari dalam minggu (0=Minggu)
+        console.log("getHours():", tanggal.getHours());           // 10
+        console.log("getMinutes():", tanggal.getMinutes());       // 30
+        console.log("getSeconds():", tanggal.getSeconds());       // 45
+        console.log("getMilliseconds():", tanggal.getMilliseconds()); // 0
+        console.log("getTime():", tanggal.getTime());             // Timestamp
+        
+        
+        console.log("\n=== 6. Format Tanggal Custom ===");
+        const now = new Date();
+        const namaBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni",
+                           "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        const namaHari = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        
+        console.log(`Hari ini: ${namaHari[now.getDay()]}`);
+        console.log(`Tanggal: ${now.getDate()} ${namaBulan[now.getMonth()]} ${now.getFullYear()}`);
+        console.log(`Waktu: ${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`);
+        
+        
+        console.log("\n=== 7. Function Format Tanggal ===");
+        function formatTanggal(date) {
+            const hari = String(date.getDate()).padStart(2, '0');
+            const bulan = String(date.getMonth() + 1).padStart(2, '0');
+            const tahun = date.getFullYear();
+            return `${hari}/${bulan}/${tahun}`;
+        }
+        
+        function formatWaktu(date) {
+            const jam = String(date.getHours()).padStart(2, '0');
+            const menit = String(date.getMinutes()).padStart(2, '0');
+            const detik = String(date.getSeconds()).padStart(2, '0');
+            return `${jam}:${menit}:${detik}`;
+        }
+        
+        console.log("Format tanggal:", formatTanggal(now));
+        console.log("Format waktu:", formatWaktu(now));
+        
+        
+        console.log("\n=== 8. Method Set - Mengubah Komponen ===");
+        const ubahTanggal = new Date();
+        console.log("Tanggal awal:", ubahTanggal.toDateString());
+        
+        ubahTanggal.setFullYear(2025);
+        console.log("Setelah setFullYear(2025):", ubahTanggal.toDateString());
+        
+        ubahTanggal.setMonth(11); // Desember
+        console.log("Setelah setMonth(11):", ubahTanggal.toDateString());
+        
+        ubahTanggal.setDate(25);
+        console.log("Setelah setDate(25):", ubahTanggal.toDateString());
+        
+        ubahTanggal.setHours(12, 30, 0);
+        console.log("Setelah setHours(12, 30, 0):", ubahTanggal.toString());
+        
+        
+        console.log("\n=== 9. Menghitung Selisih Waktu ===");
+        const tanggal1 = new Date("2024-01-01");
+        const tanggal2 = new Date("2024-01-15");
+        
+        // Selisih dalam milliseconds
+        const selisihMs = tanggal2 - tanggal1;
+        console.log("Selisih (ms):", selisihMs);
+        
+        // Konversi ke hari
+        const selisihHari = selisihMs / (1000 * 60 * 60 * 24);
+        console.log("Selisih (hari):", selisihHari);
+        
+        // Konversi ke jam
+        const selisihJam = selisihMs / (1000 * 60 * 60);
+        console.log("Selisih (jam):", selisihJam);
+        
+        
+        console.log("\n=== 10. Menambah/Mengurangi Tanggal ===");
+        const hariIni = new Date();
+        console.log("Hari ini:", formatTanggal(hariIni));
+        
+        // Tambah 7 hari
+        const semingguLagi = new Date(hariIni);
+        semingguLagi.setDate(semingguLagi.getDate() + 7);
+        console.log("7 hari lagi:", formatTanggal(semingguLagi));
+        
+        // Kurangi 1 bulan
+        const bulanLalu = new Date(hariIni);
+        bulanLalu.setMonth(bulanLalu.getMonth() - 1);
+        console.log("1 bulan lalu:", formatTanggal(bulanLalu));
+        
+        // Tambah 1 tahun
+        const tahunDepan = new Date(hariIni);
+        tahunDepan.setFullYear(tahunDepan.getFullYear() + 1);
+        console.log("1 tahun lagi:", formatTanggal(tahunDepan));
+        
+        
+        console.log("\n=== 11. Date.now() - Timestamp Sekarang ===");
+        const timestamp = Date.now();
+        console.log("Timestamp sekarang:", timestamp);
+        console.log("Dalam Date:", new Date(timestamp));
+        
+        
+        console.log("\n=== 12. Date.parse() - Parse String ===");
+        const time1 = Date.parse("2020-10-10T08:45:45.123+07:00");
+        console.log("Timestamp dari parse:", time1);
+        console.log("Date object:", new Date(time1));
+        
+        const time2 = Date.parse("2024-01-15");
+        console.log("Timestamp dari 2024-01-15:", time2);
+        
+        
+        console.log("\n=== 13. Format String Built-in ===");
+        const dateFormat = new Date();
+        console.log("toString():", dateFormat.toString());
+        console.log("toDateString():", dateFormat.toDateString());
+        console.log("toTimeString():", dateFormat.toTimeString());
+        console.log("toISOString():", dateFormat.toISOString());
+        console.log("toLocaleDateString():", dateFormat.toLocaleDateString());
+        console.log("toLocaleTimeString():", dateFormat.toLocaleTimeString());
+        console.log("toLocaleDateString('id-ID'):", dateFormat.toLocaleDateString('id-ID'));
+        console.log("toLocaleDateString('en-US'):", dateFormat.toLocaleDateString('en-US'));
+        
+        
+        console.log("\n=== 14. Praktik: Menghitung Umur ===");
+        function hitungUmur(tanggalLahir) {
+            const today = new Date();
+            const birthDate = new Date(tanggalLahir);
+            let umur = today.getFullYear() - birthDate.getFullYear();
+            const bulan = today.getMonth() - birthDate.getMonth();
+            
+            if (bulan < 0 || (bulan === 0 && today.getDate() < birthDate.getDate())) {
+                umur--;
+            }
+            
+            return umur;
+        }
+        
+        console.log("Umur (lahir 2000-01-15):", hitungUmur("2000-01-15"), "tahun");
+        console.log("Umur (lahir 1995-06-20):", hitungUmur("1995-06-20"), "tahun");
+        console.log("Umur (lahir 2005-12-10):", hitungUmur("2005-12-10"), "tahun");
+        
+        
+        console.log("\n=== 15. Praktik: Countdown Timer ===");
+        function countdown(targetDate) {
+            const now = new Date();
+            const target = new Date(targetDate);
+            const diff = target - now;
+            
+            if (diff <= 0) {
+                return "Waktu sudah lewat!";
+            }
+            
+            const hari = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const jam = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const menit = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const detik = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            return `${hari} hari, ${jam} jam, ${menit} menit, ${detik} detik`;
+        }
+        
+        console.log("Countdown ke 2025-01-01:", countdown("2025-01-01"));
+        console.log("Countdown ke 2024-12-25:", countdown("2024-12-25"));
+    </script>
+</body>
+</html>

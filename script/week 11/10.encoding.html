@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - Encoding & Decoding</title>
+    <style>
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 5px 5px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .nav-footer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-footer a:hover {
+            background: #764ba2;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .level {
+            background: #ffc107;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="9.proxy_reflect.html">← Previous</a>
+        <a href="index.html">🏠 Home</a>
+        <span>10 / 12</span>
+        <a href="11.comprehensive_example.html">Next</a>
+    </div>
+    
+    <h1>Encoding & Decoding</h1>
+    <span class="level">📚 LEVEL 2 - MENENGAH (Penting)</span>
+    
+    <div class="warning">
+        <strong>Perbedaan encodeURI vs encodeURIComponent:</strong>
+        <ul>
+            <li><strong>encodeURI()</strong> - Untuk encode URL lengkap, tidak encode <code>: / ? # [ ] @</code></li>
+            <li><strong>encodeURIComponent()</strong> - Untuk encode query parameter, encode semua karakter special</li>
+            <li><strong>KESALAHAN UMUM:</strong> Pakai encodeURI() untuk query param (spasi tidak di-encode!)</li>
+            <li><strong>BENAR:</strong> Selalu pakai encodeURIComponent() untuk query parameter!</li>
+        </ul>
+    </div>
+    
+    <div class="tip">
+        <strong>Kapan Pakai Apa?</strong>
+        <ul>
+            <li><strong>btoa/atob</strong> - Base64 encoding (simple data, bukan security!)</li>
+            <li><strong>encodeURIComponent</strong> - Query string parameters (paling sering dipakai)</li>
+            <li><strong>encodeURI</strong> - Full URL dengan protocol dan path</li>
+        </ul>
+    </div>
+    
+    <script>
+        console.log("=== BASE64 ENCODING ===\n");
+        
+        console.log("=== 1. btoa() - Encode ke Base64 ===");
+        const text1 = "Hello World";
+        const encoded1 = btoa(text1);
+        
+        console.log("Original:", text1);
+        console.log("Encoded:", encoded1);
+        console.log("Type:", typeof encoded1);
+        
+        
+        console.log("\n=== 2. atob() - Decode dari Base64 ===");
+        const encoded2 = "SGVsbG8gV29ybGQ=";
+        const decoded2 = atob(encoded2);
+        
+        console.log("Encoded:", encoded2);
+        console.log("Decoded:", decoded2);
+        
+        
+        console.log("\n=== 3. Encode-Decode Round Trip ===");
+        const original = "JavaScript Standard Library";
+        console.log("Original:", original);
+        
+        const encoded = btoa(original);
+        console.log("Encoded:", encoded);
+        
+        const decoded = atob(encoded);
+        console.log("Decoded:", decoded);
+        console.log("Match:", original === decoded);
+        
+        
+        console.log("\n=== 4. Base64 untuk Unicode (Workaround) ===");
+        function base64Encode(str) {
+            return btoa(encodeURIComponent(str));
+        }
+        
+        function base64Decode(str) {
+            return decodeURIComponent(atob(str));
+        }
+        
+        const unicodeText = "Hello 你好 مرحبا";
+        console.log("Original:", unicodeText);
+        
+        try {
+            // btoa langsung akan error untuk non-ASCII
+            // btoa(unicodeText);
+            console.log("btoa langsung akan error untuk unicode");
+        } catch (e) {
+            console.log("Error:", e.message);
+        }
+        
+        const encodedUnicode = base64Encode(unicodeText);
+        console.log("Encoded (safe):", encodedUnicode);
+        
+        const decodedUnicode = base64Decode(encodedUnicode);
+        console.log("Decoded:", decodedUnicode);
+        
+        
+        console.log("\n=== 5. Praktik: Encode Image Data ===");
+        function simulateImageEncode() {
+            const imageData = "image-binary-data-here";
+            const encoded = btoa(imageData);
+            console.log("Image data encoded:");
+            console.log("data:image/png;base64," + encoded);
+        }
+        
+        simulateImageEncode();
+        
+        
+        console.log("\n\n=== URI ENCODING ===\n");
+        
+        console.log("=== 6. encodeURI() - Encode URL Lengkap ===");
+        const url1 = "https://example.com/search?query=hello world&page=1";
+        const encodedUrl1 = encodeURI(url1);
+        
+        console.log("Original:", url1);
+        console.log("Encoded:", encodedUrl1);
+        
+        
+        console.log("\n=== 7. decodeURI() - Decode URL ===");
+        const encodedUrl2 = "https://example.com/search?query=hello%20world&page=1";
+        const decodedUrl2 = decodeURI(encodedUrl2);
+        
+        console.log("Encoded:", encodedUrl2);
+        console.log("Decoded:", decodedUrl2);
+        
+        
+        console.log("\n=== 8. encodeURIComponent() - Encode Component ===");
+        const param = "hello world & goodbye";
+        const encodedParam = encodeURIComponent(param);
+        
+        console.log("Original param:", param);
+        console.log("Encoded param:", encodedParam);
+        
+        const fullUrl = `https://example.com/search?q=${encodedParam}`;
+        console.log("\nFull URL:", fullUrl);
+        
+        
+        console.log("\n=== 9. decodeURIComponent() - Decode Component ===");
+        const encodedParam2 = "hello%20world%20%26%20goodbye";
+        const decodedParam2 = decodeURIComponent(encodedParam2);
+        
+        console.log("Encoded:", encodedParam2);
+        console.log("Decoded:", decodedParam2);
+        
+        
+        console.log("\n=== 10. Perbedaan encodeURI vs encodeURIComponent ===");
+        const testString = "hello world?name=test&value=123#section";
+        
+        console.log("Original:", testString);
+        console.log("encodeURI():", encodeURI(testString));
+        console.log("encodeURIComponent():", encodeURIComponent(testString));
+        
+        console.log("\nKarakter khusus:");
+        const special = ";,/?:@&=+$#";
+        console.log("Original:", special);
+        console.log("encodeURI():", encodeURI(special));
+        console.log("encodeURIComponent():", encodeURIComponent(special));
+        
+        
+        console.log("\n=== 11. Praktik: Build Query String ===");
+        function buildQueryString(params) {
+            return Object.keys(params)
+                .map(key => `${key}=${encodeURIComponent(params[key])}`)
+                .join("&");
+        }
+        
+        const params1 = {
+            query: "javascript tutorial",
+            category: "programming & web",
+            page: 1,
+            sort: "date desc"
+        };
+        
+        const queryString = buildQueryString(params1);
+        console.log("Params:", params1);
+        console.log("Query string:", queryString);
+        console.log("Full URL:", `https://example.com/search?${queryString}`);
+        
+        
+        console.log("\n=== 12. Praktik: Parse Query String ===");
+        function parseQueryString(queryString) {
+            const params = {};
+            const pairs = queryString.replace(/^\?/, '').split('&');
+            
+            for (const pair of pairs) {
+                const [key, value] = pair.split('=');
+                params[key] = decodeURIComponent(value || '');
+            }
+            
+            return params;
+        }
+        
+        const qs = "query=javascript%20tutorial&category=programming%20%26%20web&page=1";
+        console.log("Query string:", qs);
+        console.log("Parsed:", parseQueryString(qs));
+        
+        
+        console.log("\n=== 13. Praktik: Safe URL Builder ===");
+        function buildURL(base, path, params) {
+            let url = base;
+            
+            if (path) {
+                url += '/' + path.split('/').map(encodeURIComponent).join('/');
+            }
+            
+            if (params && Object.keys(params).length > 0) {
+                url += '?' + buildQueryString(params);
+            }
+            
+            return url;
+        }
+        
+        const url = buildURL(
+            "https://example.com",
+            "search/results",
+            {
+                q: "hello world",
+                lang: "id",
+                filter: "date > 2024"
+            }
+        );
+        
+        console.log("Built URL:", url);
+        
+        
+        console.log("\n=== 14. Encode Special Characters ===");
+        const specialChars = {
+            space: " ",
+            ampersand: "&",
+            equals: "=",
+            question: "?",
+            hash: "#",
+            slash: "/",
+            percent: "%"
+        };
+        
+        console.log("Special characters encoding:");
+        for (const [name, char] of Object.entries(specialChars)) {
+            console.log(`  ${name} (${char}): ${encodeURIComponent(char)}`);
+        }
+        
+        
+        console.log("\n=== 15. Praktik: Email Encode ===");
+        function encodeEmail(email) {
+            return encodeURIComponent(email);
+        }
+        
+        const emails = [
+            "user@example.com",
+            "test+filter@domain.co.id",
+            "name.surname@company.org"
+        ];
+        
+        console.log("Email encoding:");
+        emails.forEach(email => {
+            console.log(`  ${email}`);
+            console.log(`  ${encodeEmail(email)}`);
+        });
+        
+        
+        console.log("\n=== 16. Praktik: URL Validation ===");
+        function isValidURL(string) {
+            try {
+                new URL(string);
+                return true;
+            } catch {
+                return false;
+            }
+        }
+        
+        const urls = [
+            "https://example.com",
+            "http://example.com/path?query=test",
+            "not a url",
+            "ftp://files.example.com",
+            "example.com"
+        ];
+        
+        console.log("URL validation:");
+        urls.forEach(url => {
+            console.log(`  ${url}: ${isValidURL(url)}`);
+        });
+        
+        
+        console.log("\n=== 17. Praktik: Extract URL Parts ===");
+        function extractURLParts(urlString) {
+            try {
+                const url = new URL(urlString);
+                return {
+                    protocol: url.protocol,
+                    hostname: url.hostname,
+                    port: url.port,
+                    pathname: url.pathname,
+                    search: url.search,
+                    hash: url.hash
+                };
+            } catch {
+                return null;
+            }
+        }
+        
+        const testUrl = "https://example.com:8080/path/to/page?query=test&page=1#section";
+        console.log("URL:", testUrl);
+        console.log("Parts:", extractURLParts(testUrl));
+        
+        
+        console.log("\n=== 18. Praktik: Sanitize Filename ===");
+        function sanitizeFilename(filename) {
+            return filename
+                .replace(/[^a-z0-9.-]/gi, '_')
+                .replace(/_{2,}/g, '_')
+                .toLowerCase();
+        }
+        
+        const filenames = [
+            "My Document.pdf",
+            "Report (Final) v2.docx",
+            "Image#123.jpg",
+            "file/with/slashes.txt"
+        ];
+        
+        console.log("Filename sanitization:");
+        filenames.forEach(name => {
+            console.log(`  ${name} -> ${sanitizeFilename(name)}`);
+        });
+        
+        
+        console.log("\n=== 19. Praktik: Create Data URL ===");
+        function createDataURL(mimeType, data) {
+            const encoded = btoa(data);
+            return `data:${mimeType};base64,${encoded}`;
+        }
+        
+        const textData = "Hello, World!";
+        const dataURL = createDataURL("text/plain", textData);
+        console.log("Data URL:", dataURL);
+        
+        
+        console.log("\n=== 20. Praktik: Redirect with Params ===");
+        function createRedirectURL(baseURL, returnURL, message) {
+            const params = {
+                return: returnURL,
+                message: message,
+                timestamp: Date.now()
+            };
+            
+            return `${baseURL}?${buildQueryString(params)}`;
+        }
+        
+        const redirectURL = createRedirectURL(
+            "https://example.com/login",
+            "https://example.com/dashboard",
+            "Please login to continue"
+        );
+        
+        console.log("Redirect URL:");
+        console.log(redirectURL);
+        
+        
+        console.log("\n=== 21. Character Code Reference ===");
+        const chars = ['A', 'Z', 'a', 'z', '0', '9', ' ', '!', '@', '#'];
+        console.log("Character codes:");
+        chars.forEach(char => {
+            console.log(`  '${char}': ${char.charCodeAt(0)} (0x${char.charCodeAt(0).toString(16)})`);
+        });
+    </script>
+</body>
+</html>

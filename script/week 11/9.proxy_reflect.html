@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - Proxy & Reflect</title>
+    <style>
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 5px 5px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .nav-footer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-footer a:hover {
+            background: #764ba2;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .level {
+            background: #fd7e14;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="8.bigint_symbol.html">← Previous</a>
+        <a href="index.html">🏠 Home</a>
+        <span>9 / 12</span>
+        <a href="10.encoding.html">Next</a>
+    </div>
+    
+    <h1>Proxy & Reflect</h1>
+    <span class="level">📚 LEVEL 3 - ADVANCED (Opsional)</span>
+    
+    <div class="tip">
+        <strong>Metaprogramming:</strong>
+        <ul>
+            <li><strong>Proxy</strong> memungkinkan intercept operasi pada object (get, set, delete, dll)</li>
+            <li><strong>Reflect</strong> adalah built-in object untuk manipulasi object secara programmatic</li>
+            <li>Dipakai oleh framework seperti <strong>Vue.js</strong> untuk reactive data</li>
+            <li>Konsep advanced, fokus di materi dasar dulu sebelum mendalami ini</li>
+        </ul>
+    </div>
+    
+    <script>
+        console.log("=== PROXY ===\n");
+        
+        console.log("=== 1. Proxy Dasar - Get Trap ===");
+        const target = {
+            nama: "Andi",
+            umur: 20
+        };
+        
+        const handler = {
+            get: function(obj, prop) {
+                console.log(`  Mengakses property: ${prop}`);
+                return obj[prop];
+            }
+        };
+        
+        const proxy = new Proxy(target, handler);
+        
+        console.log("Akses proxy.nama:");
+        console.log(proxy.nama);
+        console.log("\nAkses proxy.umur:");
+        console.log(proxy.umur);
+        
+        
+        console.log("\n=== 2. Proxy - Set Trap ===");
+        const handler2 = {
+            get: function(obj, prop) {
+                console.log(`  Get: ${prop}`);
+                return obj[prop];
+            },
+            set: function(obj, prop, value) {
+                console.log(`  Set: ${prop} = ${value}`);
+                obj[prop] = value;
+                return true;
+            }
+        };
+        
+        const target2 = {
+            middleName: "Kurniawan"
+        };
+        
+        const proxy2 = new Proxy(target2, handler2);
+        
+        console.log("Set firstName:");
+        proxy2.firstName = "Eko";
+        
+        console.log("\nGet firstName:");
+        console.log(proxy2.firstName);
+        
+        
+        console.log("\n=== 3. Proxy - Validasi ===");
+        const validator = {
+            set: function(obj, prop, value) {
+                if (prop === "umur") {
+                    if (typeof value !== "number") {
+                        throw new TypeError("Umur harus berupa angka");
+                    }
+                    if (value < 0 || value > 150) {
+                        throw new RangeError("Umur harus antara 0-150");
+                    }
+                }
+                
+                if (prop === "email") {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(value)) {
+                        throw new Error("Format email tidak valid");
+                    }
+                }
+                
+                obj[prop] = value;
+                return true;
+            }
+        };
+        
+        const person = new Proxy({}, validator);
+        
+        console.log("Set umur = 20:");
+        person.umur = 20;
+        console.log("person.umur:", person.umur);
+        
+        try {
+            console.log("\nCoba set umur = 'dua puluh':");
+            person.umur = "dua puluh";
+        } catch (e) {
+            console.log("Error:", e.message);
+        }
+        
+        try {
+            console.log("\nCoba set umur = -5:");
+            person.umur = -5;
+        } catch (e) {
+            console.log("Error:", e.message);
+        }
+        
+        console.log("\nSet email valid:");
+        person.email = "user@example.com";
+        console.log("person.email:", person.email);
+        
+        try {
+            console.log("\nCoba set email invalid:");
+            person.email = "invalid.email";
+        } catch (e) {
+            console.log("Error:", e.message);
+        }
+        
+        
+        console.log("\n=== 4. Proxy - Default Values ===");
+        const handlerDefault = {
+            get: function(obj, prop) {
+                return prop in obj ? obj[prop] : `Property '${prop}' tidak ada`;
+            }
+        };
+        
+        const objDefault = new Proxy({nama: "Andi"}, handlerDefault);
+        
+        console.log("objDefault.nama:", objDefault.nama);
+        console.log("objDefault.umur:", objDefault.umur);
+        console.log("objDefault.apapun:", objDefault.apapun);
+        
+        
+        console.log("\n=== 5. Proxy - Null Handler ===");
+        const handlerNull = {
+            set: function(obj, prop, value) {
+                console.log(`  Set ${prop} = ${value}`);
+                if (value === null) {
+                    obj[prop] = "";
+                } else {
+                    obj[prop] = value;
+                }
+                return true;
+            }
+        };
+        
+        const objNull = new Proxy({}, handlerNull);
+        
+        objNull.firstName = "Eko";
+        objNull.lastName = null;
+        
+        console.log("objNull:", objNull);
+        
+        
+        console.log("\n=== 6. Proxy - Read-only Object ===");
+        const readOnlyHandler = {
+            set: function(obj, prop, value) {
+                throw new Error(`Cannot set property '${prop}' (read-only)`);
+            },
+            deleteProperty: function(obj, prop) {
+                throw new Error(`Cannot delete property '${prop}' (read-only)`);
+            }
+        };
+        
+        const data = {
+            nama: "Andi",
+            umur: 20
+        };
+        
+        const readOnly = new Proxy(data, readOnlyHandler);
+        
+        console.log("readOnly.nama:", readOnly.nama);
+        
+        try {
+            console.log("\nCoba ubah readOnly.nama:");
+            readOnly.nama = "Budi";
+        } catch (e) {
+            console.log("Error:", e.message);
+        }
+        
+        
+        console.log("\n=== 7. Proxy - Logging ===");
+        function makeLoggable(target, name = "Object") {
+            return new Proxy(target, {
+                get(obj, prop) {
+                    console.log(`  [${name}] GET ${prop} = ${obj[prop]}`);
+                    return obj[prop];
+                },
+                set(obj, prop, value) {
+                    console.log(`  [${name}] SET ${prop} = ${value}`);
+                    obj[prop] = value;
+                    return true;
+                }
+            });
+        }
+        
+        const user = makeLoggable({ nama: "Andi", umur: 20 }, "User");
+        
+        console.log("Akses user.nama:");
+        const n = user.nama;
+        
+        console.log("\nSet user.umur = 21:");
+        user.umur = 21;
+        
+        
+        console.log("\n\n=== REFLECT ===\n");
+        
+        console.log("=== 8. Reflect.get() ===");
+        const obj = {nama: "Andi", umur: 20};
+        
+        console.log("Reflect.get(obj, 'nama'):", Reflect.get(obj, "nama"));
+        console.log("Reflect.get(obj, 'umur'):", Reflect.get(obj, "umur"));
+        
+        
+        console.log("\n=== 9. Reflect.set() ===");
+        console.log("Reflect.set(obj, 'kota', 'Jakarta'):", Reflect.set(obj, "kota", "Jakarta"));
+        console.log("obj:", obj);
+        
+        
+        console.log("\n=== 10. Reflect.has() ===");
+        console.log("Reflect.has(obj, 'nama'):", Reflect.has(obj, "nama"));
+        console.log("Reflect.has(obj, 'hobi'):", Reflect.has(obj, "hobi"));
+        
+        
+        console.log("\n=== 11. Reflect.deleteProperty() ===");
+        console.log("Sebelum delete:", obj);
+        console.log("Reflect.deleteProperty(obj, 'kota'):", Reflect.deleteProperty(obj, "kota"));
+        console.log("Setelah delete:", obj);
+        
+        
+        console.log("\n=== 12. Reflect.ownKeys() ===");
+        const obj2 = {a: 1, b: 2, c: 3};
+        console.log("obj2:", obj2);
+        console.log("Reflect.ownKeys(obj2):", Reflect.ownKeys(obj2));
+        
+        
+        console.log("\n=== 13. Reflect dalam Proxy ===");
+        const handlerReflect = {
+            get(obj, prop) {
+                console.log(`  Get: ${prop}`);
+                return Reflect.get(obj, prop);
+            },
+            set(obj, prop, value) {
+                console.log(`  Set: ${prop} = ${value}`);
+                return Reflect.set(obj, prop, value);
+            }
+        };
+        
+        const targetReflect = {nama: "Andi"};
+        const proxyReflect = new Proxy(targetReflect, handlerReflect);
+        
+        console.log("proxyReflect.nama:");
+        console.log(proxyReflect.nama);
+        
+        console.log("\nSet proxyReflect.umur = 20:");
+        proxyReflect.umur = 20;
+        
+        
+        console.log("\n=== 14. Reflect.apply() ===");
+        function greet(greeting, name) {
+            return `${greeting}, ${name}!`;
+        }
+        
+        console.log("Reflect.apply(greet, null, ['Hello', 'Andi']):");
+        console.log(Reflect.apply(greet, null, ["Hello", "Andi"]));
+        
+        
+        console.log("\n=== 15. Reflect.construct() ===");
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+        }
+        
+        const personInstance = Reflect.construct(Person, ["Andi", 20]);
+        console.log("Reflect.construct(Person, ['Andi', 20]):", personInstance);
+        
+        
+        console.log("\n=== 16. Praktik: Observable Object ===");
+        function observable(target, callback) {
+            return new Proxy(target, {
+                set(obj, prop, value) {
+                    const oldValue = obj[prop];
+                    const result = Reflect.set(obj, prop, value);
+                    callback(prop, oldValue, value);
+                    return result;
+                }
+            });
+        }
+        
+        const state = observable({count: 0}, (prop, oldValue, newValue) => {
+            console.log(`  Property '${prop}' changed from ${oldValue} to ${newValue}`);
+        });
+        
+        console.log("Set state.count = 1:");
+        state.count = 1;
+        console.log("\nSet state.count = 2:");
+        state.count = 2;
+        console.log("\nSet state.name = 'Test':");
+        state.name = "Test";
+        
+        
+        console.log("\n=== 17. Praktik: Negative Array Indices ===");
+        function createArray(arr) {
+            return new Proxy(arr, {
+                get(target, prop) {
+                    const index = Number(prop);
+                    if (index < 0) {
+                        prop = target.length + index;
+                    }
+                    return Reflect.get(target, prop);
+                }
+            });
+        }
+        
+        const array = createArray([1, 2, 3, 4, 5]);
+        console.log("Array:", array);
+        console.log("array[0]:", array[0]);
+        console.log("array[-1]:", array[-1]);
+        console.log("array[-2]:", array[-2]);
+        
+        
+        console.log("\n=== 18. Praktik: Private Properties ===");
+        function createPrivate(target) {
+            return new Proxy(target, {
+                get(obj, prop) {
+                    if (prop.startsWith("_")) {
+                        throw new Error(`Cannot access private property '${prop}'`);
+                    }
+                    return Reflect.get(obj, prop);
+                },
+                set(obj, prop, value) {
+                    if (prop.startsWith("_")) {
+                        throw new Error(`Cannot set private property '${prop}'`);
+                    }
+                    return Reflect.set(obj, prop, value);
+                }
+            });
+        }
+        
+        const privateObj = createPrivate({
+            publicProp: "public",
+            _privateProp: "private"
+        });
+        
+        console.log("privateObj.publicProp:", privateObj.publicProp);
+        
+        try {
+            console.log("\nCoba akses _privateProp:");
+            console.log(privateObj._privateProp);
+        } catch (e) {
+            console.log("Error:", e.message);
+        }
+        
+        
+        console.log("\n=== 19. Praktik: Cache ===");
+        function withCache(fn) {
+            const cache = new Map();
+            
+            return new Proxy(fn, {
+                apply(target, thisArg, args) {
+                    const key = JSON.stringify(args);
+                    
+                    if (cache.has(key)) {
+                        console.log(`  Cache hit for ${key}`);
+                        return cache.get(key);
+                    }
+                    
+                    console.log(`  Computing for ${key}`);
+                    const result = Reflect.apply(target, thisArg, args);
+                    cache.set(key, result);
+                    return result;
+                }
+            });
+        }
+        
+        const expensiveOperation = withCache((x, y) => {
+            return x + y;
+        });
+        
+        console.log("expensiveOperation(2, 3):", expensiveOperation(2, 3));
+        console.log("expensiveOperation(2, 3) again:", expensiveOperation(2, 3));
+        console.log("expensiveOperation(5, 7):", expensiveOperation(5, 7));
+        
+        
+        console.log("\n=== 20. Praktik: Type Checking ===");
+        function typed(types) {
+            return new Proxy({}, {
+                set(obj, prop, value) {
+                    if (prop in types) {
+                        const expectedType = types[prop];
+                        const actualType = typeof value;
+                        
+                        if (actualType !== expectedType) {
+                            throw new TypeError(
+                                `Property '${prop}' must be ${expectedType}, got ${actualType}`
+                            );
+                        }
+                    }
+                    return Reflect.set(obj, prop, value);
+                }
+            });
+        }
+        
+        const typedObj = typed({
+            name: "string",
+            age: "number",
+            active: "boolean"
+        });
+        
+        console.log("Set name = 'Andi':");
+        typedObj.name = "Andi";
+        console.log("typedObj.name:", typedObj.name);
+        
+        console.log("\nSet age = 20:");
+        typedObj.age = 20;
+        console.log("typedObj.age:", typedObj.age);
+        
+        try {
+            console.log("\nCoba set age = 'twenty':");
+            typedObj.age = "twenty";
+        } catch (e) {
+            console.log("Error:", e.message);
+        }
+    </script>
+</body>
+</html>

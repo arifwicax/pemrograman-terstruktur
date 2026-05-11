@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - JSON Basics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .tip {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .level {
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+    </style>
+    <style>
+        .nav-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 5px 5px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-header a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-header a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .nav-footer {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 30px -20px -20px -20px;
+            border-radius: 0 0 5px 5px;
+            text-align: center;
+            border-top: 3px solid #667eea;
+        }
+        .nav-footer a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        .nav-footer a:hover {
+            background: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-header">
+        <a href="index.html">🏠 Home</a>
+        <span>1 / 12</span>
+        <a href="2.math_object.html">Next</a>
+    </div>
+    
+    <h1>JSON (JavaScript Object Notation)</h1>
+    <span class="level">📚 LEVEL 1 - DASAR (Wajib Dipelajari)</span>
+    
+    <div class="warning">
+        <strong>PENTING untuk Mahasiswa:</strong>
+        <ul>
+            <li><strong>JSON TIDAK support</strong>: function, undefined, Symbol</li>
+            <li>Selalu gunakan <strong>try-catch</strong> untuk JSON.parse() karena bisa error</li>
+            <li>Circular reference akan menyebabkan error saat stringify</li>
+            <li>JSON hanya untuk <strong>data</strong>, bukan untuk method/function</li>
+        </ul>
+    </div>
+    
+    <div class="tip">
+        <strong>Tips:</strong> JSON paling sering dipakai untuk API communication. 
+        Kalau kirim data ke server atau terima dari server, hampir pasti pakai JSON!
+    </div>
+    
+    <script>
+        console.log("=== 1. JSON.stringify() - Basic ===");
+        const mahasiswa = {
+            nama: "Andi",
+            umur: 20,
+            jurusan: "Informatika",
+            aktif: true
+        };
+        
+        const jsonString = JSON.stringify(mahasiswa);
+        console.log("Object:", mahasiswa);
+        console.log("JSON String:", jsonString);
+        console.log("Tipe:", typeof jsonString);
+        
+        
+        console.log("\n=== 2. JSON.stringify() - Pretty Print ===");
+        const jsonPretty = JSON.stringify(mahasiswa, null, 2);
+        console.log("JSON Pretty:\n" + jsonPretty);
+        
+        
+        console.log("\n=== 3. JSON.stringify() - Replacer Function ===");
+        const dataWithPassword = {
+            nama: "Andi",
+            password: "secret123",
+            umur: 20,
+            email: "andi@example.com"
+        };
+        
+        // Hilangkan password saat stringify
+        const jsonSafe = JSON.stringify(dataWithPassword, (key, value) => {
+            if (key === "password") return undefined;
+            return value;
+        });
+        console.log("Data tanpa password:", jsonSafe);
+        
+        
+        console.log("\n=== 4. JSON.stringify() - Replacer Array ===");
+        const dataLengkap = {
+            nama: "Andi",
+            umur: 20,
+            kota: "Jakarta",
+            hobi: "Coding",
+            password: "secret"
+        };
+        
+        // Hanya ambil field tertentu
+        const jsonFiltered = JSON.stringify(dataLengkap, ["nama", "umur", "kota"]);
+        console.log("Data filtered:", jsonFiltered);
+        
+        
+        console.log("\n=== 5. JSON.parse() - Basic ===");
+        const jsonText = '{"nama":"Budi","umur":22,"aktif":true}';
+        console.log("JSON String:", jsonText);
+        
+        const obj = JSON.parse(jsonText);
+        console.log("Parsed Object:", obj);
+        console.log("Nama:", obj.nama);
+        console.log("Umur:", obj.umur);
+        console.log("Tipe:", typeof obj);
+        
+        
+        console.log("\n=== 6. JSON.parse() - Complex Object ===");
+        const person = {
+            firstName: "Eko",
+            middleName: "Kurniawan",
+            lastName: "Khannedy",
+            address : {
+                country: "Indonesia",
+                city: "Subang"
+            },
+            hobbies: [
+                "Coding", "Game", "Traveling"
+            ]
+        };
+        
+        const jsonComplex = JSON.stringify(person, null, 2);
+        console.log("JSON:\n" + jsonComplex);
+        
+        const parsedPerson = JSON.parse(jsonComplex);
+        console.log("Parsed:", parsedPerson);
+        console.log("City:", parsedPerson.address.city);
+        console.log("Hobi pertama:", parsedPerson.hobbies[0]);
+        
+        
+        console.log("\n=== 7. JSON.parse() - Reviver Function ===");
+        const jsonWithDate = '{"nama":"Andi","tanggalLahir":"2000-01-15","umur":24}';
+        
+        const objWithDate = JSON.parse(jsonWithDate, (key, value) => {
+            // Ubah string tanggal menjadi Date object
+            if (key === "tanggalLahir") {
+                return new Date(value);
+            }
+            return value;
+        });
+        
+        console.log("Object:", objWithDate);
+        console.log("Tanggal adalah Date object?", objWithDate.tanggalLahir instanceof Date);
+        console.log("Tanggal:", objWithDate.tanggalLahir.toLocaleDateString("id-ID"));
+        
+        
+        console.log("\n=== 8. Error Handling ===");
+        function parseJSONSafe(jsonString) {
+            try {
+                return JSON.parse(jsonString);
+            } catch (error) {
+                console.error("Error parsing JSON:", error.message);
+                return null;
+            }
+        }
+        
+        // JSON valid
+        const result1 = parseJSONSafe('{"nama":"Andi","umur":20}');
+        console.log("Valid JSON:", result1);
+        
+        // JSON invalid
+        const result2 = parseJSONSafe('{"nama": "Andi", "umur": }');
+        console.log("Invalid JSON result:", result2);
+        
+        
+        console.log("\n=== 9. Nested Object dengan Array ===");
+        const kelas = {
+            namaKelas: "SI-A",
+            tahun: 2024,
+            mahasiswa: [
+                { nama: "Andi", nilai: 85 },
+                { nama: "Budi", nilai: 90 },
+                { nama: "Cici", nilai: 88 }
+            ]
+        };
+        
+        const jsonKelas = JSON.stringify(kelas, null, 2);
+        console.log("JSON Kelas:\n" + jsonKelas);
+        
+        const parsedKelas = JSON.parse(jsonKelas);
+        console.log("\nData Mahasiswa:");
+        parsedKelas.mahasiswa.forEach((mhs, index) => {
+            console.log(`${index + 1}. ${mhs.nama}: ${mhs.nilai}`);
+        });
+        
+        
+        console.log("\n=== 10. Praktik: Local Storage Simulation ===");
+        // Simulasi menyimpan data ke storage
+        const userData = {
+            username: "andi123",
+            email: "andi@example.com",
+            preferences: {
+                theme: "dark",
+                language: "id"
+            }
+        };
+        
+        // Convert ke JSON untuk disimpan
+        const storedData = JSON.stringify(userData);
+        console.log("Data yang akan disimpan:", storedData);
+        
+        // Simulasi membaca dari storage
+        const retrievedData = JSON.parse(storedData);
+        console.log("Data yang diambil:", retrievedData);
+        console.log("Theme:", retrievedData.preferences.theme);
+    </script>
+</body>
+</html>

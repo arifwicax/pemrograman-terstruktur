@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 - JavaScript Standard Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .intro {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .intro h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .intro p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .learning-path {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .learning-path h2 {
+            color: #2196F3;
+            margin-bottom: 15px;
+        }
+        
+        .learning-path ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .learning-path li {
+            padding: 8px 0;
+            color: #555;
+        }
+        
+        .learning-path li:before {
+            content: "- ";
+            color: #2196F3;
+            font-weight: bold;
+        }
+        
+        .topics {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .topic-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        
+        .topic-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        
+        .topic-card p {
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
+        .topic-card .examples {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+        
+        .topic-card .level {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .level-basic {
+            background: #c8e6c9;
+            color: #2e7d32;
+        }
+        
+        .level-intermediate {
+            background: #fff9c4;
+            color: #f57f17;
+        }
+        
+        .level-advanced {
+            background: #ffccbc;
+            color: #d84315;
+        }
+        
+        .topic-card a {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .topic-card a:hover {
+            background: #764ba2;
+        }
+        
+        .features {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .features h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .features ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+        }
+        
+        .features li {
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .features li:before {
+            content: "* ";
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .tips-section {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .tips-section h2 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+        
+        .tips-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .tips-section li {
+            padding: 8px 0;
+            color: #856404;
+        }
+        
+        .tips-section li:before {
+            content: "* ";
+        }
+        
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .comprehensive {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border: none;
+            color: white;
+        }
+        
+        .comprehensive h3,
+        .comprehensive p,
+        .comprehensive .examples {
+            color: white;
+        }
+        
+        .comprehensive a {
+            background: white;
+            color: #f5576c;
+        }
+        
+        .comprehensive a:hover {
+            background: #f0f0f0;
+        }
+        
+        .mistakes-card {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            border: none;
+            color: white;
+        }
+        
+        .mistakes-card h3,
+        .mistakes-card p,
+        .mistakes-card .examples {
+            color: white;
+        }
+        
+        .mistakes-card a {
+            background: white;
+            color: #ff6b6b;
+        }
+        
+        .mistakes-card a:hover {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Week 11 - JavaScript Standard Library</h1>
+            <p>Pemrograman Terstruktur - Praktikum</p>
+        </header>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>Tentang Modul Ini</h2>
+                <p>
+                    JavaScript Standard Library adalah kumpulan objek dan fungsi bawaan yang disediakan 
+                    oleh JavaScript untuk mempermudah pengembangan aplikasi. Modul ini mencakup berbagai 
+                    topik dari serialisasi data, operasi matematika, manipulasi tanggal, validasi dengan 
+                    regular expression, struktur data advanced, hingga metaprogramming.
+                </p>
+            </div>
+            
+            <div class="learning-path">
+                <h2>Peta Pembelajaran</h2>
+                <ul>
+                    <li><strong>Level 1 (Dasar - Wajib)</strong>: JSON, Math, Date, String/Number Methods</li>
+                    <li><strong>Level 2 (Menengah - Penting)</strong>: RegExp, Object Advanced, Map & Set, Encoding</li>
+                    <li><strong>Level 3 (Advanced - Opsional)</strong>: BigInt & Symbol, Proxy & Reflect</li>
+                    <li><strong>Estimasi Waktu</strong>: 12-16 jam (termasuk latihan)</li>
+                </ul>
+            </div>
+            
+            <div class="tips-section">
+                <h2>Tips Belajar untuk Mahasiswa</h2>
+                <ul>
+                    <li>Mulai dari materi <strong>Dasar</strong> terlebih dahulu, jangan skip!</li>
+                    <li>Buka console browser (F12) dan coba setiap contoh kode</li>
+                    <li>Jangan hafal, tapi pahami <strong>kapan</strong> menggunakan setiap method</li>
+                    <li>Cek file <strong>Common Mistakes</strong> untuk menghindari error umum</li>
+                    <li>Dokumentasi MDN adalah teman terbaik programmer JavaScript</li>
+                    <li>Praktik dengan membuat project kecil menggunakan berbagai fitur</li>
+                </ul>
+            </div>
+            
+            <h2 style="color: #333; margin-bottom: 20px;">Daftar Praktikum</h2>
+            
+            <div class="topics">
+                <div class="topic-card">
+                    <span class="level level-basic">LEVEL 1 - DASAR</span>
+                    <h3>1. JSON Basics</h3>
+                    <p>Belajar serialisasi dan deserialisasi data menggunakan JSON.stringify() dan JSON.parse(). Penting untuk komunikasi API.</p>
+                    <div class="examples">10 contoh | Tips: Error handling, safe parsing</div>
+                    <a href="1.json_basics.html">Mulai Belajar</a>
+                </div>
+                
+                <div class="topic-card">
+                    <span class="level level-basic">LEVEL 1 - DASAR</span>
+                    <h3>2. Math Object</h3>
+                    <p>Operasi matematika dengan Math object termasuk konstanta, pembulatan, random, dan trigonometri.</p>
+                    <div class="examples">15 contoh | Tips: Random integers, pembulatan uang</div>
+                    <a href="2.math_object.html">Mulai Belajar</a>
+                </div>
+                
+                <div class="topic-card">
+                    <span class="level level-basic">LEVEL 1 - DASAR</span>
+                    <h3>3. Date Object</h3>
+                    <p>Manipulasi tanggal dan waktu, formatting, date arithmetic, dan kalkulasi umur. Ingat: bulan mulai dari 0!</p>
+                    <div class="examples">15 contoh | Tips: Bulan 0-11, timestamp usage</div>
+                    <a href="3.date_object.html">Mulai Belajar</a>
+                </div>
+                
+                <div class="topic-card">
+                    <span class="level level-intermediate">LEVEL 2 - MENENGAH</span>
+                    <h3>4. Regular Expression</h3>
+                    <p>Pattern matching dan validasi data dengan RegExp, termasuk validasi email, telepon, dan URL.</p>
+                    <div class="examples">20 contoh | Tips: regex101.com untuk testing</div>
+                    <a href="4.regexp_basics.html">Mulai Belajar</a>
+                </div>
+                
+                <div class="topic-card">
+                    <span class="level level-basic">LEVEL 1 - DASAR</span>
+                    <h3>5. String & Number Methods</h3>
+                    <p>Review mendalam method String dan Number untuk manipulasi dan formatting data.</p>
+                    <div class="examples">25 contoh | Review & pendalaman</div>
+                    <a href="5.string_number_methods.html">Mulai Belajar</a>
+                </div>
+                
+                <div class="topic-card">
+                    <span class="level level-intermediate">LEVEL 2 - MENENGAH</span>
+                    <h3>6. Object Advanced</h3>
+                    <p>Method advanced Object seperti keys, values, entries, assign, freeze, seal, dan defineProperty.</p>
+                    <div class="examples">20 contoh | Tips: Shallow vs deep copy</div>
+                    <a href="6.object_advanced.html">Mulai Belajar</a>
+                </div>
+                
+                <div class="topic-card">
+                    <span class="level level-intermediate">LEVEL 2 - MENENGAH</span>
+                    <h3>7. Map & Set</h3>
+                    <p>Struktur data koleksi Map dan Set, termasuk operasi set (union, intersection, difference).</p>
+                    <div class="examples">25 contoh | Tips: Kapan pakai Map vs Object</div>
+                    <a href="7.map_set.html">Mulai Belajar</a>
+                </div>
+                
+                <div class="topic-card">
+                    <span class="level level-advanced">LEVEL 3 - ADVANCED</span>
+                    <h3>8. BigInt & Symbol</h3>
+                    <p>BigInt untuk bilangan sangat besar dan Symbol untuk identifier unik dan private properties.</p>
+                    <div class="examples">20 contoh | Use case: Kriptografi, ID generation</div>
+                    <a href="8.bigint_symbol.html">Mulai Belajar</a>
+                </div>
+                
+                <div class="topic-card">
+                    <span class="level level-advanced">LEVEL 3 - ADVANCED</span>
+                    <h3>9. Proxy & Reflect</h3>
+                    <p>Metaprogramming dengan Proxy untuk intercept operasi object dan Reflect untuk manipulasi object.</p>
+                    <div class="examples">20 contoh | Tips: Dipakai Vue.js untuk reactive</div>
+                    <a href="9.proxy_reflect.html">Mulai Belajar</a>
+                </div>
+                
+                <div class="topic-card">
+                    <span class="level level-intermediate">LEVEL 2 - MENENGAH</span>
+                    <h3>10. Encoding & Decoding</h3>
+                    <p>Base64 encoding dengan btoa/atob dan URI encoding dengan encodeURI/decodeURI.</p>
+                    <div class="examples">21 contoh | Tips: URL building best practices</div>
+                    <a href="10.encoding.html">Mulai Belajar</a>
+                </div>
+                
+                <div class="topic-card comprehensive">
+                    <span class="level" style="background: white; color: #f5576c;">INTEGRASI</span>
+                    <h3>11. Comprehensive Example</h3>
+                    <p>Aplikasi lengkap Manajemen Data Mahasiswa yang mengintegrasikan semua topik JavaScript Standard Library.</p>
+                    <div class="examples">15 fitur terintegrasi | Semua library dalam 1 app</div>
+                    <a href="11.comprehensive_example.html">Lihat Aplikasi</a>
+                </div>
+                
+                <div class="topic-card mistakes-card">
+                    <span class="level" style="background: white; color: #ff6b6b;">PENTING!</span>
+                    <h3>12. Common Mistakes</h3>
+                    <p>Kesalahan umum yang sering dilakukan mahasiswa dan cara menghindarinya. WAJIB dibaca sebelum coding!</p>
+                    <div class="examples">8 kategori kesalahan | Tips debugging</div>
+                    <a href="12.common_mistakes.html">Pelajari Kesalahan</a>
+                </div>
+            </div>
+            
+            <div class="features">
+                <h2>Topik yang Dipelajari</h2>
+                <ul>
+                    <li>JSON - Serialisasi & Deserialisasi</li>
+                    <li>Math - Operasi Matematika</li>
+                    <li>Date - Manipulasi Tanggal & Waktu</li>
+                    <li>RegExp - Pattern Matching & Validasi</li>
+                    <li>String Methods - Manipulasi String</li>
+                    <li>Number Methods - Format & Parsing</li>
+                    <li>Object.keys/values/entries</li>
+                    <li>Object.assign/freeze/seal</li>
+                    <li>Map - Key-Value Collection</li>
+                    <li>Set - Unique Value Collection</li>
+                    <li>BigInt - Bilangan Sangat Besar</li>
+                    <li>Symbol - Unique Identifiers</li>
+                    <li>Proxy - Object Interception</li>
+                    <li>Reflect - Object Manipulation</li>
+                    <li>Base64 Encoding (btoa/atob)</li>
+                    <li>URI Encoding (encodeURI/decodeURI)</li>
+                </ul>
+            </div>
+            
+            <div class="learning-path" style="background: #f1f8e9; border-left-color: #689f38;">
+                <h2 style="color: #689f38;">Sumber Belajar Tambahan</h2>
+                <ul>
+                    <li><strong>MDN Web Docs</strong>: Dokumentasi lengkap JavaScript</li>
+                    <li><strong>JavaScript.info</strong>: Tutorial modern dan interaktif</li>
+                    <li><strong>regex101.com</strong>: Tool testing Regular Expression</li>
+                    <li><strong>Console Browser (F12)</strong>: Lab praktikum di browser Anda</li>
+                </ul>
+            </div>
+        </div>
+        
+        <footer>
+            <p><strong>Week 11 - JavaScript Standard Library</strong></p>
+            <p>Pemrograman Terstruktur © 2024</p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">
+                Tips: Belajar bertahap, praktek konsisten, jangan lupa cek Common Mistakes!
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
