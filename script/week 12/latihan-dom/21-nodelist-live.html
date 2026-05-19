@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21 - NodeList Live</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 21: NodeList Live</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <ul id="menu1">
+        <li id="pertama">Pertama</li>
+        <li id="kedua">Kedua</li>
+        <li id="ketiga">Ketiga</li>
+    </ul>
+    
+    <ul id="menu2">
+        <li>Arif</li>
+        <li>Wicaksono</li>
+        <li>Khannedy</li>
+    </ul>
+    
+    <script>
+        // NodeList dari childNodes bersifat LIVE
+        // Otomatis update saat DOM berubah
+        
+        console.log('=== NODELIST LIVE ===');
+        
+        // Mengakses childNodes (live NodeList)
+        const menu1 = document.getElementById("menu1");
+        const daftarLive = menu1.childNodes;
+        
+        console.log('NodeList awal (live):', daftarLive);
+        console.log('Jumlah awal:', daftarLive.length);
+        
+        // Menambah 2 element baru
+        menu1.appendChild(document.createElement("li"));
+        menu1.appendChild(document.createElement("li"));
+        
+        console.log('\n2 <li> baru ditambahkan');
+        
+        // NodeList otomatis update (live)
+        console.log('NodeList (live) otomatis update:', daftarLive);
+        console.log('Jumlah bertambah otomatis:', daftarLive.length);
+        
+        console.log('NodeList dari childNodes bersifat LIVE');
+        console.log('Otomatis update saat DOM berubah!');
+    </script>
+</body>
+</html>

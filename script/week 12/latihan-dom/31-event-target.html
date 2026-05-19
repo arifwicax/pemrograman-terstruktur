@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>31 - Event Target</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        button { padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 31: Event Target</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <button id="tombolKlik">Klik Saya!</button>
+    
+    <script>
+        // addEventListener() untuk menangani event
+        // Keuntungan: bisa menambahkan multiple handler untuk event yang sama
+        
+        console.log('=== EVENT TARGET ===');
+        
+        // Mengakses button
+        const tombol = document.getElementById("tombolKlik");
+        
+        // Event listener pertama
+        tombol.addEventListener("click", function() {
+            // Mengubah text button
+            tombol.textContent = "Sudah Diklik!";
+            console.log('Event listener 1: Tombol telah diklik');
+        });
+        
+        // Event listener kedua (pada element yang sama)
+        tombol.addEventListener("click", function() {
+            console.log('Event listener 2: Tombol diklik juga');
+        });
+        
+        console.log('addEventListener memungkinkan multiple event handler');
+        console.log('Klik tombol untuk melihat kedua handler bekerja');
+    </script>
+</body>
+</html>

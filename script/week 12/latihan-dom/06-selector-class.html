@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06 - Selector Class</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 6: Selector Class</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <ul>
+        <li class="menuItem">First</li>
+        <li>Second</li>
+        <li class="menuItem">Third</li>
+    </ul>
+    
+    <script>
+        // Selector Class menggunakan querySelector dengan tanda .
+        // Format: document.querySelectorAll(".namaClass")
+        
+        console.log('=== SELECTOR CLASS ===');
+        
+        // Mencari semua element dengan class "menuItem"
+        const menuItems = document.querySelectorAll(".menuItem");
+        
+        console.log('Semua element dengan class "menuItem":', menuItems);
+        console.log('Jumlah element:', menuItems.length);
+        
+        // Loop untuk menampilkan semua item
+        menuItems.forEach((item, index) => {
+            console.log(`Item ${index + 1}:`, item.textContent);
+        });
+        
+        // Class bisa digunakan oleh banyak elemen
+        // Berbeda dengan ID yang harus unik
+    </script>
+</body>
+</html>

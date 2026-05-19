@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>24 - Membuat Attribute</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        button { margin: 5px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 24: Membuat Attribute Baru</h1>
+    <p>Klik button untuk menambahkan attribute ke gambar</p>
+    
+    <img id="logo" alt="Logo">
+    
+    <button onclick="tambahAttribute()">Tambah Attribute</button>
+    
+    <script>
+        // setAttribute() bisa digunakan untuk membuat attribute baru
+        
+        console.log('=== MEMBUAT ATTRIBUTE ===');
+        
+        // Function untuk menambahkan attribute
+        function tambahAttribute() {
+            // Mengakses element img
+            const logo = document.getElementById("logo");
+            
+            // Menambahkan attribute src (URL gambar)
+            logo.setAttribute("src", "https://via.placeholder.com/200");
+            
+            // Menambahkan attribute width
+            logo.setAttribute("width", "200");
+            
+            // Menambahkan attribute height
+            logo.setAttribute("height", "200");
+            
+            console.log('Attribute baru telah ditambahkan:');
+            console.log('- src: https://via.placeholder.com/200');
+            console.log('- width: 200');
+            console.log('- height: 200');
+            
+            console.log('\nGambar sekarang tampil di halaman!');
+        }
+        
+        console.log('Klik tombol untuk menambahkan attribute ke gambar');
+    </script>
+</body>
+</html>

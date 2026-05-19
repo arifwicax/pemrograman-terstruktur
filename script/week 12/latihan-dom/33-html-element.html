@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>33 - HTML Element</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 33: HTML Element Spesifik</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <a id="link"></a>
+    
+    <script>
+        // Setiap jenis HTML element punya properti spesifik
+        // Contoh: <a> punya properti href dan target
+        
+        console.log('=== HTML ELEMENT ===');
+        
+        // Mengakses element anchor
+        const link = document.getElementById("link");
+        
+        // Properti href: URL tujuan link
+        link.href = "https://www.google.com";
+        
+        // Properti target: cara membuka link (_blank = tab baru)
+        link.target = "_blank";
+        
+        // Properti textContent: text yang ditampilkan
+        link.textContent = "Kunjungi Google";
+        
+        console.log('Properti link telah diatur:');
+        console.log('- href:', link.href);
+        console.log('- target:', link.target);
+        console.log('- text:', link.textContent);
+        
+        console.log('\nSetiap jenis element HTML punya properti spesifik');
+        console.log('Contoh: <a> punya href dan target');
+        console.log('Contoh: <img> punya src dan alt');
+        console.log('Contoh: <input> punya value dan type');
+    </script>
+</body>
+</html>

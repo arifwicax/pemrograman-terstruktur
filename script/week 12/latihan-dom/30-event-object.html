@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30 - Objek Event</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 30: Objek Event</h1>
+    <p id="teks">Klik kotak kuning di bawah</p>
+    
+    <div id="kotak" style="width: 400px; height: 200px; background-color: yellow; cursor: pointer;"></div>
+    
+    <script>
+        // Event object berisi informasi tentang event yang terjadi
+        // Otomatis dikirim ke function event handler
+        
+        console.log('=== OBJEK EVENT ===');
+        
+        // Mengakses element
+        const kotak = document.getElementById("kotak");
+        const teks = document.getElementById("teks");
+        
+        // Event handler dengan parameter event
+        kotak.onclick = function(event) {
+            // Properti event.x dan event.y: posisi klik
+            const posisiX = event.x;
+            const posisiY = event.y;
+            
+            // Menampilkan posisi klik
+            teks.textContent = `Anda klik pada posisi (${posisiX}, ${posisiY})`;
+            console.log(`Klik pada posisi X: ${posisiX}, Y: ${posisiY}`);
+        };
+        
+        console.log('Klik pada kotak untuk melihat posisi koordinat');
+        console.log('Event object berisi banyak informasi: x, y, target, type, dll');
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18 - Node Type</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 18: Tipe Node</h1>
+    <!-- Ini adalah komentar -->
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <script>
+        // Setiap node memiliki tipe yang berbeda
+        // Tipe node ditunjukkan dengan angka (nodeType)
+        
+        console.log('=== TIPE NODE ===');
+        
+        // Mengakses semua child nodes dari body
+        const nodes = document.body.childNodes;
+        console.log('Semua child nodes dari body:', nodes);
+        console.log('Jumlah nodes:', nodes.length);
+        
+        // Loop untuk menampilkan setiap node dan tipenya
+        console.log('\nDaftar node dan tipenya:');
+        for (let node of nodes) {
+            console.log(`${node.nodeName} : tipe ${node.nodeType}`);
+        }
+        
+        // Referensi tipe node
+        console.log('\nReferensi Tipe Node:');
+        console.log('1 = ELEMENT_NODE (tag HTML)');
+        console.log('3 = TEXT_NODE (teks/whitespace)');
+        console.log('8 = COMMENT_NODE (komentar)');
+        console.log('9 = DOCUMENT_NODE (document)');
+        
+        console.log('Tipe node membantu membedakan jenis node dalam DOM');
+    </script>
+</body>
+</html>

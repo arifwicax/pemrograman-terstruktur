@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08 - Selector Universal</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 8: Selector Universal</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    <div>Ini adalah div</div>
+    <span>Ini adalah span</span>
+    
+    <script>
+        // Selector Universal menggunakan tanda *
+        // Akan memilih SEMUA elemen di halaman
+        
+        console.log('=== SELECTOR UNIVERSAL ===');
+        
+        // Mencari semua element
+        const elements = document.querySelectorAll("*");
+        
+        console.log('Semua element di halaman:', elements);
+        console.log('Total jumlah:', elements.length);
+        
+        // Menampilkan 10 element pertama
+        console.log('10 element pertama:');
+        for(let i = 0; i < Math.min(10, elements.length); i++) {
+            console.log(`${i + 1}. <${elements[i].tagName.toLowerCase()}>`);
+        }
+        
+        // Hati-hati menggunakan selector universal
+        // Bisa lambat jika dokumen HTML sangat besar
+    </script>
+</body>
+</html>

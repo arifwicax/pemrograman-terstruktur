@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36 - HTML Table</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { padding: 10px; border: 1px solid #ccc; }
+        th { background: #f0f0f0; }
+        tfoot { background: #e0e0e0; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 36: HTML Table Element</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <table id="tabelPendapatan">
+        <caption>Pendapatan Bulanan</caption>
+        <thead>
+            <tr>
+                <th>Bulan</th>
+                <th>Pendapatan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Januari</td>
+                <td>Rp 100.000.000</td>
+            </tr>
+            <tr>
+                <td>Februari</td>
+                <td>Rp 200.000.000</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>Total</td>
+                <td>Rp 300.000.000</td>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <script>
+        // Element <table> punya properti spesifik untuk akses bagian-bagiannya
+        
+        console.log('=== HTML TABLE ===');
+        
+        // Mengakses element table
+        const tabel = document.getElementById("tabelPendapatan");
+        
+        // Properti caption: element <caption>
+        console.log('Caption:', tabel.caption);
+        
+        // Properti tHead: element <thead>
+        console.log('Table Head:', tabel.tHead);
+        
+        // Properti tBodies: koleksi element <tbody>
+        console.log('Table Bodies:', tabel.tBodies);
+        
+        // Properti tFoot: element <tfoot>
+        console.log('Table Foot:', tabel.tFoot);
+        
+        // Properti rows: semua baris <tr>
+        console.log('Semua Rows:', tabel.rows);
+        console.log('Jumlah rows:', tabel.rows.length);
+        
+        console.log('\nElement table punya properti untuk akses strukturnya');
+        console.log('Properti: caption, tHead, tBodies, tFoot, rows');
+    </script>
+</body>
+</html>

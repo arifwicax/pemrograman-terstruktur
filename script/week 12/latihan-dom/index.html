@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latihan DOM - Pembelajaran Terstruktur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #555;
+            margin-top: 30px;
+            padding: 10px;
+            background: #f5f5f5;
+        }
+        .intro {
+            background: #f0f0f0;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .category {
+            margin-bottom: 30px;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+        }
+        .file-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+        .file-list li:hover {
+            background: #f5f5f5;
+        }
+        .file-list a {
+            text-decoration: none;
+            color: #0066cc;
+            font-weight: bold;
+        }
+        .file-list a:hover {
+            color: #004499;
+        }
+        .file-desc {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        .tips {
+            background: #fff8dc;
+            padding: 15px;
+            margin-top: 30px;
+        }
+        footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <h1>Latihan DOM JavaScript - Pembelajaran Terstruktur</h1>
+    
+    <div class="intro">
+        <p><strong>Selamat Datang</strong></p>
+        <p>Folder ini berisi 36 latihan terstruktur untuk mempelajari DOM (Document Object Model) JavaScript dari dasar hingga mahir.</p>
+        <p><strong>Cara belajar:</strong> Ikuti urutan dari nomor 1-36, buka setiap file di browser dan lihat Console (F12) untuk penjelasan detail.</p>
+    </div>
+
+    <div class="category">
+        <h2>Bagian 1: Dasar Window & Document (1-4)</h2>
+        <ul class="file-list">
+            <li>
+                <a href="01-window-object.html">01 - Objek Window</a>
+                <div class="file-desc">Memahami objek window sebagai objek global browser</div>
+            </li>
+            <li>
+                <a href="02-document-object.html">02 - Objek Document</a>
+                <div class="file-desc">Mengenal objek document yang merepresentasikan halaman HTML</div>
+            </li>
+            <li>
+                <a href="03-document-properties.html">03 - Properti Document</a>
+                <div class="file-desc">Mengakses properti document (title, head, body, images)</div>
+            </li>
+            <li>
+                <a href="04-document-methods.html">04 - Method Document</a>
+                <div class="file-desc">Menggunakan method document untuk mengakses element</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h2>Bagian 2: Selector Element (5-10)</h2>
+        <ul class="file-list">
+            <li>
+                <a href="05-selector-id.html">05 - Selector ID</a>
+                <div class="file-desc">Memilih element dengan selector ID (#)</div>
+            </li>
+            <li>
+                <a href="06-selector-class.html">06 - Selector Class</a>
+                <div class="file-desc">Memilih element dengan selector class (.)</div>
+            </li>
+            <li>
+                <a href="07-selector-type.html">07 - Selector Type (Tag)</a>
+                <div class="file-desc">Memilih element berdasarkan nama tag HTML</div>
+            </li>
+            <li>
+                <a href="08-selector-universal.html">08 - Selector Universal</a>
+                <div class="file-desc">Memilih semua element dengan selector universal (*)</div>
+            </li>
+            <li>
+                <a href="09-selector-attribute.html">09 - Selector Attribute</a>
+                <div class="file-desc">Memilih element berdasarkan keberadaan attribute</div>
+            </li>
+            <li>
+                <a href="10-selector-attribute-operator.html">10 - Selector Attribute dengan Operator</a>
+                <div class="file-desc">Selector attribute dengan operator (^=, $=, *=)</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h2>Bagian 3: Element & Properti (11-14)</h2>
+        <ul class="file-list">
+            <li>
+                <a href="11-element-object.html">11 - Objek Element</a>
+                <div class="file-desc">Memahami objek element dalam DOM</div>
+            </li>
+            <li>
+                <a href="12-element-properties.html">12 - Properti Element</a>
+                <div class="file-desc">Mengakses properti element (id, className, tagName, innerHTML)</div>
+            </li>
+            <li>
+                <a href="13-element-methods.html">13 - Method Element</a>
+                <div class="file-desc">Menggunakan method element untuk manipulasi (remove)</div>
+            </li>
+            <li>
+                <a href="14-element-create.html">14 - Membuat Element</a>
+                <div class="file-desc">Membuat element baru dengan createElement dan appendChild</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h2>Bagian 4: Node & NodeList (15-21)</h2>
+        <ul class="file-list">
+            <li>
+                <a href="15-node-object.html">15 - Objek Node</a>
+                <div class="file-desc">Memahami node sebagai objek dasar dalam DOM tree</div>
+            </li>
+            <li>
+                <a href="16-node-properties.html">16 - Properti Node</a>
+                <div class="file-desc">Navigasi antar node (childNodes, previousSibling, nextSibling)</div>
+            </li>
+            <li>
+                <a href="17-node-methods.html">17 - Method Node</a>
+                <div class="file-desc">Memanipulasi node dengan removeChild</div>
+            </li>
+            <li>
+                <a href="18-node-type.html">18 - Tipe Node</a>
+                <div class="file-desc">Mengenal berbagai tipe node (element, text, comment)</div>
+            </li>
+            <li>
+                <a href="19-nodelist-object.html">19 - Objek NodeList</a>
+                <div class="file-desc">Memahami NodeList sebagai koleksi nodes</div>
+            </li>
+            <li>
+                <a href="20-nodelist-static.html">20 - NodeList Static</a>
+                <div class="file-desc">NodeList static dari querySelectorAll (tidak live)</div>
+            </li>
+            <li>
+                <a href="21-nodelist-live.html">21 - NodeList Live</a>
+                <div class="file-desc">NodeList live dari childNodes (otomatis update)</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h2>Bagian 5: Attribute & Style (22-26)</h2>
+        <ul class="file-list">
+            <li>
+                <a href="22-attribute-object.html">22 - Objek Attribute</a>
+                <div class="file-desc">Mengakses attribute element dengan getAttribute</div>
+            </li>
+            <li>
+                <a href="23-attribute-methods.html">23 - Method Attribute</a>
+                <div class="file-desc">Memanipulasi attribute dengan setAttribute</div>
+            </li>
+            <li>
+                <a href="24-attribute-create.html">24 - Membuat Attribute</a>
+                <div class="file-desc">Menambahkan attribute baru ke element</div>
+            </li>
+            <li>
+                <a href="25-named-node-map.html">25 - Named Node Map</a>
+                <div class="file-desc">Mengakses semua attribute melalui NamedNodeMap</div>
+            </li>
+            <li>
+                <a href="26-style-property.html">26 - Properti Style</a>
+                <div class="file-desc">Mengubah style CSS element secara dinamis</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h2>Bagian 6: Text & HTML Content (27-29)</h2>
+        <ul class="file-list">
+            <li>
+                <a href="27-inner-text.html">27 - Inner Text</a>
+                <div class="file-desc">Perbedaan textContent, innerText, dan innerHTML</div>
+            </li>
+            <li>
+                <a href="28-inner-html.html">28 - Inner HTML</a>
+                <div class="file-desc">Mengatur konten HTML dengan innerHTML</div>
+            </li>
+            <li>
+                <a href="29-text-create.html">29 - Membuat Text Node</a>
+                <div class="file-desc">Membuat node teks dengan createTextNode</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h2>Bagian 7: Event Handling (30-32)</h2>
+        <ul class="file-list">
+            <li>
+                <a href="30-event-object.html">30 - Objek Event</a>
+                <div class="file-desc">Memahami objek event dan propertinya</div>
+            </li>
+            <li>
+                <a href="31-event-target.html">31 - Event Target</a>
+                <div class="file-desc">Menggunakan addEventListener untuk event handling</div>
+            </li>
+            <li>
+                <a href="32-event-global.html">32 - Event Global</a>
+                <div class="file-desc">Event handler dengan onclick (tanpa addEventListener)</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="category">
+        <h2>Bagian 8: HTML Element Spesifik (33-36)</h2>
+        <ul class="file-list">
+            <li>
+                <a href="33-html-element.html">33 - HTML Element</a>
+                <div class="file-desc">Properti spesifik HTML element (contoh: anchor)</div>
+            </li>
+            <li>
+                <a href="34-html-form.html">34 - HTML Form (Method 1)</a>
+                <div class="file-desc">Menangani form dengan querySelector</div>
+            </li>
+            <li>
+                <a href="35-html-form2.html">35 - HTML Form (Method 2)</a>
+                <div class="file-desc">Menangani form dengan document.forms</div>
+            </li>
+            <li>
+                <a href="36-html-table.html">36 - HTML Table</a>
+                <div class="file-desc">Mengakses bagian-bagian table (caption, thead, tbody, tfoot)</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tips">
+        <h3>Tips Belajar</h3>
+        <ul>
+            <li>Ikuti urutan dari file 01 hingga 36 secara berurutan</li>
+            <li>Buka Console (tekan F12) di browser untuk melihat penjelasan detail</li>
+            <li>Ubah kode dan lihat hasilnya untuk memahami lebih dalam</li>
+            <li>Coba implementasikan konsep yang dipelajari ke project sendiri</li>
+            <li>Jangan ragu untuk kembali ke materi sebelumnya jika perlu</li>
+        </ul>
+    </div>
+
+    <footer>
+        <p>Latihan DOM JavaScript - Week 12</p>
+        <p>Total: 36 File Pembelajaran Terstruktur</p>
+    </footer>
+</body>
+</html>

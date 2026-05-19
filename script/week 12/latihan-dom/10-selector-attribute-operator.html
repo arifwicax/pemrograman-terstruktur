@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 - Selector Attribute Operator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 10: Selector Attribute dengan Operator</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <div class="eko">Eko</div>
+    <div class="ekokurniawan">Kurniawan</div>
+    <div class="ekokhannedy">Khannedy</div>
+    
+    <script>
+        // Selector Attribute dengan operator untuk matching nilai
+        // ^= artinya "dimulai dengan"
+        
+        console.log('=== SELECTOR ATTRIBUTE DENGAN OPERATOR ===');
+        
+        // Mencari element dengan class yang dimulai dengan "eko"
+        const list = document.querySelectorAll("div[class^=eko]");
+        
+        console.log('Semua <div> dengan class dimulai "eko":', list);
+        console.log('Jumlah:', list.length);
+        
+        // Loop menampilkan semua
+        list.forEach((div, index) => {
+            console.log(`${index + 1}. class="${div.className}" - ${div.textContent}`);
+        });
+        
+        console.log('\nOperator lain:');
+        console.log('- ^= : dimulai dengan');
+        console.log('- $= : diakhiri dengan');
+        console.log('- *= : mengandung');
+        console.log('- = : sama persis');
+    </script>
+</body>
+</html>

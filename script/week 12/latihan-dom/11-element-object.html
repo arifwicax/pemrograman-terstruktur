@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11 - Objek Element</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 11: Objek Element</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <div id="konten" class="kotak-konten">
+        <h2>Belajar JavaScript DOM</h2>
+        <p>Selamat Belajar JavaScript DOM</p>
+    </div>
+    
+    <script>
+        // Element adalah objek yang merepresentasikan tag HTML
+        // Setiap tag HTML adalah instance dari HTMLElement
+        
+        console.log('=== OBJEK ELEMENT ===');
+        
+        // Mengakses element dengan ID
+        const konten = document.getElementById("konten");
+        
+        // Menampilkan object element
+        console.log('Objek element:', konten);
+        
+        // Memeriksa tipe data (akan return "object")
+        console.log('Tipe:', typeof konten);
+        
+        // Memeriksa constructor (akan return "HTMLDivElement")
+        console.log('Constructor:', konten.constructor.name);
+        
+        console.log('Setiap tag HTML adalah instance dari HTMLElement');
+    </script>
+</body>
+</html>

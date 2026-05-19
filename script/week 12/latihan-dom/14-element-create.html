@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14 - Membuat Element</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 14: Membuat Element Baru</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <div id="konten" class="kotak-konten"></div>
+    
+    <script>
+        // Membuat element HTML baru dengan JavaScript
+        
+        console.log('=== MEMBUAT ELEMENT BARU ===');
+        
+        // Mengakses element konten
+        const konten = document.getElementById("konten");
+        
+        // Method createElement() membuat element baru
+        const judul = document.createElement("h2");
+        
+        // Mengisi textContent dari element
+        judul.textContent = "Belajar JavaScript DOM";
+        
+        // Method appendChild() menambahkan element ke parent
+        konten.appendChild(judul);
+        console.log('Element <h2> dibuat dan ditambahkan');
+        
+        // Membuat element p
+        const deskripsi = document.createElement("p");
+        deskripsi.textContent = "Selamat Belajar JavaScript DOM";
+        konten.appendChild(deskripsi);
+        console.log('Element <p> dibuat dan ditambahkan');
+        
+        console.log('createElement() membuat element baru di memori');
+        console.log('appendChild() menambahkan element ke DOM');
+    </script>
+</body>
+</html>

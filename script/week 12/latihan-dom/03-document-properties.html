@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 - Properti Document</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 3: Properti Document</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <img src="https://via.placeholder.com/150" alt="Gambar">
+    
+    <script>
+        // Document memiliki berbagai properti untuk mengakses bagian HTML
+        
+        console.log('=== PROPERTI DOCUMENT ===');
+        
+        // Properti title: judul halaman (dari tag <title>)
+        console.log('Judul halaman:', document.title);
+        
+        // Properti head: mengakses elemen <head>
+        console.log('Element head:', document.head);
+        
+        // Properti body: mengakses elemen <body>
+        console.log('Element body:', document.body);
+        
+        // Properti images: koleksi semua gambar di halaman
+        console.log('Semua gambar:', document.images);
+        
+        // Properti contentType: tipe konten dokumen
+        console.log('Tipe konten:', document.contentType);
+        
+        console.log('Properti document memudahkan akses ke bagian penting HTML');
+    </script>
+</body>
+</html>

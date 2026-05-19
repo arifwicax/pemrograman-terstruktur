@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>19 - NodeList</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 19: Objek NodeList</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <ul id="menu1">
+        <li id="pertama">Pertama</li>
+        <li id="kedua">Kedua</li>
+        <li id="ketiga">Ketiga</li>
+    </ul>
+    
+    <ul id="menu2">
+        <li>Arif</li>
+        <li>Wicaksono</li>
+        <li>Septyanto</li>
+    </ul>
+    
+    <script>
+        // NodeList adalah koleksi dari nodes
+        // Mirip array tapi bukan array
+        
+        console.log('=== NODELIST ===');
+        
+        // Mendapatkan NodeList dengan querySelectorAll
+        const semuaList = document.querySelectorAll("li");
+        console.log('NodeList dari querySelectorAll:', semuaList);
+        console.log('Jumlah:', semuaList.length);
+        
+        // Mendapatkan NodeList dengan childNodes
+        const menu1 = document.getElementById("menu1").childNodes;
+        console.log('\nNodeList childNodes menu1:', menu1);
+        console.log('Jumlah:', menu1.length);
+        
+        const menu2 = document.getElementById("menu2").childNodes;
+        console.log('\nNodeList childNodes menu2:', menu2);
+        console.log('Jumlah:', menu2.length);
+        
+        console.log('NodeList adalah array-like object yang berisi nodes');
+    </script>
+</body>
+</html>

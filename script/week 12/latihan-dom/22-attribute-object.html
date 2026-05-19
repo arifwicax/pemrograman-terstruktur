@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22 - Objek Attribute</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 22: Objek Attribute</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <img id="logo" src="https://via.placeholder.com/200" alt="Logo Placeholder">
+    
+    <script>
+        // Attribute adalah properti dari tag HTML (src, alt, id, class, dll)
+        // Bisa diakses dengan method getAttribute()
+        
+        console.log('=== OBJEK ATTRIBUTE ===');
+        
+        // Mengakses element img
+        const logo = document.getElementById("logo");
+        
+        // Method getAttribute() mengambil nilai attribute
+        const nilaiSrc = logo.getAttribute("src");
+        console.log('Nilai attribute src:', nilaiSrc);
+        
+        const nilaiAlt = logo.getAttribute("alt");
+        console.log('Nilai attribute alt:', nilaiAlt);
+        
+        console.log('getAttribute() membaca nilai attribute dari element');
+    </script>
+</body>
+</html>

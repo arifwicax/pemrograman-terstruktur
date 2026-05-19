@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>32 - Event Global</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        button { padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 32: Event Global</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <button id="tombolKlik">Klik Saya!</button>
+    
+    <script>
+        // Event handler bisa di-assign langsung ke properti onclick
+        // Cara lama, hanya bisa 1 handler per event
+        
+        console.log('=== EVENT GLOBAL ===');
+        
+        // Mengakses button
+        const tombol = document.getElementById("tombolKlik");
+        
+        // Assign function langsung ke properti onclick
+        tombol.onclick = function() {
+            // Mengubah text button
+            tombol.textContent = "Sudah Diklik!";
+            console.log('Tombol telah diklik');
+        };
+        
+        console.log('Event handler diassign langsung ke properti onclick');
+        console.log('Klik tombol untuk melihat event bekerja');
+        
+        console.log('\nPerbedaan:');
+        console.log('- onclick: hanya 1 handler (handler baru akan menimpa yang lama)');
+        console.log('- addEventListener: bisa multiple handlers');
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>28 - Inner HTML</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 28: Inner HTML</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <div id="konten"></div>
+    
+    <script>
+        // innerHTML untuk mengatur konten HTML
+        // Tag HTML akan di-render sebagai element
+        
+        console.log('=== INNER HTML ===');
+        
+        // Mengakses element
+        const konten = document.getElementById("konten");
+        
+        // Mengatur innerHTML dengan tag HTML
+        // Tag akan diproses dan ditampilkan sebagai element
+        konten.innerHTML = "<h2>Belajar JavaScript DOM</h2><p>Selamat Belajar JavaScript DOM</p>";
+        
+        console.log('Konten HTML telah diatur:');
+        console.log(konten.innerHTML);
+        
+        console.log('\ninnerHTML mengatur konten dengan tag HTML');
+        console.log('Tag HTML akan di-render sebagai element');
+        
+        console.log('\nHATI-HATI: Jangan gunakan innerHTML untuk input user');
+        console.log('Bisa menyebabkan XSS (Cross-Site Scripting) attack');
+    </script>
+</body>
+</html>

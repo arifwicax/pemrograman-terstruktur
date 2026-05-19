@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07 - Selector Type</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 7: Selector Type (Tag)</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <ul>
+        <li>Satu</li>
+        <li>Dua</li>
+    </ul>
+    
+    <ul>
+        <li>Tiga</li>
+        <li>Empat</li>
+        <li>Lima</li>
+    </ul>
+    
+    <script>
+        // Selector Type mencari berdasarkan nama tag HTML
+        // Format: document.querySelectorAll("namaTag")
+        
+        console.log('=== SELECTOR TYPE (TAG) ===');
+        
+        // Mencari semua element <li>
+        const list = document.querySelectorAll("li");
+        
+        console.log('Semua element <li>:', list);
+        console.log('Jumlah:', list.length);
+        
+        // Loop menampilkan semua list item
+        list.forEach((item, index) => {
+            console.log(`Item ${index + 1}:`, item.textContent);
+        });
+        
+        // Selector type akan mengambil SEMUA element dengan tag yang sama
+    </script>
+</body>
+</html>

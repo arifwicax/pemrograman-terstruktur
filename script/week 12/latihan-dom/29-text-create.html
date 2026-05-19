@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>29 - Membuat Text Node</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 29: Membuat Text Node</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <script>
+        // createTextNode() membuat node teks murni tanpa tag HTML
+        
+        console.log('=== MEMBUAT TEXT NODE ===');
+        
+        // Method createTextNode() membuat text node baru
+        const teks = document.createTextNode("Ini adalah teks yang dibuat dengan createTextNode");
+        
+        // Menambahkan text node ke body
+        document.body.appendChild(teks);
+        
+        console.log('Text node telah dibuat dan ditambahkan ke body');
+        console.log('Isi teks:', teks.wholeText);
+        
+        console.log('\ncreateTextNode() membuat node teks murni');
+        console.log('Lebih aman dari innerHTML untuk menampilkan teks');
+    </script>
+</body>
+</html>

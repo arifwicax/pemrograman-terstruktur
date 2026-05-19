@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25 - Named Node Map</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 25: Named Node Map</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <img id="logo" src="https://via.placeholder.com/200" alt="Logo Placeholder" width="200">
+    
+    <script>
+        // NamedNodeMap adalah koleksi dari semua attributes element
+        // Bisa diakses melalui properti attributes
+        
+        console.log('=== NAMED NODE MAP ===');
+        
+        // Mengakses element
+        const logo = document.getElementById("logo");
+        
+        // Properti attributes mengembalikan NamedNodeMap
+        const daftarAttributes = logo.attributes;
+        
+        console.log('NamedNodeMap:', daftarAttributes);
+        console.log('Jumlah attributes:', daftarAttributes.length);
+        
+        // Loop untuk menampilkan semua attributes
+        console.log('\nDaftar semua attributes:');
+        for (let attribute of daftarAttributes) {
+            console.log(`${attribute.name} = "${attribute.value}"`);
+        }
+        
+        console.log('NamedNodeMap adalah koleksi dari semua attributes element');
+    </script>
+</body>
+</html>

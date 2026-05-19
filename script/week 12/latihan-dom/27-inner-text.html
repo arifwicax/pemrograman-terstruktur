@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>27 - Inner Text</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 27: Inner Text</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <p id="konten">
+        <script>
+            console.info("Script di dalam paragraf");
+        </script>
+        <b>Arif</b> Wicaksono <i>Septyanto</i>
+    </p>
+    
+    <script>
+        // Ada 3 cara mengakses isi element: textContent, innerText, innerHTML
+        
+        console.log('=== INNER TEXT ===');
+        
+        // Mengakses element
+        const konten = document.getElementById("konten");
+        
+        // textContent: semua teks termasuk yang di dalam tag <script>
+        console.log('textContent (semua teks):');
+        console.log(konten.textContent);
+        
+        // innerText: hanya teks yang terlihat di layar (tanpa script)
+        console.log('\ninnerText (teks tampilan):');
+        console.log(konten.innerText);
+        
+        // innerHTML: termasuk tag HTML-nya
+        console.log('\ninnerHTML (dengan tag HTML):');
+        console.log(konten.innerHTML);
+        
+        console.log('\nPerbedaan:');
+        console.log('- textContent: semua teks termasuk dalam <script>');
+        console.log('- innerText: hanya teks yang tampil di layar');
+        console.log('- innerHTML: termasuk tag HTML-nya');
+    </script>
+</body>
+</html>

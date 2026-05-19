@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>26 - Properti Style</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        button { margin: 5px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 26: Properti Style</h1>
+    <p>Klik button untuk mengubah warna kotak</p>
+    
+    <button value="blue">Biru</button>
+    <button value="red">Merah</button>
+    <button value="yellow">Kuning</button>
+    <button value="green">Hijau</button>
+    
+    <div id="kotak" style="width: 400px; height: 200px; background-color: black; margin-top: 20px;"></div>
+    
+    <script>
+        // Properti style untuk mengubah CSS secara dinamis
+        
+        console.log('=== PROPERTI STYLE ===');
+        
+        // Mengakses element kotak
+        const kotak = document.getElementById("kotak");
+        
+        // Mengakses semua button
+        const tombolWarna = document.querySelectorAll("button");
+        
+        // Loop untuk setiap button
+        for (let tombol of tombolWarna) {
+            // Event klik untuk setiap button
+            tombol.onclick = function() {
+                // Mengambil nilai warna dari attribute value
+                const warna = tombol.getAttribute("value");
+                
+                // Mengubah style backgroundColor
+                // CSS: background-color -> JavaScript: backgroundColor
+                kotak.style.backgroundColor = warna;
+                
+                console.log(`Warna background diubah menjadi: ${warna}`);
+            };
+        }
+        
+        console.log('Klik tombol untuk mengubah warna background');
+        console.log('Properti style memungkinkan manipulasi CSS via JavaScript');
+    </script>
+</body>
+</html>

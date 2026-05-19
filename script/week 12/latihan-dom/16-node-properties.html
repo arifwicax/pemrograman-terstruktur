@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16 - Properti Node</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 16: Properti Node</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <ul id="menu">
+        <li id="pertama">Pertama</li>
+        <li id="kedua">Kedua</li>
+        <li id="ketiga">Ketiga</li>
+    </ul>
+    
+    <script>
+        // Node memiliki properti untuk navigasi
+        
+        console.log('=== PROPERTI NODE ===');
+        
+        // Mengakses node menu
+        const menu = document.getElementById("menu");
+        console.log('Node menu:', menu);
+        
+        // Properti childNodes: semua child node (termasuk text node)
+        console.log('Child nodes:', menu.childNodes);
+        console.log('Jumlah child:', menu.childNodes.length);
+        
+        // Mengakses node kedua
+        const kedua = document.getElementById("kedua");
+        console.log('\nNode kedua:', kedua);
+        console.log('Text content:', kedua.textContent);
+        
+        // Properti previousSibling: node sebelumnya
+        console.log('Previous sibling:', kedua.previousSibling);
+        
+        // Properti nextSibling: node setelahnya
+        console.log('Next sibling:', kedua.nextSibling);
+        
+        console.log('Properti node memudahkan navigasi antar node');
+    </script>
+</body>
+</html>

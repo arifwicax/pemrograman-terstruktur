@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12 - Properti Element</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 12: Properti Element</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <div id="konten" class="kotak-konten">
+        <h2>Belajar JavaScript DOM</h2>
+        <p>Selamat Belajar JavaScript DOM</p>
+    </div>
+    
+    <script>
+        // Element memiliki banyak properti yang bisa diakses
+        
+        console.log('=== PROPERTI ELEMENT ===');
+        
+        // Mengakses element
+        const konten = document.getElementById("konten");
+        
+        // Properti id: nilai attribute id
+        console.log('ID element:', konten.id);
+        
+        // Properti className: nilai attribute class
+        console.log('Class element:', konten.className);
+        
+        // Properti tagName: nama tag (huruf besar)
+        console.log('Nama tag:', konten.tagName);
+        
+        // Properti innerHTML: isi HTML sebagai string
+        console.log('Inner HTML:', konten.innerHTML);
+        
+        // Properti textContent: isi text tanpa tag HTML
+        console.log('Text content:', konten.textContent);
+        
+        console.log('Properti element memberikan akses ke data element');
+    </script>
+</body>
+</html>

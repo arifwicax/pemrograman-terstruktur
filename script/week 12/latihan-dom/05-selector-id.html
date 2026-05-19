@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05 - Selector ID</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 5: Selector ID</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <ul>
+        <li class="menuItem">First</li>
+        <li id="menu2">Second</li>
+        <li class="menuItem">Third</li>
+    </ul>
+    
+    <script>
+        // Selector ID menggunakan querySelector dengan tanda #
+        // Format: document.querySelector("#namaID")
+        
+        console.log('=== SELECTOR ID ===');
+        
+        // Mencari element dengan ID "menu2"
+        const menuItems = document.querySelectorAll("#menu2");
+        
+        console.log('Element dengan ID "menu2":', menuItems);
+        console.log('Isi teks:', menuItems[0].textContent);
+        
+        // ID harus unik dalam satu halaman HTML
+        // querySelector dengan ID akan mengembalikan 1 elemen saja
+    </script>
+</body>
+</html>

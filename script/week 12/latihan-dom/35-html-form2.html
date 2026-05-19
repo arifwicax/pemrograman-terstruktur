@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>35 - HTML Form (Method 2)</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        input { margin: 5px 0; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 35: HTML Form (document.forms)</h1>
+    <p>Isi form dan klik Kirim</p>
+    
+    <form name="formKomentar">
+        <label for="komentar">Komentar:</label>
+        <input type="text" name="komentar" id="komentar">
+        <br>
+        <label for="dari">Dari:</label>
+        <input type="text" name="dari" id="dari">
+        <br>
+        <input type="submit" value="Kirim">
+    </form>
+    
+    <h3>Daftar Komentar:</h3>
+    <div id="daftarKomentar"></div>
+    
+    <script>
+        // Menangani form dengan document.forms
+        // Cara alternatif akses form tanpa querySelector
+        
+        console.log('=== HTML FORM (METHOD 2) ===');
+        
+        // Mengakses form dengan document.forms['namaForm']
+        document.forms['formKomentar'].onsubmit = function(event) {
+            // Mencegah form reload halaman
+            event.preventDefault();
+            
+            const daftarKomentar = document.getElementById("daftarKomentar");
+            
+            // Akses input via document.forms
+            // Sintaks: document.forms['namaForm']['namaInput'].value
+            const komentar = document.forms['formKomentar']['komentar'].value;
+            const dari = document.forms['formKomentar']['dari'].value;
+            
+            // Membuat element paragraf baru
+            const itemKomentar = document.createElement("p");
+            itemKomentar.textContent = `${komentar} - ${dari}`;
+            
+            // Menambahkan ke daftar
+            daftarKomentar.appendChild(itemKomentar);
+            
+            console.log(`Komentar ditambahkan: "${komentar}" dari ${dari}`);
+            
+            // Reset form
+            document.forms['formKomentar'].reset();
+        };
+        
+        console.log('document.forms memberikan akses langsung ke form');
+        console.log('Lebih singkat daripada querySelector untuk form');
+    </script>
+</body>
+</html>

@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum 4: Create & Remove Elements</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #a8edea;
+        }
+
+        .section h2 {
+            color: #17a2b8;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .demo-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+            min-height: 100px;
+        }
+
+        .item-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            min-height: 60px;
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 8px;
+        }
+
+        .item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .item .delete-btn {
+            background: #e74c3c;
+            border: none;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .item .delete-btn:hover {
+            background: #c0392b;
+            transform: scale(1.1);
+        }
+
+        button {
+            background: linear-gradient(135deg, #a8edea 0%, #17a2b8 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(23, 162, 184, 0.4);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            margin: 10px 0;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #17a2b8;
+        }
+
+        .code-display {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+
+        .list-container {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            min-height: 60px;
+        }
+
+        .list-item {
+            background: white;
+            padding: 15px;
+            margin: 8px 0;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideIn 0.3s ease;
+        }
+
+        .list-item:hover {
+            background: #f8f9fa;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            animation: slideIn 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+
+        .info-box {
+            background: #d1ecf1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #17a2b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Praktikum 4: Create & Remove Elements</h1>
+        <p class="subtitle">Belajar membuat, menambahkan, dan menghapus elemen DOM secara dinamis</p>
+
+        <!-- Section 1: createElement & appendChild -->
+        <div class="section">
+            <h2>1. createElement() & appendChild()</h2>
+            <p>Membuat elemen baru dan menambahkan ke DOM</p>
+            
+            <div class="demo-box">
+                <input type="text" id="item-input" placeholder="Ketik nama item...">
+                <button onclick="addItem()">Tambah Item</button>
+                <button onclick="clearAllItems()">Hapus Semua</button>
+                
+                <div id="items-container" class="item-container"></div>
+            </div>
+
+            <div class="code-display">
+// Buat element baru
+const div = document.createElement('div');
+div.textContent = 'Item Baru';
+div.className = 'item';
+
+// Tambahkan ke parent
+container.appendChild(div);
+            </div>
+        </div>
+
+        <!-- Section 2: remove() & removeChild() -->
+        <div class="section">
+            <h2>2. remove() & removeChild()</h2>
+            <p>Menghapus elemen dari DOM</p>
+            
+            <div class="demo-box">
+                <button onclick="addListItem()">Tambah Item ke List</button>
+                <button onclick="removeFirstItem()">Hapus Item Pertama</button>
+                <button onclick="removeLastItem()">Hapus Item Terakhir</button>
+                <button onclick="clearList()">Hapus Semua</button>
+                
+                <div id="list-container" class="list-container"></div>
+            </div>
+
+            <div class="code-display">
+// Method 1: remove() - Modern way
+element.remove();
+
+// Method 2: removeChild() - Classic way
+parent.removeChild(element);
+            </div>
+        </div>
+
+        <!-- Section 3: insertBefore -->
+        <div class="section">
+            <h2>3. insertBefore()</h2>
+            <p>Menambahkan elemen di posisi tertentu</p>
+            
+            <div class="demo-box">
+                <button onclick="insertAtBeginning()">Insert di Awal</button>
+                <button onclick="insertAtMiddle()">Insert di Tengah</button>
+                <button onclick="insertAtEnd()">Insert di Akhir</button>
+                <button onclick="clearInsertList()">Hapus Semua</button>
+                
+                <div id="insert-container" class="list-container"></div>
+            </div>
+
+            <div class="code-display">
+// Insert sebelum element tertentu
+const newElement = document.createElement('div');
+parent.insertBefore(newElement, referenceElement);
+
+// Insert di awal (sebelum child pertama)
+parent.insertBefore(newElement, parent.firstChild);
+            </div>
+        </div>
+
+        <!-- Section 4: cloneNode() -->
+        <div class="section">
+            <h2>4. cloneNode()</h2>
+            <p>Menduplikasi elemen yang sudah ada</p>
+            
+            <div class="demo-box">
+                <div id="template-card" class="card">
+                    <h3>Template Card</h3>
+                    <p>Ini adalah template card yang bisa di-clone</p>
+                </div>
+                
+                <button onclick="cloneCard(false)">Clone (shallow)</button>
+                <button onclick="cloneCard(true)">Clone (deep)</button>
+                <button onclick="clearClones()">Hapus Clones</button>
+                
+                <div id="clones-container"></div>
+            </div>
+
+            <div class="code-display">
+// Shallow clone (tanpa children)
+const shallowClone = element.cloneNode(false);
+
+// Deep clone (dengan semua children)
+const deepClone = element.cloneNode(true);
+            </div>
+        </div>
+
+        <!-- Section 5: innerHTML vs createElement -->
+        <div class="section">
+            <h2>5. innerHTML vs createElement</h2>
+            <p>Perbandingan dua cara membuat konten HTML</p>
+            
+            <div class="demo-box">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h4>Menggunakan innerHTML</h4>
+                        <button onclick="addWithInnerHTML()">Tambah (innerHTML)</button>
+                        <div id="innerHTML-container" class="list-container"></div>
+                    </div>
+                    <div>
+                        <h4>Menggunakan createElement</h4>
+                        <button onclick="addWithCreateElement()">Tambah (createElement)</button>
+                        <div id="createElement-container" class="list-container"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <strong>Kapan menggunakan mana?</strong><br>
+                • <strong>innerHTML:</strong> Cepat untuk HTML statis, tapi bisa XSS vulnerable<br>
+                • <strong>createElement:</strong> Lebih aman, lebih kontrol, recommended untuk dynamic content
+            </div>
+        </div>
+
+        <!-- Section 6: Complete Example -->
+        <div class="section">
+            <h2>6. Contoh Lengkap: Dynamic Task Manager</h2>
+            <p>Kombinasi semua teknik yang telah dipelajari</p>
+            
+            <div class="demo-box">
+                <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                    <input type="text" id="task-input" placeholder="Masukkan task baru..." style="flex: 1;">
+                    <button onclick="addTask()">Tambah Task</button>
+                </div>
+                
+                <div id="tasks-container" class="list-container"></div>
+                
+                <div style="margin-top: 15px; padding: 10px; background: #e8f5e9; border-radius: 5px;">
+                    <strong>Total Tasks:</strong> <span id="task-count">0</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+            <strong>Tips Praktik:</strong><br>
+            • Selalu gunakan createElement() untuk konten dynamic yang berisi user input<br>
+            • innerHTML lebih cepat tapi bisa rentan XSS jika tidak hati-hati<br>
+            • Gunakan remove() untuk menghapus elemen (modern way)<br>
+            • cloneNode(true) berguna untuk template elements<br>
+            • appendChild() menambah di akhir, insertBefore() untuk kontrol posisi
+        </div>
+    </div>
+
+    <script>
+        // Section 1: Add Item
+        let itemCounter = 1;
+
+        function addItem() {
+            const input = document.getElementById('item-input');
+            const container = document.getElementById('items-container');
+            
+            if (!input.value.trim()) {
+                alert('Masukkan nama item terlebih dahulu!');
+                return;
+            }
+            
+            // Create new div
+            const div = document.createElement('div');
+            div.className = 'item';
+            div.textContent = input.value;
+            
+            // Create delete button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.textContent = '×';
+            deleteBtn.onclick = function() {
+                div.remove();
+                console.log('Item dihapus:', input.value);
+            };
+            
+            div.appendChild(deleteBtn);
+            container.appendChild(div);
+            
+            console.log('Item ditambahkan:', input.value);
+            input.value = '';
+            input.focus();
+        }
+
+        function clearAllItems() {
+            document.getElementById('items-container').innerHTML = '';
+            console.log('Semua items dihapus');
+        }
+
+        // Section 2: List operations
+        let listCounter = 1;
+
+        function addListItem() {
+            const container = document.getElementById('list-container');
+            
+            const div = document.createElement('div');
+            div.className = 'list-item';
+            div.innerHTML = `
+                <span>List Item #${listCounter}</span>
+                <button class="delete-btn" onclick="this.parentElement.remove()">×</button>
+            `;
+            
+            container.appendChild(div);
+            listCounter++;
+            console.log('List item ditambahkan');
+        }
+
+        function removeFirstItem() {
+            const container = document.getElementById('list-container');
+            if (container.firstChild) {
+                container.removeChild(container.firstChild);
+                console.log('Item pertama dihapus');
+            } else {
+                alert('List kosong!');
+            }
+        }
+
+        function removeLastItem() {
+            const container = document.getElementById('list-container');
+            if (container.lastChild) {
+                container.lastChild.remove();
+                console.log('Item terakhir dihapus');
+            } else {
+                alert('List kosong!');
+            }
+        }
+
+        function clearList() {
+            document.getElementById('list-container').innerHTML = '';
+            listCounter = 1;
+            console.log('List dibersihkan');
+        }
+
+        // Section 3: insertBefore
+        let insertCounter = 1;
+
+        function insertAtBeginning() {
+            const container = document.getElementById('insert-container');
+            const div = document.createElement('div');
+            div.className = 'list-item';
+            div.innerHTML = `<span>Item #${insertCounter} (inserted at beginning)</span>`;
+            
+            container.insertBefore(div, container.firstChild);
+            insertCounter++;
+            console.log('Item inserted at beginning');
+        }
+
+        function insertAtMiddle() {
+            const container = document.getElementById('insert-container');
+            const div = document.createElement('div');
+            div.className = 'list-item';
+            div.innerHTML = `<span>Item #${insertCounter} (inserted at middle)</span>`;
+            
+            const middleIndex = Math.floor(container.children.length / 2);
+            const referenceNode = container.children[middleIndex];
+            
+            if (referenceNode) {
+                container.insertBefore(div, referenceNode);
+            } else {
+                container.appendChild(div);
+            }
+            
+            insertCounter++;
+            console.log('Item inserted at middle');
+        }
+
+        function insertAtEnd() {
+            const container = document.getElementById('insert-container');
+            const div = document.createElement('div');
+            div.className = 'list-item';
+            div.innerHTML = `<span>Item #${insertCounter} (inserted at end)</span>`;
+            
+            container.appendChild(div);
+            insertCounter++;
+            console.log('Item inserted at end');
+        }
+
+        function clearInsertList() {
+            document.getElementById('insert-container').innerHTML = '';
+            insertCounter = 1;
+        }
+
+        // Section 4: cloneNode
+        let cloneCounter = 1;
+
+        function cloneCard(deep) {
+            const template = document.getElementById('template-card');
+            const container = document.getElementById('clones-container');
+            
+            const clone = template.cloneNode(deep);
+            
+            if (deep) {
+                clone.querySelector('h3').textContent = `Clone #${cloneCounter} (Deep)`;
+                clone.querySelector('p').textContent = 'Ini adalah deep clone (dengan semua children)';
+            } else {
+                clone.textContent = `Clone #${cloneCounter} (Shallow) - tanpa children`;
+            }
+            
+            clone.id = '';
+            clone.style.opacity = '0.8';
+            container.appendChild(clone);
+            
+            cloneCounter++;
+            console.log('Card cloned:', deep ? 'deep' : 'shallow');
+        }
+
+        function clearClones() {
+            document.getElementById('clones-container').innerHTML = '';
+            cloneCounter = 1;
+        }
+
+        // Section 5: innerHTML vs createElement
+        let htmlCounter = 1;
+        let elementCounter = 1;
+
+        function addWithInnerHTML() {
+            const container = document.getElementById('innerHTML-container');
+            const html = `<div class="list-item">
+                <span>Item #${htmlCounter} (innerHTML)</span>
+            </div>`;
+            
+            container.innerHTML += html;
+            htmlCounter++;
+            console.log('Added with innerHTML');
+        }
+
+        function addWithCreateElement() {
+            const container = document.getElementById('createElement-container');
+            
+            const div = document.createElement('div');
+            div.className = 'list-item';
+            
+            const span = document.createElement('span');
+            span.textContent = `Item #${elementCounter} (createElement)`;
+            
+            div.appendChild(span);
+            container.appendChild(div);
+            
+            elementCounter++;
+            console.log('Added with createElement');
+        }
+
+        // Section 6: Task Manager
+        let taskId = 1;
+
+        function addTask() {
+            const input = document.getElementById('task-input');
+            const container = document.getElementById('tasks-container');
+            
+            if (!input.value.trim()) {
+                alert('Masukkan task terlebih dahulu!');
+                return;
+            }
+            
+            // Create task element
+            const taskDiv = document.createElement('div');
+            taskDiv.className = 'list-item';
+            taskDiv.dataset.taskId = taskId;
+            
+            const taskText = document.createElement('span');
+            taskText.textContent = input.value;
+            
+            const buttonGroup = document.createElement('div');
+            buttonGroup.style.display = 'flex';
+            buttonGroup.style.gap = '5px';
+            
+            // Complete button
+            const completeBtn = document.createElement('button');
+            completeBtn.textContent = '✓';
+            completeBtn.style.background = '#2ecc71';
+            completeBtn.onclick = function() {
+                taskText.style.textDecoration = 'line-through';
+                taskText.style.color = '#95a5a6';
+                completeBtn.disabled = true;
+                console.log('Task completed:', input.value);
+            };
+            
+            // Delete button
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.textContent = '×';
+            deleteBtn.onclick = function() {
+                taskDiv.remove();
+                updateTaskCount();
+                console.log('Task deleted:', input.value);
+            };
+            
+            buttonGroup.appendChild(completeBtn);
+            buttonGroup.appendChild(deleteBtn);
+            
+            taskDiv.appendChild(taskText);
+            taskDiv.appendChild(buttonGroup);
+            
+            container.appendChild(taskDiv);
+            
+            input.value = '';
+            input.focus();
+            taskId++;
+            updateTaskCount();
+        }
+
+        function updateTaskCount() {
+            const count = document.querySelectorAll('#tasks-container .list-item').length;
+            document.getElementById('task-count').textContent = count;
+        }
+
+        // Initialize
+        updateTaskCount();
+
+        // Welcome
+        console.log('%c=== PRAKTIKUM 4: CREATE & REMOVE ELEMENTS ===', 'background: #17a2b8; color: white; padding: 10px; font-size: 16px; font-weight: bold;');
+        console.log('Coba berbagai cara membuat dan menghapus elemen!');
+    </script>
+</body>
+</html>

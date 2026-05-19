@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum 1: Element Selectors</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .demo-area {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+        }
+
+        .target-element {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: #ecf0f1;
+            transition: all 0.3s ease;
+        }
+
+        .target-element:hover {
+            transform: translateX(5px);
+        }
+
+        .highlight {
+            background: #ffeaa7 !important;
+            border: 3px solid #fdcb6e !important;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(253, 203, 110, 0.4);
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #95e1d3 0%, #38ada9 100%);
+        }
+
+        .code-display {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+
+        .result-display {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: #2e7d32;
+            font-weight: 600;
+        }
+
+        .result-display.error {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #2196F3;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Praktikum 1: Element Selectors</h1>
+        <p class="subtitle">Belajar cara memilih elemen HTML menggunakan berbagai metode selector</p>
+
+        <!-- Section 1: getElementById -->
+        <div class="section">
+            <h2>1. getElementById()</h2>
+            <p>Memilih elemen berdasarkan ID (harus unik)</p>
+            
+            <div class="demo-area">
+                <div id="special-box" class="target-element">
+                    <strong>Special Box</strong> - ID: special-box
+                </div>
+            </div>
+
+            <div class="code-display">
+const element = document.getElementById('special-box');
+element.style.background = 'lightblue';
+            </div>
+
+            <button onclick="testGetElementById()">Test getElementById</button>
+            <button class="btn-secondary" onclick="resetAll()">Reset</button>
+            
+            <div id="result1" class="result-display" style="display:none;"></div>
+        </div>
+
+        <!-- Section 2: getElementsByClassName -->
+        <div class="section">
+            <h2>2. getElementsByClassName()</h2>
+            <p>Memilih semua elemen dengan class tertentu (HTMLCollection)</p>
+            
+            <div class="demo-area">
+                <div class="fruit target-element">Apple</div>
+                <div class="fruit target-element">Banana</div>
+                <div class="vegetable target-element">Carrot</div>
+                <div class="fruit target-element">Cherry</div>
+            </div>
+
+            <div class="code-display">
+const fruits = document.getElementsByClassName('fruit');
+// fruits = HTMLCollection [div.fruit, div.fruit, div.fruit]
+for(let fruit of fruits) {
+    fruit.classList.add('highlight');
+}
+            </div>
+
+            <button onclick="testGetElementsByClassName()">Highlight Semua .fruit</button>
+            <button class="btn-secondary" onclick="resetAll()">Reset</button>
+            
+            <div id="result2" class="result-display" style="display:none;"></div>
+        </div>
+
+        <!-- Section 3: getElementsByTagName -->
+        <div class="section">
+            <h2>3. getElementsByTagName()</h2>
+            <p>Memilih semua elemen dengan tag tertentu</p>
+            
+            <div class="demo-area">
+                <p class="target-element">Paragraf 1</p>
+                <div class="target-element">Div 1</div>
+                <p class="target-element">Paragraf 2</p>
+                <span class="target-element">Span 1</span>
+                <p class="target-element">Paragraf 3</p>
+            </div>
+
+            <div class="code-display">
+const paragraphs = document.getElementsByTagName('p');
+for(let p of paragraphs) {
+    p.classList.add('highlight');
+}
+            </div>
+
+            <button onclick="testGetElementsByTagName()">Highlight Semua &lt;p&gt;</button>
+            <button class="btn-secondary" onclick="resetAll()">Reset</button>
+            
+            <div id="result3" class="result-display" style="display:none;"></div>
+        </div>
+
+        <!-- Section 4: querySelector -->
+        <div class="section">
+            <h2>4. querySelector()</h2>
+            <p>Memilih SATU elemen pertama yang cocok dengan CSS selector</p>
+            
+            <div class="demo-area">
+                <div class="box target-element" data-priority="high">Box 1 (priority: high)</div>
+                <div class="box target-element" data-priority="low">Box 2 (priority: low)</div>
+                <div class="box target-element" data-priority="high">Box 3 (priority: high)</div>
+            </div>
+
+            <div class="code-display">
+// Pilih box pertama dengan priority="high"
+const highPriorityBox = document.querySelector('.box[data-priority="high"]');
+highPriorityBox.classList.add('highlight');
+            </div>
+
+            <button onclick="testQuerySelector()">Test querySelector</button>
+            <button class="btn-secondary" onclick="resetAll()">Reset</button>
+            
+            <div id="result4" class="result-display" style="display:none;"></div>
+        </div>
+
+        <!-- Section 5: querySelectorAll -->
+        <div class="section">
+            <h2>5. querySelectorAll()</h2>
+            <p>Memilih SEMUA elemen yang cocok dengan CSS selector (NodeList)</p>
+            
+            <div class="demo-area">
+                <div class="item target-element" data-status="active">Item 1 (active)</div>
+                <div class="item target-element" data-status="inactive">Item 2 (inactive)</div>
+                <div class="item target-element" data-status="active">Item 3 (active)</div>
+                <div class="item target-element" data-status="active">Item 4 (active)</div>
+            </div>
+
+            <div class="code-display">
+// Pilih SEMUA item dengan status="active"
+const activeItems = document.querySelectorAll('.item[data-status="active"]');
+activeItems.forEach(item => {
+    item.classList.add('highlight');
+});
+            </div>
+
+            <button onclick="testQuerySelectorAll()">Highlight Semua Active Items</button>
+            <button class="btn-secondary" onclick="resetAll()">Reset</button>
+            
+            <div id="result5" class="result-display" style="display:none;"></div>
+        </div>
+
+        <!-- Section 6: Perbandingan -->
+        <div class="section">
+            <h2>6. Perbandingan & Best Practice</h2>
+            
+            <div class="info-box">
+                <strong>Tips Memilih Selector:</strong><br>
+                • <code>getElementById()</code> - Paling cepat, gunakan untuk ID unik<br>
+                • <code>querySelector()</code> - Paling fleksibel, bisa pakai CSS selector apapun<br>
+                • <code>querySelectorAll()</code> - Untuk pilih banyak elemen dengan pola CSS<br>
+                • <code>getElementsByClassName()</code> - Live collection (auto update)<br>
+                • <code>getElementsByTagName()</code> - Live collection (auto update)<br>
+            </div>
+
+            <div class="button-group">
+                <button onclick="runAllTests()">Jalankan Semua Test</button>
+                <button class="btn-secondary" onclick="resetAll()">Reset Semua</button>
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+            <strong>Cara Praktik:</strong><br>
+            1. Klik tombol pada setiap section untuk melihat hasilnya<br>
+            2. Perhatikan elemen mana yang ter-highlight (warna kuning)<br>
+            3. Buka DevTools Console (F12) untuk melihat log detail<br>
+            4. Klik "Reset" untuk menghapus semua highlight<br>
+            5. Coba modifikasi kode di DevTools Console untuk eksperimen
+        </div>
+    </div>
+
+    <script>
+        // 1. getElementById
+        function testGetElementById() {
+            console.log('\n=== TEST getElementById ===');
+            const element = document.getElementById('special-box');
+            
+            if (element) {
+                element.classList.add('highlight');
+                showResult('result1', `✓ Berhasil memilih elemen dengan ID "special-box"`, false);
+                console.log('Element ditemukan:', element);
+                console.log('Tag:', element.tagName);
+                console.log('ID:', element.id);
+            } else {
+                showResult('result1', `✗ Element tidak ditemukan`, true);
+            }
+        }
+
+        // 2. getElementsByClassName
+        function testGetElementsByClassName() {
+            console.log('\n=== TEST getElementsByClassName ===');
+            const fruits = document.getElementsByClassName('fruit');
+            
+            console.log('Jumlah elemen dengan class "fruit":', fruits.length);
+            console.log('HTMLCollection:', fruits);
+            
+            for (let fruit of fruits) {
+                fruit.classList.add('highlight');
+                console.log('Highlighted:', fruit.textContent);
+            }
+            
+            showResult('result2', `✓ Berhasil memilih ${fruits.length} elemen dengan class "fruit"`, false);
+        }
+
+        // 3. getElementsByTagName
+        function testGetElementsByTagName() {
+            console.log('\n=== TEST getElementsByTagName ===');
+            const section = document.querySelector('.section:nth-of-type(3) .demo-area');
+            const paragraphs = section.getElementsByTagName('p');
+            
+            console.log('Jumlah tag <p> di area demo:', paragraphs.length);
+            console.log('HTMLCollection:', paragraphs);
+            
+            for (let p of paragraphs) {
+                p.classList.add('highlight');
+                console.log('Highlighted:', p.textContent);
+            }
+            
+            showResult('result3', `✓ Berhasil memilih ${paragraphs.length} elemen <p>`, false);
+        }
+
+        // 4. querySelector
+        function testQuerySelector() {
+            console.log('\n=== TEST querySelector ===');
+            const highPriorityBox = document.querySelector('.box[data-priority="high"]');
+            
+            if (highPriorityBox) {
+                highPriorityBox.classList.add('highlight');
+                console.log('Element pertama ditemukan:', highPriorityBox);
+                console.log('Text:', highPriorityBox.textContent);
+                console.log('Data-priority:', highPriorityBox.dataset.priority);
+                
+                showResult('result4', `✓ Berhasil memilih elemen pertama dengan [data-priority="high"]`, false);
+            }
+        }
+
+        // 5. querySelectorAll
+        function testQuerySelectorAll() {
+            console.log('\n=== TEST querySelectorAll ===');
+            const activeItems = document.querySelectorAll('.item[data-status="active"]');
+            
+            console.log('Jumlah active items:', activeItems.length);
+            console.log('NodeList:', activeItems);
+            
+            activeItems.forEach((item, index) => {
+                item.classList.add('highlight');
+                console.log(`Item ${index + 1}:`, item.textContent);
+            });
+            
+            showResult('result5', `✓ Berhasil memilih ${activeItems.length} elemen dengan [data-status="active"]`, false);
+        }
+
+        // Helper: Show result
+        function showResult(elementId, message, isError) {
+            const resultDiv = document.getElementById(elementId);
+            resultDiv.textContent = message;
+            resultDiv.style.display = 'block';
+            
+            if (isError) {
+                resultDiv.classList.add('error');
+            } else {
+                resultDiv.classList.remove('error');
+            }
+        }
+
+        // Reset all highlights
+        function resetAll() {
+            console.log('\n=== RESET ALL ===');
+            const highlighted = document.querySelectorAll('.highlight');
+            highlighted.forEach(el => el.classList.remove('highlight'));
+            
+            // Hide all result displays
+            document.querySelectorAll('.result-display').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            console.log('Semua highlight telah dihapus');
+        }
+
+        // Run all tests
+        function runAllTests() {
+            console.log('\n========================================');
+            console.log('MENJALANKAN SEMUA TEST');
+            console.log('========================================');
+            
+            resetAll();
+            
+            setTimeout(() => testGetElementById(), 500);
+            setTimeout(() => testGetElementsByClassName(), 1000);
+            setTimeout(() => testGetElementsByTagName(), 1500);
+            setTimeout(() => testQuerySelector(), 2000);
+            setTimeout(() => testQuerySelectorAll(), 2500);
+            
+            setTimeout(() => {
+                console.log('\n========================================');
+                console.log('SEMUA TEST SELESAI');
+                console.log('========================================');
+            }, 3000);
+        }
+
+        // Welcome message
+        console.log('%c=== PRAKTIKUM 1: ELEMENT SELECTORS ===', 'background: #667eea; color: white; padding: 10px; font-size: 16px; font-weight: bold;');
+        console.log('Silakan klik tombol pada setiap section untuk melihat cara kerja selector!');
+        console.log('');
+    </script>
+</body>
+</html>

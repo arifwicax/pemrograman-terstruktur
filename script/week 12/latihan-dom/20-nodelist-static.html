@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20 - NodeList Static</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 20: NodeList Static</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <ul id="menu1">
+        <li id="pertama">Pertama</li>
+        <li id="kedua">Kedua</li>
+        <li id="ketiga">Ketiga</li>
+    </ul>
+    
+    <ul id="menu2">
+        <li>Arif</li>
+        <li>Wicaksono</li>
+        <li>Khannedy</li>
+    </ul>
+    
+    <script>
+        // NodeList dari querySelectorAll bersifat STATIC
+        // Tidak otomatis update saat DOM berubah
+        
+        console.log('=== NODELIST STATIC ===');
+        
+        // Query pertama
+        let daftarList = document.querySelectorAll("li");
+        console.log('NodeList awal:', daftarList);
+        console.log('Jumlah awal:', daftarList.length);
+        
+        // Menambah 2 element baru
+        const menu1 = document.getElementById("menu1");
+        menu1.appendChild(document.createElement("li"));
+        menu1.appendChild(document.createElement("li"));
+        
+        console.log('\n2 <li> baru ditambahkan ke menu1');
+        
+        // NodeList lama tidak berubah (static)
+        console.log('NodeList lama (static):', daftarList);
+        console.log('Jumlah tetap:', daftarList.length);
+        
+        // Perlu query ulang untuk melihat perubahan
+        daftarList = document.querySelectorAll("li");
+        console.log('\nSetelah query ulang:', daftarList);
+        console.log('Jumlah sekarang:', daftarList.length);
+        
+        console.log('NodeList dari querySelectorAll bersifat STATIC');
+        console.log('Perlu query ulang untuk melihat perubahan DOM');
+    </script>
+</body>
+</html>

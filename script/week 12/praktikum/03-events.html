@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum 3: Event Handling</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #fa709a;
+        }
+
+        .section h2 {
+            color: #fa709a;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .demo-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+            min-height: 100px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(250, 112, 154, 0.4);
+        }
+
+        .clickable-box {
+            background: #3498db;
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .clickable-box:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .clickable-box:active {
+            transform: scale(0.95);
+        }
+
+        .moveable-box {
+            width: 100px;
+            height: 100px;
+            background: #e74c3c;
+            border-radius: 10px;
+            position: absolute;
+            cursor: move;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            user-select: none;
+        }
+
+        .event-log {
+            background: #2c3e50;
+            color: #2ecc71;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .event-log div {
+            padding: 3px 0;
+            border-bottom: 1px solid #34495e;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            margin: 10px 0;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #fa709a;
+        }
+
+        .color-box {
+            width: 150px;
+            height: 150px;
+            background: #3498db;
+            border-radius: 10px;
+            margin: 20px auto;
+            transition: background 0.3s ease;
+        }
+
+        .form-demo {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .form-demo input, .form-demo textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 2px solid #bdc3c7;
+            border-radius: 5px;
+        }
+
+        .info-box {
+            background: #d4edda;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #28a745;
+        }
+
+        .key-display {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            font-size: 2em;
+            font-weight: bold;
+            margin: 20px;
+            min-width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Praktikum 3: Event Handling</h1>
+        <p class="subtitle">Belajar menangani berbagai event (click, input, hover, keyboard, dll)</p>
+
+        <!-- Section 1: Click Event -->
+        <div class="section">
+            <h2>1. Click Event</h2>
+            <p>Event paling umum - terjadi saat element diklik</p>
+            
+            <div class="demo-box">
+                <div id="click-box" class="clickable-box">
+                    Klik Saya! (Klik: <span id="click-count">0</span>)
+                </div>
+            </div>
+
+            <div class="event-log" id="click-log"></div>
+
+            <button onclick="resetClickCount()">Reset Counter</button>
+        </div>
+
+        <!-- Section 2: Input Events -->
+        <div class="section">
+            <h2>2. Input Events (keyup, input, change)</h2>
+            <p>Event yang terjadi saat user mengetik atau mengubah input</p>
+            
+            <div class="demo-box">
+                <input type="text" id="text-input" placeholder="Ketik sesuatu...">
+                <div style="margin-top: 15px;">
+                    <strong>Live Preview:</strong>
+                    <div id="text-preview" style="padding: 15px; background: #e8f5e9; border-radius: 5px; margin-top: 10px; min-height: 50px; font-size: 1.2em;"></div>
+                </div>
+                <div style="margin-top: 10px;">
+                    <strong>Jumlah Karakter:</strong> <span id="char-count">0</span>
+                </div>
+            </div>
+
+            <div class="event-log" id="input-log"></div>
+        </div>
+
+        <!-- Section 3: Mouse Events -->
+        <div class="section">
+            <h2>3. Mouse Events (hover, mousemove)</h2>
+            <p>Event yang terjadi saat mouse berinteraksi dengan element</p>
+            
+            <div class="demo-box">
+                <div id="hover-box" class="color-box"></div>
+                <div style="text-align: center; margin-top: 10px;">
+                    <strong>Mouse Position:</strong> X: <span id="mouse-x">0</span>, Y: <span id="mouse-y">0</span>
+                </div>
+            </div>
+
+            <div class="event-log" id="mouse-log"></div>
+        </div>
+
+        <!-- Section 4: Keyboard Events -->
+        <div class="section">
+            <h2>4. Keyboard Events</h2>
+            <p>Event yang terjadi saat user menekan keyboard</p>
+            
+            <div class="demo-box">
+                <p style="text-align: center; margin-bottom: 20px;">Tekan keyboard apa saja (fokus di area ini)</p>
+                <div id="key-display" class="key-display" tabindex="0">Press any key</div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <strong>Last Key Info:</strong><br>
+                    Key: <code id="key-name">-</code> | 
+                    Code: <code id="key-code">-</code> | 
+                    Ctrl: <code id="key-ctrl">false</code>
+                </div>
+            </div>
+
+            <div class="event-log" id="keyboard-log"></div>
+        </div>
+
+        <!-- Section 5: Form Events -->
+        <div class="section">
+            <h2>5. Form Events (submit, focus, blur)</h2>
+            <p>Event yang terjadi pada form element</p>
+            
+            <div class="demo-box">
+                <form id="demo-form" class="form-demo">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <textarea id="message" placeholder="Pesan" rows="3"></textarea>
+                    <button type="submit">Submit Form</button>
+                </form>
+                <div id="form-result" style="margin-top: 15px; padding: 15px; background: #fff3cd; border-radius: 5px; display: none;"></div>
+            </div>
+
+            <div class="event-log" id="form-log"></div>
+        </div>
+
+        <!-- Section 6: Event Object -->
+        <div class="section">
+            <h2>6. Event Object Properties</h2>
+            <p>Setiap event handler menerima object event dengan informasi detail</p>
+            
+            <div class="demo-box">
+                <button id="event-btn" style="padding: 20px 40px; font-size: 1.2em;">Klik untuk Info Event</button>
+                <div id="event-info" style="margin-top: 20px; padding: 15px; background: #e3f2fd; border-radius: 5px; display: none;"></div>
+            </div>
+
+            <div class="info-box">
+                <strong>Event Object Properties:</strong><br>
+                • <code>event.target</code> - Element yang memicu event<br>
+                • <code>event.type</code> - Jenis event (click, input, dll)<br>
+                • <code>event.clientX/Y</code> - Posisi mouse<br>
+                • <code>event.key</code> - Tombol keyboard yang ditekan<br>
+                • <code>event.preventDefault()</code> - Mencegah aksi default<br>
+                • <code>event.stopPropagation()</code> - Menghentikan event bubbling
+            </div>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+            <strong>Tips Praktik:</strong><br>
+            • Buka DevTools Console (F12) untuk melihat log detail<br>
+            • Semua event log ditampilkan di box hitam di setiap section<br>
+            • addEventListener() lebih baik daripada onclick attribute<br>
+            • Event object berisi banyak informasi berguna<br>
+            • Gunakan preventDefault() untuk mencegah aksi default (misal: form submit)
+        </div>
+    </div>
+
+    <script>
+        // Section 1: Click Event
+        let clickCount = 0;
+        const clickBox = document.getElementById('click-box');
+        const clickLog = document.getElementById('click-log');
+        const clickCountSpan = document.getElementById('click-count');
+
+        clickBox.addEventListener('click', function(event) {
+            clickCount++;
+            clickCountSpan.textContent = clickCount;
+            addLog(clickLog, `Click #${clickCount} at (${event.clientX}, ${event.clientY})`);
+            console.log('Click event:', event);
+        });
+
+        function resetClickCount() {
+            clickCount = 0;
+            clickCountSpan.textContent = '0';
+            clickLog.innerHTML = '';
+        }
+
+        // Section 2: Input Events
+        const textInput = document.getElementById('text-input');
+        const textPreview = document.getElementById('text-preview');
+        const charCount = document.getElementById('char-count');
+        const inputLog = document.getElementById('input-log');
+
+        textInput.addEventListener('input', function(event) {
+            const value = event.target.value;
+            textPreview.textContent = value || '(kosong)';
+            charCount.textContent = value.length;
+            addLog(inputLog, `Input: "${value}" (${value.length} chars)`);
+        });
+
+        textInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                addLog(inputLog, `Enter pressed! Text: "${event.target.value}"`);
+            }
+        });
+
+        // Section 3: Mouse Events
+        const hoverBox = document.getElementById('hover-box');
+        const mouseLog = document.getElementById('mouse-log');
+        const mouseX = document.getElementById('mouse-x');
+        const mouseY = document.getElementById('mouse-y');
+
+        const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c'];
+        let colorIndex = 0;
+
+        hoverBox.addEventListener('mouseenter', function() {
+            hoverBox.style.background = colors[colorIndex];
+            colorIndex = (colorIndex + 1) % colors.length;
+            addLog(mouseLog, `Mouse entered - Color changed to ${colors[colorIndex - 1]}`);
+        });
+
+        hoverBox.addEventListener('mouseleave', function() {
+            addLog(mouseLog, 'Mouse left the box');
+        });
+
+        hoverBox.addEventListener('mousemove', function(event) {
+            const rect = hoverBox.getBoundingClientRect();
+            const x = Math.round(event.clientX - rect.left);
+            const y = Math.round(event.clientY - rect.top);
+            mouseX.textContent = x;
+            mouseY.textContent = y;
+        });
+
+        // Section 4: Keyboard Events
+        const keyDisplay = document.getElementById('key-display');
+        const keyboardLog = document.getElementById('keyboard-log');
+        const keyName = document.getElementById('key-name');
+        const keyCode = document.getElementById('key-code');
+        const keyCtrl = document.getElementById('key-ctrl');
+
+        keyDisplay.addEventListener('keydown', function(event) {
+            event.preventDefault();
+            keyDisplay.textContent = event.key;
+            keyName.textContent = event.key;
+            keyCode.textContent = event.code;
+            keyCtrl.textContent = event.ctrlKey || event.metaKey;
+            
+            let modifiers = [];
+            if (event.ctrlKey || event.metaKey) modifiers.push('Ctrl');
+            if (event.shiftKey) modifiers.push('Shift');
+            if (event.altKey) modifiers.push('Alt');
+            
+            const modifierText = modifiers.length > 0 ? ` + ${modifiers.join('+')}` : '';
+            addLog(keyboardLog, `Key: ${event.key} (${event.code})${modifierText}`);
+        });
+
+        // Auto focus
+        keyDisplay.focus();
+
+        // Section 5: Form Events
+        const demoForm = document.getElementById('demo-form');
+        const formLog = document.getElementById('form-log');
+        const formResult = document.getElementById('form-result');
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+
+        demoForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah form submit
+            
+            const username = usernameInput.value;
+            const email = emailInput.value;
+            const message = document.getElementById('message').value;
+            
+            formResult.style.display = 'block';
+            formResult.innerHTML = `
+                <strong>Form Data:</strong><br>
+                Username: ${username}<br>
+                Email: ${email}<br>
+                Message: ${message || '(kosong)'}
+            `;
+            
+            addLog(formLog, `Form submitted! User: ${username}, Email: ${email}`);
+            console.log('Form data:', { username, email, message });
+        });
+
+        usernameInput.addEventListener('focus', function() {
+            addLog(formLog, 'Username field focused');
+            this.style.borderColor = '#2ecc71';
+        });
+
+        usernameInput.addEventListener('blur', function() {
+            addLog(formLog, 'Username field blur');
+            this.style.borderColor = '#bdc3c7';
+        });
+
+        emailInput.addEventListener('focus', function() {
+            addLog(formLog, 'Email field focused');
+            this.style.borderColor = '#2ecc71';
+        });
+
+        emailInput.addEventListener('blur', function() {
+            addLog(formLog, 'Email field blur');
+            this.style.borderColor = '#bdc3c7';
+        });
+
+        // Section 6: Event Object
+        const eventBtn = document.getElementById('event-btn');
+        const eventInfo = document.getElementById('event-info');
+
+        eventBtn.addEventListener('click', function(event) {
+            eventInfo.style.display = 'block';
+            eventInfo.innerHTML = `
+                <strong>Event Object Properties:</strong><br>
+                <code>event.type</code>: ${event.type}<br>
+                <code>event.target</code>: ${event.target.tagName} (${event.target.id})<br>
+                <code>event.clientX</code>: ${event.clientX}<br>
+                <code>event.clientY</code>: ${event.clientY}<br>
+                <code>event.timeStamp</code>: ${Math.round(event.timeStamp)}ms<br>
+                <code>event.isTrusted</code>: ${event.isTrusted}<br>
+                <code>event.bubbles</code>: ${event.bubbles}
+            `;
+            
+            console.log('Full event object:', event);
+        });
+
+        // Helper: Add log
+        function addLog(logElement, message) {
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.textContent = `[${timestamp}] ${message}`;
+            logElement.appendChild(logEntry);
+            logElement.scrollTop = logElement.scrollHeight;
+            
+            // Keep only last 10 logs
+            if (logElement.children.length > 10) {
+                logElement.removeChild(logElement.firstChild);
+            }
+        }
+
+        // Welcome
+        console.log('%c=== PRAKTIKUM 3: EVENT HANDLING ===', 'background: #fa709a; color: white; padding: 10px; font-size: 16px; font-weight: bold;');
+        console.log('Interaksi dengan berbagai element untuk memicu events!');
+    </script>
+</body>
+</html>

@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum 2: Manipulasi Konten & Properties</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid #f5576c;
+        }
+
+        .section h2 {
+            color: #f5576c;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .demo-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px solid #e0e0e0;
+            min-height: 100px;
+        }
+
+        .editable-box {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 2px dashed #bdc3c7;
+            min-height: 80px;
+            transition: all 0.3s ease;
+        }
+
+        .editable-box:hover {
+            border-color: #f5576c;
+        }
+
+        button {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            margin: 10px 0;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #f5576c;
+        }
+
+        .code-display {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            overflow-x: auto;
+        }
+
+        .info-box {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .style-demo {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #3498db;
+            color: white;
+            border-radius: 8px;
+            margin: 10px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .class-list-demo {
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
+
+        .active {
+            background: #2ecc71 !important;
+            color: white !important;
+            transform: scale(1.05);
+        }
+
+        .featured {
+            border: 3px solid #e74c3c !important;
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .premium {
+            background: linear-gradient(135deg, #ffd89b 0%, #19547b 100%) !important;
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Praktikum 2: Manipulasi Konten & Properties</h1>
+        <p class="subtitle">Belajar mengubah konten, attribute, style, dan class pada elemen HTML</p>
+
+        <!-- Section 1: textContent -->
+        <div class="section">
+            <h2>1. textContent - Mengubah Teks</h2>
+            <p>Property untuk mengambil atau mengubah teks mentah (tanpa HTML)</p>
+            
+            <div class="demo-box">
+                <div id="text-demo" class="editable-box">
+                    Ini adalah teks original
+                </div>
+            </div>
+
+            <input type="text" id="text-input" placeholder="Ketik teks baru..." value="Teks telah diubah!">
+
+            <div class="code-display">
+const element = document.getElementById('text-demo');
+element.textContent = 'Teks telah diubah!';
+            </div>
+
+            <button onclick="changeTextContent()">Ubah Teks</button>
+            <button onclick="getTextContent()">Baca Teks</button>
+            <button onclick="resetSection1()">Reset</button>
+        </div>
+
+        <!-- Section 2: innerHTML -->
+        <div class="section">
+            <h2>2. innerHTML - Mengubah HTML</h2>
+            <p>Property untuk mengambil atau mengubah konten HTML (termasuk tag)</p>
+            
+            <div class="demo-box">
+                <div id="html-demo" class="editable-box">
+                    <p>Konten HTML original</p>
+                </div>
+            </div>
+
+            <textarea id="html-input" rows="3" placeholder="Ketik HTML..."><strong>Teks Bold</strong> dan <em>Teks Miring</em></textarea>
+
+            <div class="code-display">
+const element = document.getElementById('html-demo');
+element.innerHTML = '&lt;strong&gt;Teks Bold&lt;/strong&gt; dan &lt;em&gt;Teks Miring&lt;/em&gt;';
+            </div>
+
+            <button onclick="changeInnerHTML()">Ubah HTML</button>
+            <button onclick="addMoreHTML()">Tambah Konten</button>
+            <button onclick="resetSection2()">Reset</button>
+        </div>
+
+        <!-- Section 3: Attributes -->
+        <div class="section">
+            <h2>3. Attribute - Mengubah Attribute Element</h2>
+            <p>Menggunakan getAttribute(), setAttribute(), dan removeAttribute()</p>
+            
+            <div class="demo-box">
+                <div id="attr-demo" class="editable-box" data-status="normal" data-priority="low">
+                    Element dengan attributes
+                </div>
+                <div style="margin-top: 15px;">
+                    <strong>Current Attributes:</strong>
+                    <div id="attr-display" style="margin-top: 10px; padding: 10px; background: #e8f5e9; border-radius: 5px;"></div>
+                </div>
+            </div>
+
+            <div class="code-display">
+element.setAttribute('data-status', 'active');
+element.setAttribute('data-priority', 'high');
+const status = element.getAttribute('data-status');
+            </div>
+
+            <button onclick="setActiveAttribute()">Set Active</button>
+            <button onclick="setHighPriority()">Set High Priority</button>
+            <button onclick="showAllAttributes()">Tampilkan Attributes</button>
+            <button onclick="resetSection3()">Reset</button>
+        </div>
+
+        <!-- Section 4: Style -->
+        <div class="section">
+            <h2>4. Style - Mengubah CSS Inline</h2>
+            <p>Mengubah style langsung via JavaScript (inline CSS)</p>
+            
+            <div class="demo-box">
+                <div id="style-demo" class="style-demo">
+                    Style Box
+                </div>
+            </div>
+
+            <div class="code-display">
+element.style.backgroundColor = '#e74c3c';
+element.style.color = 'white';
+element.style.padding = '30px';
+element.style.transform = 'rotate(5deg)';
+            </div>
+
+            <button onclick="changeColor()">Ubah Warna</button>
+            <button onclick="makeItBigger()">Perbesar</button>
+            <button onclick="rotateElement()">Rotate</button>
+            <button onclick="animateBox()">Animasi</button>
+            <button onclick="resetSection4()">Reset</button>
+        </div>
+
+        <!-- Section 5: classList -->
+        <div class="section">
+            <h2>5. classList - Manipulasi CSS Class</h2>
+            <p>Menambah, menghapus, dan toggle class CSS</p>
+            
+            <div class="demo-box">
+                <div id="class-demo" class="class-list-demo">
+                    Element dengan classList
+                </div>
+                <div style="margin-top: 15px;">
+                    <strong>Current Classes:</strong>
+                    <div id="class-display" style="margin-top: 10px; padding: 10px; background: #e3f2fd; border-radius: 5px;"></div>
+                </div>
+            </div>
+
+            <div class="code-display">
+element.classList.add('active');
+element.classList.remove('active');
+element.classList.toggle('featured');
+element.classList.contains('active'); // true/false
+            </div>
+
+            <button onclick="addClass()">Add 'active'</button>
+            <button onclick="toggleFeatured()">Toggle 'featured'</button>
+            <button onclick="addPremium()">Add 'premium'</button>
+            <button onclick="removeAllClasses()">Remove All</button>
+            <button onclick="resetSection5()">Reset</button>
+        </div>
+
+        <!-- Section 6: Dataset -->
+        <div class="section">
+            <h2>6. dataset - Data Attributes</h2>
+            <p>Akses data-* attributes dengan mudah</p>
+            
+            <div class="demo-box">
+                <div id="dataset-demo" class="editable-box" 
+                     data-user-id="123" 
+                     data-user-name="John Doe" 
+                     data-user-role="admin">
+                    Element dengan data attributes
+                </div>
+                <div style="margin-top: 15px;">
+                    <strong>Dataset:</strong>
+                    <div id="dataset-display" style="margin-top: 10px; padding: 10px; background: #f3e5f5; border-radius: 5px;"></div>
+                </div>
+            </div>
+
+            <div class="code-display">
+element.dataset.userId = '456';
+element.dataset.userName = 'Jane Smith';
+console.log(element.dataset.userRole); // 'admin'
+            </div>
+
+            <button onclick="readDataset()">Baca Dataset</button>
+            <button onclick="updateDataset()">Update Dataset</button>
+            <button onclick="addNewData()">Tambah Data Baru</button>
+            <button onclick="resetSection6()">Reset</button>
+        </div>
+
+        <div class="info-box" style="margin-top: 30px;">
+            <strong>Tips Praktik:</strong><br>
+            • Buka DevTools Console (F12) untuk melihat log detail<br>
+            • Coba modifikasi nilai di input field sebelum klik tombol<br>
+            • Perhatikan perbedaan textContent vs innerHTML<br>
+            • classList lebih baik daripada className untuk manipulasi class<br>
+            • Dataset otomatis convert camelCase (data-user-name → dataset.userName)
+        </div>
+    </div>
+
+    <script>
+        // Section 1: textContent
+        function changeTextContent() {
+            const element = document.getElementById('text-demo');
+            const newText = document.getElementById('text-input').value;
+            element.textContent = newText;
+            console.log('✓ textContent diubah menjadi:', newText);
+        }
+
+        function getTextContent() {
+            const element = document.getElementById('text-demo');
+            const text = element.textContent;
+            alert('Teks saat ini: ' + text);
+            console.log('textContent:', text);
+        }
+
+        function resetSection1() {
+            document.getElementById('text-demo').textContent = 'Ini adalah teks original';
+            document.getElementById('text-input').value = 'Teks telah diubah!';
+        }
+
+        // Section 2: innerHTML
+        function changeInnerHTML() {
+            const element = document.getElementById('html-demo');
+            const newHTML = document.getElementById('html-input').value;
+            element.innerHTML = newHTML;
+            console.log('✓ innerHTML diubah menjadi:', newHTML);
+        }
+
+        function addMoreHTML() {
+            const element = document.getElementById('html-demo');
+            element.innerHTML += '<p style="color: #e74c3c;"><strong>Konten ditambahkan!</strong></p>';
+            console.log('✓ Konten HTML ditambahkan');
+        }
+
+        function resetSection2() {
+            document.getElementById('html-demo').innerHTML = '<p>Konten HTML original</p>';
+            document.getElementById('html-input').value = '<strong>Teks Bold</strong> dan <em>Teks Miring</em>';
+        }
+
+        // Section 3: Attributes
+        function setActiveAttribute() {
+            const element = document.getElementById('attr-demo');
+            element.setAttribute('data-status', 'active');
+            element.style.background = '#2ecc71';
+            element.style.color = 'white';
+            showAllAttributes();
+            console.log('✓ Attribute data-status diset ke "active"');
+        }
+
+        function setHighPriority() {
+            const element = document.getElementById('attr-demo');
+            element.setAttribute('data-priority', 'high');
+            element.style.border = '3px solid #e74c3c';
+            showAllAttributes();
+            console.log('✓ Attribute data-priority diset ke "high"');
+        }
+
+        function showAllAttributes() {
+            const element = document.getElementById('attr-demo');
+            const display = document.getElementById('attr-display');
+            let html = '';
+            
+            for (let attr of element.attributes) {
+                html += `<div><code>${attr.name}</code> = "${attr.value}"</div>`;
+            }
+            
+            display.innerHTML = html;
+            console.log('Attributes:', element.attributes);
+        }
+
+        function resetSection3() {
+            const element = document.getElementById('attr-demo');
+            element.setAttribute('data-status', 'normal');
+            element.setAttribute('data-priority', 'low');
+            element.style.background = '#ecf0f1';
+            element.style.color = 'inherit';
+            element.style.border = '2px dashed #bdc3c7';
+            document.getElementById('attr-display').innerHTML = '';
+        }
+
+        // Section 4: Style
+        function changeColor() {
+            const element = document.getElementById('style-demo');
+            element.style.backgroundColor = '#e74c3c';
+            element.style.color = 'white';
+            console.log('✓ Warna diubah');
+        }
+
+        function makeItBigger() {
+            const element = document.getElementById('style-demo');
+            element.style.padding = '30px 50px';
+            element.style.fontSize = '1.5em';
+            console.log('✓ Ukuran diperbesar');
+        }
+
+        function rotateElement() {
+            const element = document.getElementById('style-demo');
+            element.style.transform = 'rotate(10deg)';
+            console.log('✓ Element dirotasi');
+        }
+
+        function animateBox() {
+            const element = document.getElementById('style-demo');
+            let rotation = 0;
+            let scale = 1;
+            
+            const animate = setInterval(() => {
+                rotation += 10;
+                scale = 1 + Math.sin(rotation * Math.PI / 180) * 0.3;
+                element.style.transform = `rotate(${rotation}deg) scale(${scale})`;
+                
+                if (rotation >= 360) {
+                    clearInterval(animate);
+                    element.style.transform = 'rotate(0deg) scale(1)';
+                }
+            }, 50);
+            
+            console.log('✓ Animasi dimulai');
+        }
+
+        function resetSection4() {
+            const element = document.getElementById('style-demo');
+            element.style.backgroundColor = '#3498db';
+            element.style.color = 'white';
+            element.style.padding = '15px 30px';
+            element.style.fontSize = '1em';
+            element.style.transform = 'none';
+        }
+
+        // Section 5: classList
+        function addClass() {
+            const element = document.getElementById('class-demo');
+            element.classList.add('active');
+            updateClassDisplay();
+            console.log('✓ Class "active" ditambahkan');
+        }
+
+        function toggleFeatured() {
+            const element = document.getElementById('class-demo');
+            element.classList.toggle('featured');
+            updateClassDisplay();
+            console.log('✓ Class "featured" di-toggle');
+        }
+
+        function addPremium() {
+            const element = document.getElementById('class-demo');
+            element.classList.add('premium');
+            updateClassDisplay();
+            console.log('✓ Class "premium" ditambahkan');
+        }
+
+        function removeAllClasses() {
+            const element = document.getElementById('class-demo');
+            element.className = 'class-list-demo';
+            updateClassDisplay();
+            console.log('✓ Semua class dihapus (kecuali base class)');
+        }
+
+        function updateClassDisplay() {
+            const element = document.getElementById('class-demo');
+            const display = document.getElementById('class-display');
+            const classes = Array.from(element.classList);
+            display.innerHTML = classes.map(c => `<span style="display: inline-block; padding: 5px 10px; background: #fff; border-radius: 4px; margin: 2px;"><code>${c}</code></span>`).join('');
+        }
+
+        function resetSection5() {
+            const element = document.getElementById('class-demo');
+            element.className = 'class-list-demo';
+            document.getElementById('class-display').innerHTML = '';
+        }
+
+        // Section 6: Dataset
+        function readDataset() {
+            const element = document.getElementById('dataset-demo');
+            const display = document.getElementById('dataset-display');
+            
+            let html = '';
+            for (let key in element.dataset) {
+                html += `<div><code>dataset.${key}</code> = "${element.dataset[key]}"</div>`;
+            }
+            
+            display.innerHTML = html;
+            console.log('Dataset:', element.dataset);
+        }
+
+        function updateDataset() {
+            const element = document.getElementById('dataset-demo');
+            element.dataset.userId = '456';
+            element.dataset.userName = 'Jane Smith';
+            element.dataset.userRole = 'superadmin';
+            readDataset();
+            console.log('✓ Dataset diupdate');
+        }
+
+        function addNewData() {
+            const element = document.getElementById('dataset-demo');
+            element.dataset.timestamp = new Date().toISOString();
+            element.dataset.source = 'praktikum';
+            readDataset();
+            console.log('✓ Data baru ditambahkan');
+        }
+
+        function resetSection6() {
+            const element = document.getElementById('dataset-demo');
+            element.dataset.userId = '123';
+            element.dataset.userName = 'John Doe';
+            element.dataset.userRole = 'admin';
+            
+            // Remove additional data
+            delete element.dataset.timestamp;
+            delete element.dataset.source;
+            
+            document.getElementById('dataset-display').innerHTML = '';
+        }
+
+        // Welcome
+        console.log('%c=== PRAKTIKUM 2: MANIPULASI KONTEN & PROPERTIES ===', 'background: #f5576c; color: white; padding: 10px; font-size: 16px; font-weight: bold;');
+        console.log('Klik tombol pada setiap section untuk melihat cara manipulasi konten!');
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>17 - Method Node</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        button { margin: 5px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 17: Method Node</h1>
+    <p>Klik button untuk menghapus semua list</p>
+    
+    <ul id="menu">
+        <li id="pertama">Pertama</li>
+        <li id="kedua">Kedua</li>
+        <li id="ketiga">Ketiga</li>
+    </ul>
+    
+    <button onclick="hapusSemua()">Hapus Semua List</button>
+    
+    <script>
+        // Node memiliki method untuk manipulasi child
+        
+        console.log('=== METHOD NODE ===');
+        
+        // Function untuk menghapus semua list item
+        function hapusSemua() {
+            // Mengakses parent node
+            const menu = document.getElementById("menu");
+            
+            // Method removeChild() menghapus child node dari parent
+            menu.removeChild(document.getElementById("pertama"));
+            menu.removeChild(document.getElementById("kedua"));
+            menu.removeChild(document.getElementById("ketiga"));
+            
+            console.log('Semua child node dihapus dengan removeChild()');
+        }
+        
+        console.log('Klik tombol untuk menghapus semua list item');
+        console.log('Method removeChild() menghapus child node dari parent');
+    </script>
+</body>
+</html>

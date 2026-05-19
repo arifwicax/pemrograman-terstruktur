@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>34 - HTML Form (Method 1)</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        input { margin: 5px 0; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 34: HTML Form (querySelector)</h1>
+    <p>Isi form dan klik Kirim</p>
+    
+    <form name="formKomentar">
+        <label for="komentar">Komentar:</label>
+        <input type="text" name="komentar" id="komentar">
+        <br>
+        <label for="dari">Dari:</label>
+        <input type="text" name="dari" id="dari">
+        <br>
+        <input type="submit" value="Kirim">
+    </form>
+    
+    <h3>Daftar Komentar:</h3>
+    <div id="daftarKomentar"></div>
+    
+    <script>
+        // Menangani form submit dengan querySelector
+        
+        console.log('=== HTML FORM (METHOD 1) ===');
+        
+        // Mengakses form dengan querySelector
+        document.querySelector("form[name=formKomentar]").onsubmit = function(event) {
+            // Mencegah form reload halaman
+            event.preventDefault();
+            
+            // Mengakses element
+            const daftarKomentar = document.getElementById("daftarKomentar");
+            const komentar = document.getElementById("komentar").value;
+            const dari = document.getElementById("dari").value;
+            
+            // Membuat element paragraf baru
+            const itemKomentar = document.createElement("p");
+            itemKomentar.textContent = `${komentar} - ${dari}`;
+            
+            // Menambahkan ke daftar
+            daftarKomentar.appendChild(itemKomentar);
+            
+            console.log(`Komentar ditambahkan: "${komentar}" dari ${dari}`);
+            
+            // Reset form (kosongkan input)
+            document.querySelector("form[name=formKomentar]").reset();
+        };
+        
+        console.log('Form siap! Isi dan klik Kirim');
+    </script>
+</body>
+</html>

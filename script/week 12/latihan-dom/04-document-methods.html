@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04 - Method Document</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 4: Method Document</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <div>
+        <p id="tulisan">Ini Adalah Tulisan</p>
+    </div>
+    
+    <script>
+        // Document memiliki method untuk mencari/mengakses elemen HTML
+        // Method paling umum: getElementById, getElementsByClassName, querySelector
+        
+        console.log('=== METHOD DOCUMENT ===');
+        
+        // Method getElementById(): mencari elemen berdasarkan ID
+        const tulisan = document.getElementById("tulisan");
+        
+        // Menampilkan elemen yang ditemukan
+        console.log('Element dengan ID "tulisan":', tulisan);
+        
+        // Mengakses isi teks dari elemen
+        console.log('Isi teks:', tulisan.textContent);
+        
+        console.log('getElementById adalah cara paling umum untuk mengakses elemen');
+    </script>
+</body>
+</html>

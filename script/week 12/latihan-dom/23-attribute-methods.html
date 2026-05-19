@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23 - Method Attribute</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 23: Method Attribute</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <img id="logo" alt="Logo">
+    
+    <script>
+        // Method setAttribute() mengatur nilai attribute
+        // Bisa digunakan untuk membuat atau mengubah attribute
+        
+        console.log('=== METHOD ATTRIBUTE ===');
+        
+        // Mengakses element img
+        const logo = document.getElementById("logo");
+        
+        // Method setAttribute() mengatur attribute
+        // Parameter 1: nama attribute
+        // Parameter 2: nilai attribute
+        logo.setAttribute("src", "https://via.placeholder.com/200");
+        console.log('Attribute src telah diatur');
+        
+        logo.setAttribute("width", "200");
+        console.log('Attribute width telah diatur');
+        
+        // Menampilkan semua attributes
+        console.log('\nSemua attributes:');
+        for (let attr of logo.attributes) {
+            console.log(`- ${attr.name} = "${attr.value}"`);
+        }
+        
+        console.log('setAttribute() membuat atau mengubah attribute element');
+    </script>
+</body>
+</html>

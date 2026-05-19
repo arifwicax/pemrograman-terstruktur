@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13 - Method Element</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+        button { margin: 5px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 13: Method Element</h1>
+    <p>Klik button untuk menghapus atau mengembalikan element</p>
+    
+    <div id="konten" class="kotak-konten">
+        <h2 id="judul">Belajar JavaScript DOM</h2>
+        <p id="deskripsi">Selamat Belajar JavaScript DOM</p>
+    </div>
+    
+    <button onclick="hapusElement()">Hapus Element</button>
+    <button onclick="kembalikanElement()">Kembalikan</button>
+    
+    <script>
+        // Element memiliki method untuk manipulasi
+        
+        console.log('=== METHOD ELEMENT ===');
+        
+        // Function untuk menghapus element
+        function hapusElement() {
+            // Method remove() menghapus element dari DOM
+            document.getElementById("judul").remove();
+            document.getElementById("deskripsi").remove();
+            console.log('Element judul dan deskripsi dihapus');
+        }
+        
+        // Function untuk mengembalikan element
+        function kembalikanElement() {
+            // Mengakses element konten
+            const konten = document.getElementById("konten");
+            
+            // Membuat element h2 baru
+            const judul = document.createElement("h2");
+            judul.id = "judul";
+            judul.textContent = "Belajar JavaScript DOM";
+            
+            // Membuat element p baru
+            const deskripsi = document.createElement("p");
+            deskripsi.id = "deskripsi";
+            deskripsi.textContent = "Selamat Belajar JavaScript DOM";
+            
+            // Method appendChild() menambahkan element ke parent
+            konten.appendChild(judul);
+            konten.appendChild(deskripsi);
+            console.log('Element telah dikembalikan');
+        }
+        
+        console.log('Klik tombol untuk melihat method bekerja');
+    </script>
+</body>
+</html>

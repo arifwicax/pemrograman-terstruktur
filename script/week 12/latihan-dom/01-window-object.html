@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01 - Objek Window</title>
+</head>
+<body>
+    <h1>Latihan 1: Objek Window</h1>
+    <p>Window adalah objek global yang merepresentasikan jendela browser.</p>
+    
+    <div id="ukuran"></div>
+    <div id="lokasi"></div>
+    
+    <script>
+        // Mengakses objek window untuk mendapatkan informasi browser
+        
+        const divUkuran = document.getElementById("ukuran");
+        const divLokasi = document.getElementById("lokasi");
+        
+        // Mendapatkan ukuran layar
+        const tinggiLayar = window.screen.height;
+        const lebarLayar = window.screen.width;
+        
+        // Mendapatkan URL halaman
+        const alamatURL = window.location;
+        
+        // Menampilkan informasi
+        divUkuran.textContent = `Lebar layar: ${lebarLayar}px, Tinggi layar: ${tinggiLayar}px`;
+        divLokasi.textContent = `URL saat ini: ${alamatURL}`;
+        
+        console.log('=== OBJEK WINDOW ===');
+        console.log('Lebar layar:', lebarLayar);
+        console.log('Tinggi layar:', tinggiLayar);
+        console.log('Lokasi URL:', alamatURL.href);
+    </script>
+</body>
+</html>

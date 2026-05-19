@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15 - Objek Node</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <h1>Latihan 15: Objek Node</h1>
+    <p>Buka Console (F12) untuk melihat hasil</p>
+    
+    <ul id="menu">
+        <li id="pertama">Pertama</li>
+        <li id="kedua">Kedua</li>
+        <li id="ketiga">Ketiga</li>
+    </ul>
+    
+    <script>
+        // Node adalah objek dasar dalam DOM tree
+        // Element adalah tipe khusus dari Node
+        
+        console.log('=== OBJEK NODE ===');
+        
+        // Mengakses node menu
+        const menu = document.getElementById("menu");
+        console.log('Node menu:', menu);
+        
+        // Properti nodeName: nama node (tag dalam huruf besar)
+        console.log('Node name:', menu.nodeName);
+        
+        // Properti nodeType: tipe node (1 untuk element)
+        console.log('Node type:', menu.nodeType);
+        
+        // Mengakses node list item kedua
+        const kedua = document.getElementById("kedua");
+        console.log('\nNode kedua:', kedua);
+        console.log('Text content:', kedua.textContent);
+        
+        console.log('Semua element HTML adalah Node dalam DOM tree');
+    </script>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praktikum Interaktif - JavaScript DOM</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.8em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+
+        .intro-box {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 25px;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+
+        .intro-box strong {
+            font-size: 1.1em;
+        }
+
+        .praktikum-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .praktikum-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 6px solid #667eea;
+            cursor: pointer;
+        }
+
+        .praktikum-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border-left-color: #764ba2;
+        }
+
+        .praktikum-card .number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .praktikum-card h2 {
+            color: #2c3e50;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+
+        .praktikum-card p {
+            color: #7f8c8d;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .topics {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .topics h4 {
+            color: #667eea;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .topics ul {
+            list-style: none;
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .topics li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .topics li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .btn-praktikum {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .btn-praktikum:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .info-section {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section h3 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .info-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+        }
+
+        .info-section ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .info-section li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .info-section li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #2ecc71;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #2ecc71;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 1em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .praktikum-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>Praktikum Interaktif JavaScript DOM</h1>
+            <p>Belajar Document Object Model dengan contoh praktis yang bisa langsung dicoba</p>
+            
+            <div class="intro-box">
+                <strong>Apa itu Praktikum Interaktif?</strong><br>
+                Berbeda dengan file JS yang hanya menampilkan console.log, praktikum interaktif ini berisi 
+                halaman HTML lengkap dengan UI yang bisa Anda klik dan interaksi langsung. Setiap konsep DOM 
+                bisa dipraktekkan secara real-time dengan visual feedback!
+            </div>
+        </div>
+
+        <!-- Praktikum Cards -->
+        <div class="praktikum-grid">
+            <!-- Praktikum 1 -->
+            <div class="praktikum-card" onclick="window.location.href='01-selectors.html'">
+                <div class="number">1</div>
+                <h2>Element Selectors <span class="badge">Interaktif</span></h2>
+                <p>Belajar 5 cara memilih elemen HTML dengan contoh visual langsung</p>
+                
+                <div class="topics">
+                    <h4>Yang akan dipelajari:</h4>
+                    <ul>
+                        <li>getElementById()</li>
+                        <li>getElementsByClassName()</li>
+                        <li>getElementsByTagName()</li>
+                        <li>querySelector()</li>
+                        <li>querySelectorAll()</li>
+                    </ul>
+                </div>
+                
+                <a href="01-selectors.html" class="btn-praktikum">Mulai Praktikum</a>
+            </div>
+
+            <!-- Praktikum 2 -->
+            <div class="praktikum-card" onclick="window.location.href='02-manipulation.html'">
+                <div class="number">2</div>
+                <h2>Manipulasi Konten <span class="badge">Interaktif</span></h2>
+                <p>Ubah konten, attribute, style, dan class dengan interaksi langsung</p>
+                
+                <div class="topics">
+                    <h4>Yang akan dipelajari:</h4>
+                    <ul>
+                        <li>textContent & innerHTML</li>
+                        <li>getAttribute & setAttribute</li>
+                        <li>Style manipulation</li>
+                        <li>classList methods</li>
+                        <li>Dataset attributes</li>
+                    </ul>
+                </div>
+                
+                <a href="02-manipulation.html" class="btn-praktikum">Mulai Praktikum</a>
+            </div>
+
+            <!-- Praktikum 3 -->
+            <div class="praktikum-card" onclick="window.location.href='03-events.html'">
+                <div class="number">3</div>
+                <h2>Event Handling <span class="badge">Interaktif</span></h2>
+                <p>Pelajari berbagai event dengan contoh yang bisa diklik dan diinteraksi</p>
+                
+                <div class="topics">
+                    <h4>Yang akan dipelajari:</h4>
+                    <ul>
+                        <li>Click events</li>
+                        <li>Input & keyboard events</li>
+                        <li>Mouse events (hover, move)</li>
+                        <li>Form events</li>
+                        <li>Event object properties</li>
+                    </ul>
+                </div>
+                
+                <a href="03-events.html" class="btn-praktikum">Mulai Praktikum</a>
+            </div>
+
+            <!-- Praktikum 4 -->
+            <div class="praktikum-card" onclick="window.location.href='04-create-remove.html'">
+                <div class="number">4</div>
+                <h2>Create & Remove <span class="badge">Interaktif</span></h2>
+                <p>Buat dan hapus elemen secara dinamis dengan contoh real-time</p>
+                
+                <div class="topics">
+                    <h4>Yang akan dipelajari:</h4>
+                    <ul>
+                        <li>createElement() & appendChild()</li>
+                        <li>remove() & removeChild()</li>
+                        <li>insertBefore()</li>
+                        <li>cloneNode()</li>
+                        <li>innerHTML vs createElement</li>
+                    </ul>
+                </div>
+                
+                <a href="04-create-remove.html" class="btn-praktikum">Mulai Praktikum</a>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <h3>Cara Menggunakan Praktikum Ini</h3>
+            
+            <p><strong>1. Pilih Praktikum:</strong><br>
+            Klik salah satu card di atas untuk membuka praktikum interaktif.</p>
+            
+            <p><strong>2. Interaksi Langsung:</strong><br>
+            Setiap praktikum memiliki tombol, input field, dan elemen yang bisa diklik. Coba semua fitur!</p>
+            
+            <p><strong>3. Perhatikan Perubahan:</strong><br>
+            Lihat bagaimana elemen berubah secara visual saat Anda mengklik tombol.</p>
+            
+            <p><strong>4. Buka Console:</strong><br>
+            Tekan F12 untuk membuka DevTools Console dan lihat log detail dari setiap aksi.</p>
+            
+            <h3 style="margin-top: 40px;">Keunggulan Praktikum Interaktif</h3>
+            
+            <ul>
+                <li>Visual feedback langsung - lihat perubahan secara real-time</li>
+                <li>Bisa diuji berkali-kali tanpa coding</li>
+                <li>Contoh code disertakan di setiap section</li>
+                <li>Event log untuk tracking setiap aksi</li>
+                <li>Design modern dan user-friendly</li>
+                <li>Bisa dipelajari offline setelah didownload</li>
+            </ul>
+
+            <h3 style="margin-top: 40px;">Tips Belajar</h3>
+            
+            <ul>
+                <li>Mulai dari Praktikum 1 dan ikuti urutan</li>
+                <li>Coba semua tombol dan fitur yang tersedia</li>
+                <li>Baca code yang disediakan di setiap section</li>
+                <li>Buka Console untuk melihat log detail</li>
+                <li>Coba modifikasi code di Console untuk eksperimen</li>
+                <li>Ulangi praktikum yang sulit sampai paham</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>Praktikum JavaScript DOM - Week 12 | Pemrograman Terstruktur</p>
+            <p>Untuk materi teori lengkap, lihat: Week 12 - Document Object Model.md</p>
+        </div>
+    </div>
+
+    <script>
+        console.log('%c=== PRAKTIKUM INTERAKTIF JAVASCRIPT DOM ===', 'background: #667eea; color: white; padding: 10px; font-size: 16px; font-weight: bold;');
+        console.log('Selamat datang! Pilih salah satu praktikum di atas untuk mulai belajar.');
+        console.log('\nPraktikum yang tersedia:');
+        console.log('1. Element Selectors');
+        console.log('2. Manipulasi Konten & Properties');
+        console.log('3. Event Handling');
+        console.log('4. Create & Remove Elements');
+        console.log('\nSelamat belajar! 🚀');
+    </script>
+</body>
+</html>
