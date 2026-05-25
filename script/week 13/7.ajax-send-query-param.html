@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Send Query Param</title>
+</head>
+<body>
+
+<!-- Form pencarian dengan input teks dan tombol Search -->
+<form>
+    <label for="search">Search:
+        <!-- Input teks tempat pengguna mengetik kata kunci pencarian -->
+        <input type="text" id="search" name="search">
+    </label>
+    <br>
+    <!-- Tombol bertipe "button" (bukan submit) agar tidak me-reload halaman -->
+    <input type="button" id="searchButton" value="Search">
+</form>
+
+<!-- Elemen <h1> untuk menampilkan hasil response dari server -->
+<h1 id="response"></h1>
+
+<script>
+
+    // Fungsi yang dijalankan saat tombol Search diklik
+    function doSearch() {
+        // Membuat object XMLHttpRequest untuk mengirim request ke server
+        const ajax = new XMLHttpRequest();
+
+        // Membuat object URLSearchParams untuk membangun query string
+        // URLSearchParams otomatis mengurusi encoding karakter khusus (spasi, &, =, dll)
+        const param = new URLSearchParams();
+
+        // Menambahkan parameter "search" dengan nilai dari input teks
+        param.append("search", document.getElementById("search").value);
+
+        // Menambahkan parameter "filter" (contoh parameter tambahan)
+        param.append("filter", document.getElementById("search").value);
+
+        // Membuka koneksi GET ke server dengan query parameter yang ditambahkan ke URL
+        // param.toString() menghasilkan string seperti: "search=laptop&filter=laptop"
+        // Hasilnya: https://hookb.in/xxx?search=laptop&filter=laptop
+        ajax.open("GET", `https://hookb.in/r19B7Kmn3PSqk2XXkwqb?${param.toString()}`);
+
+        // Event handler saat response berhasil diterima dari server
+        ajax.onload = function () {
+            // Mengakses elemen <h1> untuk menampilkan response
+            const response = document.getElementById("response");
+
+            // Menampilkan teks mentah dari response server ke elemen <h1>
+            response.innerText = ajax.responseText;
+        };
+
+        // Mengirim request ke server (tanpa body karena metode GET)
+        ajax.send();
+    }
+
+    // Menghubungkan tombol "searchButton" dengan fungsi doSearch
+    // Saat tombol diklik, fungsi doSearch akan dipanggil
+    document.getElementById("searchButton").onclick = doSearch;
+
+</script>
+</body>
+</html>

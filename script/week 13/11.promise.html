@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise</title>
+</head>
+<body>
+
+<!-- Tabel untuk menampilkan detail produk yang diambil dari server -->
+<table>
+    <tbody>
+    <tr>
+        <td>Id :</td>
+        <!-- Sel yang akan diisi dengan id produk secara dinamis via JavaScript -->
+        <td id="id"></td>
+    </tr>
+    <tr>
+        <td>Name :</td>
+        <!-- Sel yang akan diisi dengan nama produk -->
+        <td id="name"></td>
+    </tr>
+    <tr>
+        <td>Price :</td>
+        <!-- Sel yang akan diisi dengan harga produk -->
+        <td id="price"></td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+
+    // Fungsi yang mengembalikan Promise berisi data produk dari server
+    // Parameter product: nama file JSON (misal "product" → api/product.json)
+    // Return type: Promise<String> (berisi teks JSON atau pesan error)
+    function getProduct(product) {
+        // Membuat dan mengembalikan object Promise baru
+        // Promise merepresentasikan nilai yang mungkin belum tersedia
+        return new Promise(function (resolve, reject) {
+
+            // Membuat object XMLHttpRequest di dalam Promise
+            const ajax = new XMLHttpRequest();
+
+            // Mengatur request GET ke file JSON sesuai nama produk
+            // Template literal: "api/product.json" (jika product = "product")
+            ajax.open("GET", `api/${product}.json`);
+
+            // Event handler saat response diterima dari server
+            ajax.onload = function () {
+                // Memeriksa apakah request berhasil (status HTTP 200 = OK)
+                if (ajax.status === 200) {
+                    // Jika berhasil: selesaikan Promise dengan data response
+                    // resolve() → mengubah state Promise dari "pending" ke "fulfilled"
+                    resolve(ajax.responseText);
+                } else {
+                    // Jika gagal: tolak Promise dengan pesan error
+                    // reject() → mengubah state Promise dari "pending" ke "rejected"
+                    reject(`Error Get Product with response : ${ajax.status}`);
+                }
+            };
+
+            // Mengirim request ke server
+            ajax.send();
+
+        });
+    }
+
+    // Memanggil fungsi getProduct dan menangani hasilnya dengan method Promise
+    getProduct("product")
+        // .then() pertama: menerima string JSON → diubah menjadi object JavaScript
+        // Nilai return dari .then() diteruskan ke .then() berikutnya (chaining)
+        .then(function (response) {
+            return JSON.parse(response); // String JSON → Object { id, name, price }
+        })
+
+        // .then() kedua: menerima object JSON → ditampilkan ke elemen tabel
+        .then(function (json) {
+            // Mengisi sel tabel "id" dengan nilai id dari object JSON
+            document.getElementById("id").textContent = json.id;
+
+            // Mengisi sel tabel "name" dengan nama produk
+            document.getElementById("name").textContent = json.name;
+
+            // Mengisi sel tabel "price" dengan harga produk
+            document.getElementById("price").textContent = json.price;
+        })
+
+        // .catch() dipanggil jika Promise di-reject (terjadi error di mana saja)
+        // Parameter error: pesan error yang dikirim melalui reject()
+        .catch(function (error) {
+            // Menampilkan pesan error di semua sel tabel sebagai indikasi kegagalan
+            document.getElementById("id").textContent = error;
+            document.getElementById("name").textContent = error;
+            document.getElementById("price").textContent = error;
+        })
+
+        // .finally() selalu dijalankan, baik Promise berhasil maupun gagal
+        // Berguna untuk cleanup atau logging akhir
+        .finally(function () {
+            console.info("Finally"); // Menandai bahwa proses Promise telah selesai
+        });
+
+</script>
+
+</body>
+</html>

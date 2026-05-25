@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set Interval</title>
+</head>
+<body>
+
+<!-- Elemen <h1> yang akan menampilkan waktu saat ini secara real-time -->
+<h1 id="header"></h1>
+
+<script>
+
+    // Mendefinisikan fungsi yang memperbarui tampilan waktu di elemen <h1>
+    function setTime(){
+        // Mengakses elemen <h1> berdasarkan id "header"
+        const header = document.getElementById("header");
+
+        // Mengambil waktu saat ini dengan new Date() lalu diubah ke format teks
+        // Contoh output: "Mon May 26 2025 10:30:45 GMT+0700"
+        header.textContent = new Date().toString();
+    }
+
+    // Menjalankan fungsi setTime setiap 1000 milidetik (1 detik) secara berulang
+    // setInterval(fungsi, delay_ms) → berbeda dengan setTimeout yang hanya sekali
+    // Program ini akan terus berjalan selama halaman dibuka
+    setInterval(setTime, 1000);
+
+    // Baris ini langsung dieksekusi tanpa menunggu setInterval
+    // Membuktikan bahwa setInterval juga bersifat non-blocking
+    console.info("Program Selesai");
+
+</script>
+</body>
+</html>

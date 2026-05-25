@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX with Status</title>
+</head>
+<body>
+
+<!-- Elemen <h1> yang akan menampilkan response atau pesan error -->
+<h1 id="response"></h1>
+
+<script>
+
+    // Fungsi pembantu untuk menampilkan response ke elemen <h1>
+    // Parameter json: object yang memiliki properti "response"
+    function displayResponse(json) {
+        // Mengakses elemen <h1> berdasarkan id "response"
+        const header = document.getElementById("response");
+
+        // Mengisi teks elemen dengan nilai properti "response" dari object json
+        header.textContent = json.response;
+    }
+
+    // Membuat object XMLHttpRequest untuk mengirim request ke server
+    const ajax = new XMLHttpRequest();
+
+    // Mendaftarkan event handler untuk memantau perubahan readyState
+    // readyState berubah dari 0 → 1 → 2 → 3 → 4 seiring proses request
+    ajax.onreadystatechange = function (){
+        // Mencetak nilai readyState saat ini ke konsol
+        // 0=UNSENT, 1=OPENED, 2=HEADERS_RECEIVED, 3=LOADING, 4=DONE
+        console.info(`Ready State Change ${ajax.readyState}`);
+    };
+
+    // Contoh URL yang benar (file ada) — bisa diaktifkan untuk membandingkan
+    // ajax.open("GET", "api/hello.json");
+
+    // Menggunakan URL yang salah (file tidak ada) → akan menghasilkan status 404
+    // Ini sengaja digunakan untuk mendemonstrasikan penanganan error status HTTP
+    ajax.open("GET", "api/salah.json");
+
+    // Event "load" dipicu saat request selesai (response diterima, apapun statusnya)
+    ajax.addEventListener("load", function () {
+        // Memeriksa apakah status HTTP adalah 200 (OK = berhasil)
+        if (ajax.status === 200) {
+            // Jika berhasil: parse JSON string menjadi object JavaScript
+            const json = JSON.parse(ajax.responseText);
+
+            // Menampilkan data response ke halaman
+            displayResponse(json);
+        } else {
+            // Jika gagal (misal 404 Not Found): tampilkan pesan error dengan kode status
+            displayResponse({
+                // Template literal untuk menyisipkan nilai ajax.status ke dalam string
+                response: `Terjadi Kesalahan dengan status ${ajax.status}`
+            });
+        }
+    });
+
+    // Mengirim request ke server secara asynchronous
+    ajax.send();
+
+</script>
+</body>
+</html>

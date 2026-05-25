@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Web Worker</title>
+</head>
+<body>
+
+<!-- Tombol yang mengirim tugas berat ke background worker -->
+<button id="buttonTask">Click Me</button>
+
+<script>
+
+    // Membuat instance Web Worker dari file "worker.js"
+    // Web Worker berjalan di BACKGROUND THREAD terpisah, tidak memblokir UI
+    // Catatan: hanya bisa dijalankan melalui HTTP server (bukan file://)
+    const worker = new Worker("worker.js");
+
+    // Mendaftarkan event listener untuk menerima pesan DARI worker
+    // Setiap kali worker memanggil postMessage(), event "message" ini terpicu
+    worker.addEventListener("message", function (message) {
+        // message.data berisi data yang dikirim worker via postMessage(i)
+        console.info(message.data);
+    });
+
+    // Mendaftarkan event handler saat tombol diklik
+    document.getElementById("buttonTask").onclick = function () {
+        // Mengirim angka 100000 ke worker sebagai instruksi jumlah iterasi
+        // worker.postMessage(data) → mengirim data ke background thread
+        // Halaman TETAP RESPONSIF karena proses berat ada di worker, bukan thread utama
+        worker.postMessage(100000);
+    };
+
+</script>
+
+</body>
+</html>

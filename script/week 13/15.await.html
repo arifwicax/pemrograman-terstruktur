@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Await</title>
+</head>
+<body>
+<script>
+
+    // ============================================================
+    // Fungsi dasar: mengambil data produk dari server via Fetch API
+    // Return type: Promise<Object> (berisi data produk JSON)
+    // ============================================================
+
+    function getProduct() {
+        // Membuat object Request menggunakan Fetch API
+        // File "api/productsalah.json" sengaja salah untuk mendemonstrasikan error handling
+        const request = new Request("api/productsalah.json", {
+            method: "GET" // Menggunakan method GET untuk mengambil data
+        });
+
+        // fetch(request) mengirim HTTP request dan mengembalikan Promise<Response>
+        const response = fetch(request);
+
+        // Mengonversi Response menjadi Promise<Object JSON>
+        // response.then() → saat Response diterima, parse body menjadi JSON object
+        return response.then((response) => response.json());
+    }
+
+    // ============================================================
+    // CARA 1: Menggunakan Promise biasa (.then() dan .catch())
+    // Cara ini benar tapi membuat kode lebih nested dan sulit dibaca
+    // ============================================================
+
+    // Return type: Promise<String> (berisi nama produk atau pesan "tidak ditemukan")
+    function getProductNamePromise() {
+        return new Promise(function (resolve, reject) {
+            // Memanggil getProduct() dan menunggu hasilnya via .then()
+            getProduct()
+                // Jika berhasil: ambil properti name dari object produk
+                .then((product) => resolve(product.name))
+
+                // Jika gagal (file tidak ada / network error): kembalikan pesan default
+                .catch((error) => resolve("Product Not Found"));
+        });
+    }
+
+    // ============================================================
+    // CARA 2: Menggunakan async / await — lebih bersih dan mudah dibaca
+    // Keyword "async" membuat fungsi mengembalikan Promise secara otomatis
+    // Keyword "await" membuat eksekusi MENUNGGU Promise selesai sebelum lanjut
+    // ============================================================
+
+    async function getProductNameAsync() {
+        // try-catch digunakan untuk menangani error (pengganti .catch() di Promise)
+        try {
+            // "await" membuat program menunggu getProduct() selesai
+            // Hasilnya langsung bisa digunakan sebagai object biasa (bukan Promise)
+            // Tanpa await, product akan berupa Promise (bukan data produknya)
+            const product = await getProduct();
+
+            // Mengembalikan nama produk — otomatis dibungkus dalam Promise.resolve()
+            return product.name;
+
+        } catch (e) {
+            // Jika terjadi error (Promise rejected): kembalikan pesan default
+            // e adalah object error yang ditangkap
+            return "Product Not Found";
+
+        } finally {
+            // Blok finally selalu dieksekusi, baik berhasil maupun gagal
+            // Bisa digunakan untuk: tutup loading, reset UI, dll.
+            // (dikosongkan di contoh ini)
+        }
+    }
+
+    // ============================================================
+    // Pemanggilan: Keduanya mengembalikan Promise<String>
+    // Dipanggil dengan cara yang sama menggunakan .then()
+    // ============================================================
+
+    // Memanggil versi Promise biasa
+    getProductNamePromise()
+        .then((productName) => console.info(productName));
+    // Output: "Product Not Found" (karena file api/productsalah.json tidak ada)
+
+    // Memanggil versi async/await
+    getProductNameAsync()
+        .then((productName) => console.info(productName));
+    // Output: "Product Not Found" (hasil yang sama, kode lebih bersih)
+
+</script>
+</body>
+</html>

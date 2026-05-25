@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Async</title>
+</head>
+<body>
+<script>
+
+    // ============================================================
+    // CARA 1: Membuat Promise secara EKSPLISIT (cara tradisional)
+    // ============================================================
+
+    // Fungsi ini secara eksplisit mengembalikan object Promise<String>
+    // Kita harus menulis "new Promise(...)" secara manual
+    function getNamePromise() {
+        // Membuat Promise baru dengan executor function
+        return new Promise(function (resolve, reject) {
+            // resolve() dipanggil dengan nilai "berhasil" → Promise fulfilled
+            // Nilai "Arif Wicaksono Septyanto Promise" akan tersedia di .then()
+            resolve("Arif Wicaksono Septyanto Promise");
+        });
+    }
+
+    // ============================================================
+    // CARA 2: Menggunakan keyword ASYNC (cara modern, lebih singkat)
+    // ============================================================
+
+    // Keyword "async" sebelum "function" membuat fungsi ini OTOMATIS mengembalikan Promise
+    // Nilai yang di-return akan otomatis dibungkus dalam Promise.resolve()
+    // Promise<String> artinya: "fungsi ini akan menghasilkan String suatu saat nanti"
+    async function getNameAsync(){
+        // Return biasa di dalam async function → otomatis dibungkus Promise.resolve()
+        // Setara dengan: return Promise.resolve("Arif Wicaksono Septyanto Async")
+        return "Arif Wicaksono Septyanto Async";
+    }
+
+    // ============================================================
+    // Penggunaan: Keduanya dipanggil dengan cara yang SAMA
+    // ============================================================
+
+    // Memanggil fungsi berbasis Promise biasa
+    // .then() menerima nilai yang di-resolve (nama)
+    getNamePromise()
+        .then((name) => console.info(name)); // Output: "Arif Wicaksono Septyanto Promise"
+
+    // Memanggil fungsi async — hasilnya juga Promise, dipanggil dengan .then() yang sama
+    getNameAsync()
+        .then((name) => console.info(name)); // Output: "Arif Wicaksono Septyanto Async"
+
+</script>
+</body>
+</html>

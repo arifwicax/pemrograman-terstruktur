@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Slow</title>
+</head>
+<body>
+
+<!-- Tombol yang akan memicu proses loop besar saat diklik -->
+<button id="buttonTask">Click Me</button>
+
+<script>
+
+    // Fungsi yang mensimulasikan proses lambat / berat
+    // Parameter total = jumlah iterasi loop yang akan dijalankan
+    function slowLog(total){
+        // Melakukan loop sebanyak 'total' kali
+        // Proses ini akan memblokir (blocking) thread utama JavaScript
+        for (let i = 0; i < total; i++) {
+            // Mencetak nilai i ke konsol setiap iterasi
+            console.info(i);
+        }
+    }
+
+    // Mendaftarkan event handler saat tombol "buttonTask" diklik
+    document.getElementById("buttonTask").onclick = function (){
+        // Mencetak "Start" ke konsol sebelum proses dimulai
+        console.info("Start");
+
+        // Memanggil slowLog dengan 100.000 iterasi
+        // PERHATIAN: Selama fungsi ini berjalan, halaman akan FREEZE (tidak responsif)
+        // Ini adalah contoh BLOCKING CODE yang harus dihindari dalam aplikasi nyata
+        slowLog(100000);
+
+        // Baris ini baru berjalan SETELAH slowLog selesai (berbeda dengan setTimeout)
+        console.info("End");
+    };
+
+</script>
+
+</body>
+</html>

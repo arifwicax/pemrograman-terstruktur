@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise All</title>
+</head>
+<body>
+
+<!-- Tabel untuk menampilkan data produk (saat ini hanya untuk referensi struktur) -->
+<table>
+    <tbody>
+    <tr>
+        <td>Id :</td>
+        <td id="id"></td>
+    </tr>
+    <tr>
+        <td>Name :</td>
+        <td id="name"></td>
+    </tr>
+    <tr>
+        <td>Price :</td>
+        <td id="price"></td>
+    </tr>
+    </tbody>
+</table>
+
+<script>
+
+    // Fungsi yang mengembalikan Promise berisi data produk dari server
+    // Sama seperti di 11.promise.html, tapi digunakan untuk demonstrasi Promise.all()
+    function getProduct(product) {
+        // Membuat dan mengembalikan Promise baru
+        return new Promise(function (resolve, reject) {
+
+            // Membuat object XMLHttpRequest untuk request ke server
+            const ajax = new XMLHttpRequest();
+
+            // Mengatur request GET ke file JSON produk yang diminta
+            ajax.open("GET", `api/${product}.json`);
+
+            // Event handler saat response diterima
+            ajax.onload = function () {
+                // Jika status 200 (berhasil): selesaikan Promise dengan data response
+                if (ajax.status === 200) {
+                    resolve(ajax.responseText); // Promise fulfilled dengan string JSON
+                } else {
+                    // Jika gagal: tolak Promise dengan pesan error
+                    reject(`Error Get Product with response : ${ajax.status}`);
+                }
+            };
+
+            // Mengirim request ke server
+            ajax.send();
+
+        });
+    }
+
+    // Promise.all() menjalankan BEBERAPA Promise secara PARALEL (bersamaan)
+    // Menerima array berisi Promise-Promise yang akan dijalankan sekaligus
+    // Keuntungan: lebih cepat daripada menjalankan satu per satu secara berurutan
+    const promise = Promise.all([
+        getProduct("product1"), // Request ke api/product1.json
+        getProduct("product2"), // Request ke api/product2.json (bersamaan dengan product1)
+        getProduct("product3")  // Request ke api/product3.json (bersamaan dengan keduanya)
+    ]);
+
+    // .then() dipanggil saat SEMUA Promise dalam array berhasil diselesaikan
+    // Parameter products: array berisi hasil dari setiap Promise, sesuai urutan
+    // products[0] = hasil product1, products[1] = hasil product2, dst.
+    promise.then(function (products) {
+        // Mencetak seluruh array hasil ke konsol
+        // Setiap elemen adalah string JSON dari masing-masing produk
+        console.info(products);
+    })
+
+    // .catch() dipanggil jika SALAH SATU saja dari Promise gagal (rejected)
+    // Saat salah satu gagal, Promise.all() langsung berhenti dan masuk ke catch
+    .catch(function (errors) {
+        // Mencetak pesan error ke konsol
+        console.info(errors);
+    });
+
+</script>
+
+</body>
+</html>

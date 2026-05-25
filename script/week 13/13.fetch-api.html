@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch API</title>
+</head>
+<body>
+
+<!-- Form login dengan input username dan password -->
+<form>
+    <label for="username">Username:
+        <!-- Input teks untuk username -->
+        <input type="text" id="username" name="username">
+    </label>
+    <br>
+    <label for="password">Password:
+        <!-- Input password (karakter tersembunyi) -->
+        <input type="password" id="password" name="password">
+    </label>
+    <br>
+    <!-- Tombol bertipe "button" agar tidak me-reload halaman -->
+    <input type="button" id="login" value="Login">
+</form>
+
+<!-- Elemen <h1> untuk menampilkan response dari server -->
+<h1 id="response"></h1>
+
+<script>
+
+    // Fungsi yang dijalankan saat tombol Login diklik
+    function doLogin(){
+        // Membuat object Request — cara modern mendefinisikan HTTP request
+        // Parameter 1: URL tujuan server
+        // Parameter 2: object konfigurasi request
+        const request = new Request("https://hookb.in/r19B7Kmn3PSqk2XXkwqb", {
+            // Method HTTP yang digunakan (POST untuk mengirim data)
+            method: "POST",
+
+            // Headers: metadata tambahan yang dikirim bersama request
+            headers: {
+                // Memberitahu server bahwa body yang dikirim berformat JSON
+                "Content-Type": "application/json",
+
+                // Memberitahu server bahwa kita mengharapkan response berformat JSON
+                "Accept": "application/json"
+            },
+
+            // Body request: data yang dikirim ke server
+            // JSON.stringify() mengubah object JavaScript → string JSON
+            body: JSON.stringify({
+                // Mengambil nilai username dari input form
+                username: document.getElementById("username").value,
+
+                // Mengambil nilai password dari input form
+                password: document.getElementById("password").value
+            })
+        });
+
+        // fetch(request) mengirim HTTP request dan mengembalikan Promise<Response>
+        // Ini adalah cara modern pengganti XMLHttpRequest
+        // Promise<Response> artinya akan menghasilkan object Response saat selesai
+        const response = fetch(request);
+
+        // Menangani response secara berantai (chaining) dengan .then()
+        response
+            // .then() pertama: menerima object Response → parse JSON dari body response
+            // response.json() mengembalikan Promise<Object> berisi data JSON
+            .then((response) => response.json())
+
+            // .then() kedua: menerima object JSON hasil parse
+            .then(function (json){
+                // Menampilkan nilai properti "success" dari JSON ke elemen <h1>
+                document.getElementById("response").textContent = json.success;
+            })
+
+            // .catch() dipanggil jika terjadi error (network error, parse error, dll)
+            .catch(function (error){
+                // Menampilkan pesan error ke elemen <h1>
+                document.getElementById("response").textContent = error;
+            });
+
+    }
+
+    // Menghubungkan tombol "login" dengan fungsi doLogin
+    document.getElementById("login").onclick = doLogin;
+
+</script>
+</body>
+</html>

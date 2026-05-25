@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX</title>
+</head>
+<body>
+
+<!-- Elemen <h1> yang akan menampilkan response dari server -->
+<h1 id="response"></h1>
+
+<script>
+
+    // Membuat object XMLHttpRequest — digunakan untuk berkomunikasi dengan server
+    // AJAX = Asynchronous JavaScript and XML
+    const ajax = new XMLHttpRequest();
+
+    // Mengatur jenis request dan URL tujuan
+    // Parameter 1: method HTTP ("GET" untuk mengambil data)
+    // Parameter 2: URL file yang dituju (api/hello.json)
+    ajax.open("GET", "api/hello.json");
+
+    // Mendaftarkan event listener "load" yang dijalankan saat response diterima
+    // Fungsi callback ini dipanggil secara ASYNCHRONOUS (tidak menghentikan program)
+    ajax.addEventListener("load", function (){
+        // Mengubah teks JSON string menjadi object JavaScript
+        // ajax.responseText berisi isi response dari server (format string)
+        const json = JSON.parse(ajax.responseText);
+
+        // Mengakses elemen <h1> berdasarkan id "response"
+        const header = document.getElementById("response");
+
+        // Menampilkan nilai dari properti "response" di dalam JSON ke elemen <h1>
+        // Contoh: json.response = "Hello Arif Wicaksono Septyanto"
+        header.textContent = json.response;
+    });
+
+    // Mengirim request ke server — proses ini bersifat ASYNCHRONOUS
+    // Kode setelah baris ini tetap berjalan tanpa menunggu response
+    ajax.send();
+
+</script>
+</body>
+</html>

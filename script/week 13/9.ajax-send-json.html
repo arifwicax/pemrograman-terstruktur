@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Send JSON</title>
+</head>
+<body>
+
+<!-- Form login dengan input username dan password -->
+<form>
+    <label for="username">Username:
+        <!-- Input teks untuk username -->
+        <input type="text" id="username" name="username">
+    </label>
+    <br>
+    <label for="password">Password:
+        <!-- Input password (karakter tersembunyi) -->
+        <input type="password" id="password" name="password">
+    </label>
+    <br>
+    <!-- Tombol bertipe "button" agar tidak me-reload halaman -->
+    <input type="button" id="login" value="Login">
+</form>
+
+<!-- Elemen <h1> untuk menampilkan response dari server -->
+<h1 id="response"></h1>
+
+<script>
+
+    // Fungsi yang dijalankan saat tombol Login diklik
+    function doLogin() {
+        // Membuat object XMLHttpRequest untuk komunikasi dengan server
+        const ajax = new XMLHttpRequest();
+
+        // Mengatur method POST dan URL server tujuan
+        ajax.open("POST", "https://hookb.in/r19B7Kmn3PSqk2XXkwqb");
+
+        // Event handler saat response diterima dari server
+        ajax.onload = function () {
+            // Menampilkan response server ke elemen <h1>
+            const response = document.getElementById("response");
+            response.innerText = ajax.responseText;
+        };
+
+        // Mengatur header Content-Type ke "application/json"
+        // Ini memberitahu server bahwa data yang dikirim berformat JSON
+        // Berbeda dengan form-urlencoded yang formatnya "key=value&key=value"
+        ajax.setRequestHeader("Content-Type", "application/json");
+
+        // Membuat object JavaScript yang berisi data login
+        // Nilainya diambil langsung dari elemen input di form
+        const json = {
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        };
+
+        // Mengirim request POST dengan body berupa JSON string
+        // JSON.stringify(json) mengubah object JavaScript → string JSON
+        // Contoh hasil: '{"username":"arif","password":"12345"}'
+        ajax.send(JSON.stringify(json));
+    }
+
+    // Menghubungkan tombol "login" dengan fungsi doLogin
+    document.getElementById("login").onclick = doLogin;
+
+</script>
+</body>
+</html>

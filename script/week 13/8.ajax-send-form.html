@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Judul di tab browser (catatan: judul masih "Ajax Send JSON" karena file aslinya salah judul) -->
+    <title>Ajax Send Form</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!-- Form login dengan input username dan password -->
+<form>
+    <label for="username">Username:
+        <!-- Input teks untuk username -->
+        <input type="text" id="username" name="username">
+    </label>
+    <br>
+    <label for="password">Password:
+        <!-- Input password (karakter tersembunyi) -->
+        <input type="password" id="password" name="password">
+    </label>
+    <br>
+    <!-- Tombol bertipe "button" agar tidak me-reload halaman saat diklik -->
+    <input type="button" id="login" value="Login">
+</form>
+
+<!-- Elemen <h1> untuk menampilkan response dari server -->
+<h1 id="response"></h1>
+
+<script>
+
+    // Fungsi yang dijalankan saat tombol Login diklik
+    function doLogin() {
+        // Membuat object XMLHttpRequest untuk berkomunikasi dengan server
+        const ajax = new XMLHttpRequest();
+
+        // Mengatur method POST dan URL tujuan server
+        // POST digunakan untuk mengirim data (bukan hanya mengambil data)
+        ajax.open("POST", "https://hookb.in/r19B7Kmn3PSqk2XXkwqb");
+
+        // Event handler saat response diterima dari server
+        ajax.onload = function () {
+            // Mengakses elemen <h1> untuk menampilkan hasil response
+            const response = document.getElementById("response");
+
+            // Menampilkan teks mentah dari response server
+            response.innerText = ajax.responseText;
+        };
+
+        // Mengatur header Content-Type agar server tahu format data yang dikirim
+        // "application/x-www-form-urlencoded" adalah format standar HTML form
+        // Format data: "username=arif&password=12345"
+        ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        // Membuat object URLSearchParams untuk membangun data form
+        // Ini adalah cara mengirim data form secara manual tanpa elemen <form>
+        const form = new URLSearchParams();
+
+        // Menambahkan field "username" dengan nilai dari input teks
+        form.append("username", document.getElementById("username").value);
+
+        // Menambahkan field "password" dengan nilai dari input password
+        form.append("password", document.getElementById("password").value);
+
+        // Mengirim request POST dengan data form sebagai body request
+        // form (URLSearchParams) otomatis dikonversi ke string: "username=arif&password=12345"
+        ajax.send(form);
+    }
+
+    // Menghubungkan tombol "login" dengan fungsi doLogin
+    document.getElementById("login").onclick = doLogin;
+
+</script>
+</body>
+</html>

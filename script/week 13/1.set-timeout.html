@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Set Timeout</title>
+</head>
+<body>
+<script>
+
+    // Mendefinisikan fungsi yang akan dijalankan setelah jeda waktu tertentu
+    function addElement(){
+        // Membuat elemen HTML baru bertipe <h1>
+        const header = document.createElement("h1");
+
+        // Mengisi teks di dalam elemen <h1> yang baru dibuat
+        header.textContent = "Arif Wicaksono Septyanto";
+
+        // Menambahkan elemen <h1> ke dalam <body> halaman HTML
+        document.body.appendChild(header);
+    }
+
+    // Memanggil fungsi addElement SETELAH 5000 milidetik (5 detik)
+    // setTimeout(fungsi, delay_ms) → bersifat non-blocking (tidak menghentikan program)
+    setTimeout(addElement, 5000);
+
+    // Baris ini langsung dieksekusi TANPA menunggu setTimeout selesai
+    // Membuktikan bahwa JavaScript tidak berhenti saat setTimeout berjalan
+    console.info("Program Selesai");
+
+</script>
+</body>
+</html>

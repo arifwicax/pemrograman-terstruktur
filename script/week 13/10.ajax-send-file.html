@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Send File</title>
+</head>
+<body>
+
+<!-- Judul form registrasi -->
+<h1>Register</h1>
+
+<!-- Form registrasi dengan tiga field: username, name, dan file upload -->
+<form>
+    <label for="username">Username:
+        <!-- Input teks untuk username -->
+        <input type="text" id="username" name="username">
+    </label>
+    <br>
+    <label for="name">Name:
+        <!-- Input teks untuk nama lengkap -->
+        <input type="text" id="name" name="name">
+    </label>
+    <br>
+    <label for="profile">Profile:
+        <!-- Input file untuk upload foto profil -->
+        <!-- type="file" memunculkan dialog pemilihan file -->
+        <input type="file" id="profile" name="profile">
+    </label>
+    <br>
+    <!-- Tombol bertipe "button" agar tidak me-reload halaman -->
+    <input type="button" id="register" value="Register">
+</form>
+
+<!-- Elemen <h1> untuk menampilkan response dari server -->
+<h1 id="response"></h1>
+
+<script>
+
+    // Fungsi yang dijalankan saat tombol Register diklik
+    function doLogin() {
+        // Membuat object XMLHttpRequest untuk komunikasi dengan server
+        const ajax = new XMLHttpRequest();
+
+        // Mengatur method POST ke URL server tujuan
+        ajax.open("POST", "https://hookb.in/r19B7Kmn3PSqk2XXkwqb");
+
+        // Event handler saat response diterima dari server
+        ajax.onload = function () {
+            // Mengakses elemen untuk menampilkan response
+            const response = document.getElementById("response");
+
+            // Menampilkan teks response dari server
+            response.innerText = ajax.responseText;
+        };
+
+        // Membuat object FormData — secara otomatis menggunakan format "multipart/form-data"
+        // Format ini diperlukan untuk mengirim file (tidak bisa menggunakan URLSearchParams)
+        // CATATAN: Tidak perlu setRequestHeader Content-Type secara manual,
+        //          browser otomatis menambahkan boundary yang diperlukan
+        const form = new FormData();
+
+        // Menambahkan field teks "username" ke dalam form data
+        form.append("username", document.getElementById("username").value);
+
+        // Menambahkan field teks "name" ke dalam form data
+        form.append("name", document.getElementById("name").value);
+
+        // Mengakses daftar file yang dipilih pengguna melalui input file
+        // files adalah FileList object (mirip array)
+        const files = document.getElementById("profile").files;
+
+        // Mengambil file pertama dari daftar (indeks 0)
+        // item(0) sama dengan files[0]
+        const firstFile = files.item(0);
+
+        // Menambahkan file ke form data dengan nama field "profile"
+        // File akan dikirim sebagai binary data dalam request
+        form.append("profile", firstFile);
+
+        // Mengirim request POST dengan FormData sebagai body
+        // Browser otomatis mengatur Content-Type: multipart/form-data; boundary=...
+        ajax.send(form);
+    }
+
+    // Menghubungkan tombol "register" dengan fungsi doLogin
+    document.getElementById("register").onclick = doLogin;
+
+</script>
+</body>
+</html>
