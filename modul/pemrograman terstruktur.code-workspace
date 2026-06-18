@@ -2,10 +2,9 @@
 	"folders": [
 		{
 			"path": ".."
-		},
-		{
-			"path": "../../tanamin-app"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "pemrograman terstruktur"
+	}
 }

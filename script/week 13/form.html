@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <!-- Judul di tab browser -->
+    <title>Form Registrasi</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h3>Form Registrasi</h3>
+
+<!--
+    Form registrasi standar.
+    - action: URL file PHP tujuan yang akan memproses data
+    - method: "post" untuk mengirim data (tidak terlihat di URL)
+              ganti menjadi "get" jika ingin data tampil di URL
+-->
+<form action="register.php" method="post">
+
+    <!-- Input nama lengkap -->
+    <label for="nama">Nama depan:</label><br><br>
+    <input type="text" id="nama" name="nama" required><br>
+
+    <p>
+        nama belakang : <br>
+        <input type="text" id="" name="cepta" required>
+    </p>
+
+    <!-- Input email, type="email" agar browser memvalidasi format email -->
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <!-- Input username -->
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <!-- Input password (karakter tersembunyi) -->
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <!-- Pilihan jenis kelamin menggunakan radio button -->
+    <label>Jenis Kelamin:</label><br>
+    <input type="radio" id="pria" name="jenis_kelamin" value="Pria" required>
+    <label for="pria">Pria</label>
+    <input type="radio" id="wanita" name="jenis_kelamin" value="Wanita">
+    <label for="wanita">Wanita</label><br><br>
+
+    <!-- Pilihan jurusan menggunakan dropdown -->
+    <label for="jurusan">Jurusan:</label><br>
+    <select id="jurusan" name="jurusan" required>
+        <option value="">-- Pilih Jurusan --</option>
+        <option value="Informatika">Informatika</option>
+        <option value="Sistem Informasi">Sistem Informasi</option>
+        <option value="Teknik Elektro">Teknik Elektro</option>
+    </select><br><br>
+
+    <!-- Checkbox persetujuan -->
+    <input type="checkbox" id="setuju" name="setuju" value="ya" required>
+    <label for="setuju">Saya menyetujui syarat dan ketentuan</label><br><br>
+
+    <!-- Tombol submit untuk mengirim form ke server -->
+    <input type="submit" value="Daftar">
+</form>
+
+</body>
+</html>

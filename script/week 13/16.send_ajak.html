@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX POST</title>
+</head>
+<body>
+
+<label>NIM :
+    <input type="text" id="nim">
+</label>
+<br><br>
+
+<label>Nama :
+    <input type="text" id="nama">
+</label>
+<br><br>
+
+<button onclick="kirimData()">Kirim</button>
+
+<h3 id="hasil"></h3>
+
+<script>
+    function kirimData() {
+
+        // Ambil nilai input
+        const nim = document.getElementById("nim").value;
+        const nama = document.getElementById("nama").value;
+
+        // Tampilkan ke halaman
+        document.getElementById("hasil").innerText =
+            "NIM : " + nim + "\nNama : " + nama;
+
+        // Kirim ke Webhook.site
+        const ajax = new XMLHttpRequest();
+
+        ajax.open(
+            "POST",
+            "https://webhook.site/95d41bde-dcca-498a-b956-6898b2e658e5"
+        );
+
+        ajax.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+        );
+
+        ajax.send(
+            "nim=" + encodeURIComponent(nim) +
+            "&nama=" + encodeURIComponent(nama)
+        );
+    }
+</script>
+
+</body>
+</html>
